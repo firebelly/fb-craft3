@@ -1,7 +1,7 @@
 from fabric.api import *
 import os
 
-env.hosts = ['craft3.firebelly.co']
+env.hosts = ['firebelly.webfactional.com']
 env.user = 'firebelly'
 env.path = '/Users/developer/Sites/fb-craft3'
 env.remotepath = '/home/firebelly/webapps/fb_craft3'
@@ -12,7 +12,7 @@ env.remote_protocol = 'http'
 def production():
   env.hosts = ['www.firebellydesign.com']
   env.user = 'deployer'
-  env.remotepath = '/var/www/fb-craft3/'
+  env.remotepath = '/var/www/fb_craft3/'
   env.git_branch = 'master'
   env.remote_protocol = 'https'
 

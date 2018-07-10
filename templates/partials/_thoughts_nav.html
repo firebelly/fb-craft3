@@ -1,0 +1,14 @@
+{% if tag is defined %}
+  {% set activeTag = tag %}
+{% endif %}
+{% set entries = craft.entries.section('thoughts').limit(null) %}
+<section id="filters" class="divider section-nav interior">
+  <h1>Filter:</h1>
+  <ul>
+    <li class="show-all"><a href="/thoughts" {% if activeTag is not defined %}class="selected"{% endif %}>All posts</a></li>
+    {% for tag in craft.tags.relatedTo({sourceElement: entries, field: 'tags'}).orderBy('title') %}
+      {% set tagUrl = '/thoughts/tagged/'~tag.slug %}
+      <li><a {% if activeTag is defined and activeTag.slug == tag.slug %}class="selected"{% endif %} href="{{tagUrl}}">{{tag.title}}</a></li>
+    {% endfor %}
+  </ul>
+</section>

@@ -1,0 +1,31 @@
+  <table class="order-items">
+    <tr>
+      <th width="55%" class="ta-l">Item</th>
+      <th width="15%">Quantity</th>
+      <th width="15%" class="ta-r">Price</th>
+      <th width="15%" class="ta-r">Subtotal</th>
+    </tr>
+    {% set item_total = 0 %}
+    {% for item in cart.items %}
+      <tr class="order-item">
+        <td class="ta-l">{{ item.title }}</td>
+        <td class="ta-c">{{ item.quantity }}</td>
+        <td class="ta-r">${{ "%.0f"|format(item.price) }}</td>
+        <td class="ta-r">${{ "%.0f"|format(item.quantity * item.price) }}</td>
+      </tr>
+      {% set item_total = item_total + (item.quantity * item.price) %}
+    {% endfor %}
+
+    <tr style="padding: 8px 0">
+      <td class="ta-r" colspan="3">Item Total</td>
+      <td class="ta-r">${{ "%.0f"|format(item_total) }}</td>
+    </tr>
+    <tr style="padding: 8px 0">
+      <td class="ta-r" colspan="3">Shipping ({{ cart.shipping.type }})</td>
+      <td class="ta-r">${{ "%.0f"|format(cart.shipping.cost) }}</td>
+    </tr>
+    <tr>
+      <td class="ta-r" colspan="3"><strong>Order Total</strong></td>
+      <td class="ta-r">${{ "%.0f"|format(cart.total) }}</td>
+    </tr>
+  </table>

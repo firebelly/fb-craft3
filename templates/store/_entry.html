@@ -1,0 +1,78 @@
+{% extends (craft.app.request.isAjax and not craft.request.isLivePreview) ? "_ajax-layout" : "_layout" %}
+
+{% set title = entry.title %}
+{% if entry.seoTitle %}{% set seoTitle = entry.seoTitle %}{% endif %}
+{% if entry.seoDescription %}{% set seoDescription = entry.seoDescription %}{% endif %}
+
+{% set bodyClass = 'single' %}
+
+{% block content %}
+  {% cache unless currentUser %}
+  <article class="product single clearfix">
+    <div class="interior">
+      <div class="intro one-half -left clearfix">
+        <div class="-inner">
+          <header class="section-title">
+            <h1>{{ entry.title }}</h1>
+            <h2 class="price">${{ entry.price|trim('0')|trim('.') }}</h2>
+          </header>
+          <div class="summary">
+            {% if entry.body %}
+              <div class="description">{{ entry.body }}</div>
+            {% endif %}
+          </div>
+          {# {{ render :partial => '/shared/edit_bug', :locals => { :obj => product, :edit_path => refinery.edit_products_admin_product_path(product) }}} #}
+        </div>
+      </div>
+
+      <aside class="secondary one-half -right">
+          <div class="details">
+            <div class="one-half -left">
+              {% if entry.size %}
+                <div class="secondary-item">
+                  <h3>Size</h3>
+                  {{ entry.size }}
+                </div>
+              {% endif %}
+              {% if entry.productionHighlights %}
+                <div class="secondary-item">
+                  <h3>Production Highlights</h3>
+                  {{ entry.productionHighlights }}
+                </div>
+              {% endif %}
+            </div>
+            <div class="one-half -right">
+              {% if entry.colophon %}
+                <div class="secondary-item">
+                  <h3>Colophon</h3>
+                  {{ entry.colophon }}
+                </div>
+              {% endif %}
+              <div class="actions">
+                <button type="submit" class="submit button add-to-cart" data-id="{{ entry.id }}" data-stripe-product-id="{{ entry.stripeProductId }}" data-title="{{ entry.title }}" data-price="{{ entry.price }}" data-weight="{{ entry.weight }}">Add To Cart</button>
+              </div>
+            </div>
+          </div>
+      </aside>
+    </div>
+
+    <section>
+      {% if entry.productImages|length %}
+        <div class="slider"><div class="wrap">
+          <ul class="product-images">
+            {% for image in entry.productImages.all() %}
+              <li><img class="lazy" src="/assets/images/gray.gif" data-original="{{ craft.app.config.general.cdnUrl }}{{ image.getUrl('hero') }}" alt="{{ image.title }}"></li>
+            {% endfor %}
+          </ul>
+        </div></div>
+      {% endif %}
+    </section>
+  </article>
+
+  {% include "partials/_pagination_structure" with {'paginationSection': 'store', 'postName': 'Product'} %}
+  {% endcache %}
+{% endblock %}
+
+{% block aside %}
+  {% include 'partials/_cart' %}
+{% endblock %}

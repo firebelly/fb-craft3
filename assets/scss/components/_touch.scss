@@ -1,0 +1,13 @@
+// Touch mods
+
+// No-touch only
+.no-touch {
+  .project {
+    &:hover {
+      .project-image {
+        transform: scale(1.1);
+        transform-origin: center center;
+      }
+    }
+  }
+}

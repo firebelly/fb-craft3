@@ -1,0 +1,64 @@
+// Store
+
+#store-page {
+  .section-title {
+    background: $green;
+  }
+
+  .interior {
+    background: $green;
+    @extend %clearfix;
+    @include max-screen(1000px) {
+      .one-half {
+        float: none;
+        width: 100%;
+      }
+      .intro {
+        padding-left: 0;
+      }
+    }
+  }
+
+  .section-title {
+    position: relative;
+    .price {
+      right: 0;
+      top: 25px;
+      color: $black;
+      position: absolute;
+    }
+  }
+
+  .intro {
+    .actions {
+      margin-top: ($padding * 4);
+    }
+  }
+
+  .secondary-item {
+    p, li, table {
+      color: $black-fade;
+      @extend %small-caps;
+    }
+  }
+
+  .product {
+    .actions {
+      margin-top: ($padding * 4);
+      .submit {
+        background: #fff;
+        &:hover, &:focus, &:active {
+          background: $gray;
+        }
+      }
+    }
+  }
+
+  .product-images {
+    img {
+      width: 100%;
+      max-width: none;
+      vertical-align: top;
+    }
+  }
+}

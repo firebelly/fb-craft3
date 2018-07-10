@@ -1,0 +1,38 @@
+{% extends (craft.app.request.isAjax and not craft.request.isLivePreview) ? "_ajax-layout" : "_layout" %}
+{% set title = "Store" %}
+{# {% if entry.seoDescription %}{% set description = entry.seoDescription %}{% endif %} #}
+
+{% block content %}
+  {% cache unless currentUser %}
+  <header class="section-title">
+    <h1>Store</h1>
+    <h2>right now, it’s kind of<br> just typeforce books.</h2>
+  </header>
+  <section class="store">
+    <ul class="products clearfix filter-items">
+      {% set entries = craft.entries({
+        section: 'store',
+        with: [
+          'productImages'
+        ]
+      }) %}
+      {% for entry in entries.all() %}
+        <li class="product">
+          {% set productImage = entry.productImages[0] ?? null %}
+          {% if productImage %}
+            <div class="product-image lazy" style="background-image:url('/assets/images/gray.gif');" data-original="{{ craft.app.config.general.cdnUrl }}{{ productImage.getUrl('projectThumb') }}"></div>
+          {% endif %}
+          <header>
+            <h1><a href="{{ entry.getUrl() }}">{{ entry.title }}</a></h1>
+          </header>
+          <a class="view-product" href="{{ entry.getUrl() }}"><span>Details</span></a>
+        </li>
+      {% endfor %}
+    </ul>
+  </section>
+  {% endcache %}
+{% endblock %}
+
+{% block aside %}
+  {% include 'partials/_cart' %}
+{% endblock %}

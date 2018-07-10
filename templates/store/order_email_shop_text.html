@@ -1,0 +1,31 @@
+A new order has been received:
+
+Order items
+-----------
+{% for item in cart.items %}
+{{ item.quantity }} x {{ item.title }} @ ${{ "%.0f"|format(item.price) }}: ${{ "%.0f"|format(item.quantity * item.price) }}
+{% endfor %}
+{{ cart.shipping.type }} Shipping: ${{ "%.0f"|format(cart.shipping.cost) }}
+Order total: ${{ "%.0f"|format(cart.total) }}
+Paid with {{ card.brand }} *{{ card.last4 }}
+
+Ship to
+-------
+{{ customer.shipping_name }}
+{{ customer.shipping_address_line1 }}
+{{ customer.shipping_address_city }}, {{ customer.shipping_address_state }}, {{ customer.shipping_address_zip }}
+{% if customer.shipping_address_country_code != 'US' %}
+{{ customer.shipping_address_country_code }}
+{% endif %}
+
+Billing info
+------------
+{{ customer.billing_name }}
+{{ customer.email }}
+{{ customer.billing_address_line1 }}
+{{ customer.billing_address_city }}, {{ customer.billing_address_state }}, {{ customer.billing_address_zip }}
+{% if customer.billing_address_country_code != 'US' %}
+{{ customer.billing_address_country }}
+{% endif %}
+
+Stripe orders dashboard: https://dashboard.stripe.com/orders

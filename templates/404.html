@@ -1,0 +1,19 @@
+{% extends (craft.app.request.isAjax and not craft.request.isLivePreview) ? "_ajax-layout" : "_layout" %}
+{% set title = "404" %}
+{% set bodyId = "fourohfour-page" %}
+
+{% block content %}
+<section class="content interior grid">
+  <div class="intro clearfix">
+    <div class="-inner">
+      <header class="section-title">
+        <h1 data-text="We’re Sorry">We’re Sorry</h1>
+        <div class="summary user-content">
+	        <h2>Unfortunately it appears that you have reached a page that does not exist.</h2>
+	        <p style="line-height: 1.9em"><a href="http://youtu.be/-Spq1N3QljM" target="_blank">Here's a link to something fun for the inconvenience</a>.</p>
+        </div>
+      </header>
+    </div>
+  </div>
+</section>
+{% endblock %}

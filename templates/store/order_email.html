@@ -1,0 +1,24 @@
+{% extends "_email-layout" %}
+{% block content %}
+  <h2>Consider it confirmed!</h2>
+
+  <p>We'll get your items to you post-haste.</p>
+
+  <h3>Your order</h3>
+  {% include 'store/_order_items' %}
+  <p>Paid with {{ card.brand }} *{{ card.last4 }}</p>
+
+  <h3>Ship to</h3>
+  <p>
+    {{ customer.shipping_name }}<br>
+    {{ customer.shipping_address_line1 }}<br>
+    {{ customer.shipping_address_city }}, {{ customer.shipping_address_state }}, {{ customer.shipping_address_zip }}<br>
+    {% if customer.shipping_address_country_code != 'US' %}
+      {{ customer.shipping_address_country_code }}
+    {% endif %}
+  </p>
+
+  <br>
+
+  <p>Something not right? Please reply to this email to let us know. Thanks!</p>
+{% endblock %}

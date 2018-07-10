@@ -1,0 +1,183 @@
+// UI Elements
+
+//
+// Transforming menu toggle
+//
+$tcon-size: 22px !default;
+$tcon-transition: .4s $cubic-ease1 !default;
+$tcon-jstransform: 'tcon-transform' !default;
+
+$tcon-menu-radius: 0 !default;
+$tcon-menu-color: $black !default;
+$tcon-menu-arrowleft-transformation: (
+  transform: scale3d(.8, .8, .8) rotate3d(0, 0, 1, 90deg)
+) !default;
+$tcon-menu-arrow360left-transformation: (
+  transform: scale3d(.8, .8, .8) rotate3d(0, 0, 1, 360deg)
+) !default;
+.tcon {
+  appearance: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: $tcon-size;
+  transition: $tcon-transition;
+  user-select: none;
+  width: $tcon-size;
+  background: transparent;
+  outline: none;
+
+  > * {
+    display: block;
+  }
+
+  &:hover,
+  &:focus {
+    outline: none; // see issue #36 https://github.com/grayghostvisuals/transformicons/issues/36
+  }
+  &::-moz-focus-inner {
+    border: 0;
+  }
+}
+
+@mixin tcon-menu-lines {
+  display: inline-block;
+  height: 2px;
+  width: $tcon-size;
+  border-radius: $tcon-menu-radius;
+  transition: $tcon-transition;
+  background: $tcon-menu-color;
+}
+
+.tcon-menu__lines {
+  @include tcon-menu-lines;
+  position: relative;
+
+  &:before,
+  &:after {
+    @include tcon-menu-lines;
+    content: '';
+    position: absolute;
+    left: 0;
+    transform-origin: ($tcon-size / 14) center;
+    width: 100%;
+  }
+
+  &:before {
+    top: ($tcon-size / 3);
+  }
+
+  &:after {
+    top: -($tcon-size / 3);
+  }
+
+  .#{$tcon-jstransform} & {
+    transform: scale3d(.8, .8, .8);
+  }
+}
+
+.tcon-menu__grid {
+  @include tcon-menu-lines;
+  position: relative;
+  box-shadow:0px 0px 0px 2px $tcon-menu-color inset;
+  width: $tcon-size + 1px;
+  height: $tcon-size - 4px;
+  background: transparent;
+
+  &:before,
+  &:after {
+    @include tcon-menu-lines;
+    content: '';
+    position: absolute;
+    transform-origin: ($tcon-size / 14) center;
+    width: 100%;
+  }
+
+  &:before {
+    top: ($tcon-size / 2) - 3px;
+    left: 0;
+  }
+
+  &:after {
+    top: 0;
+    left: ($tcon-size / 2) - 1px;
+    width: 2px;
+    height: $tcon-size - 4px;
+    background: $tcon-menu-color;
+  }
+
+  .#{$tcon-jstransform} & {
+    transform: scale3d(.8, .8, .8);
+  }
+}
+.tcon-menu--xcross {
+  width: auto;
+
+  &.#{$tcon-jstransform},
+  &.xcross-open {
+    .tcon-menu__lines {
+      background: transparent;
+
+      &:before,
+      &:after {
+        transform-origin: 50% 50%;
+        top: 0;
+        width: $tcon-size;
+      }
+
+      &:before {
+        transform: rotate3d(0, 0, 1, 45deg);
+      }
+
+      &:after {
+        transform: rotate3d(0, 0, 1, -45deg);
+      }
+    }
+  }
+  &.xcross-small {
+    .tcon-menu__lines {
+      vertical-align: middle;
+      &:before,
+      &:after {
+        width: 12px;
+        height: 1px;
+        transition: background .2s $cubic-ease1;
+        background: $black-fade;
+      }
+    }
+    &:hover {
+      .tcon-menu__lines {
+        &:before,
+        &:after {
+          background: $black;
+        }
+      }
+    }
+  }
+}
+// see issue #7 https://github.com/grayghostvisuals/transformicons/issues/7#issuecomment-59813596
+.tcon-visuallyhidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+
+  &:active,
+  &:focus {
+    clip: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    position: static;
+    width: auto;
+  }
+}
+//
+// End Transformicon
+//

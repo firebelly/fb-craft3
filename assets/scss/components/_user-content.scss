@@ -1,0 +1,75 @@
+// User Content
+.user-content {
+  .h1,
+  h1 {
+    color: $black;
+    font: 48px/1.145833333em $font-display;
+  }
+  h2 {
+    color: $black-fade;
+    @extend %small-caps;
+  }
+
+  p {
+    font-size: 1em;
+    line-height: 1.375em;
+  }
+
+  @extend %fade-links;
+
+  // If we put any breaks in an a on purpose
+  // cause it's super long, hide it at larger-screens
+  @include min-screen($breakpoint-huge) {
+    br {
+      display: none;
+    }
+  }
+
+  blockquote {
+    margin: ($padding * 3) auto;
+    max-width: 800px;
+    text-align: center;
+    &, p {
+      font-size: 24px;
+      color: $black-fade;
+      line-height: 1.375em;
+      // letter-spacing: .035em;
+      font-family: $font-display;
+    }
+    a {
+      &:hover, &:focus {
+        color: $black;
+      }
+    }
+
+    @include min-screen($breakpoint-medium) {
+      font-size: 32px;
+    }
+  }
+
+  ul, ol {
+    margin: ($padding * 2) auto 0;
+    li {
+      line-height: 1.375em;
+      list-style: disc;
+      margin-bottom: .5em;
+    }
+  }
+  ol li {
+    list-style: decimal;
+  }
+
+  em {
+    font-style: italic;
+  }
+
+  strong {
+    font-weight: bold;
+  }
+
+  strong em, em strong {
+    font-style: italic;
+    font-weight: bold;
+  }
+
+}

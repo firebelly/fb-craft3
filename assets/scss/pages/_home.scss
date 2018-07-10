@@ -1,0 +1,28 @@
+// Homepage
+
+#work-page.index {
+  // Hide Project grid icon on homepage
+  .project-side-toggle {
+    display: none;
+  }
+  // ..and move standard menu-toggle button over
+  .menu-toggle {
+    right: 25px;
+  }
+
+  // Sidebar pushes main content over on homepage
+  @include min-screen($breakpoint-medium) {
+    .site-header {
+      &.sidebar-open {
+        padding-right: 325px;
+      }
+    }
+
+    #page {
+      transition: margin .4s $cubic-ease1;
+      &.sidebar-open {
+        margin-right: 300px;
+      }
+    }
+  }
+}

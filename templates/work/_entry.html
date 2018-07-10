@@ -1,0 +1,87 @@
+{% extends (craft.app.request.isAjax and not craft.request.isLivePreview) ? "_ajax-layout" : "_layout" %}
+
+{% set title = entry.title %}
+{% if entry.seoTitle %}{% set seoTitle = entry.seoTitle %}{% endif %}
+{% if entry.seoDescription %}{% set seoDescription = entry.seoDescription %}{% endif %}
+
+{% set bodyClass = 'single' %}
+{% set mainImage = entry.mainImage.one() %}
+
+{% block content %}
+  {% cache unless currentUser %}
+  <article class="content-block single-project" data-id="{{ entry.id }}">
+    <section class="content interior">
+      {% if mainImage|length %}
+        {% if entry.vimeoHeaderVideo %}
+          <div class="project-banner video">
+            <iframe src="https://player.vimeo.com/video/{{ entry.vimeoHeaderVideo|replace('/[^0-9+]/', '') }}?background=1;autoplay=1&autopause=0&loop=1&title=0&byline=0&portrait=0" width="1245" height="700" frameborder="0"></iframe>
+          </div>
+        {% else %}
+          <div class="project-banner" style="background-image:url({{ craft.app.config.general.cdnUrl }}{{ mainImage.getUrl('hero') }});"></div>
+        {% endif %}
+      {% endif %}
+      <div class="intro clearfix">
+        <header class="section-title">
+          <h1 class="project-client">{{ entry.title }}</h1>
+          <h4 class="project-name">{{ entry.subtitle }}</h4>
+          {# <%= render :partial => '/shared/edit_bug', :locals => { :obj => entry, :edit_path => refinery.edit_projects_admin_project_path(entry) }%> #}
+        </header>
+        <div class="summary user-content">{{ entry.body }}</div>
+        <div class="project-meta grid">
+          <div class="industry one-half">
+            <div class="-inner">
+              <h3>Industry:</h3>
+              {% if entry.industry | length %}
+                <ul><li><a href="/work#{{ entry.industry.one().slug }}">{{ entry.industry.one().title }}</a></li></ul>
+              {% endif %}
+            </div>
+          </div>
+          <div class="services one-half">
+            <div class="inner">
+              <h3>Services:</h3>
+              {% if entry.services | length %}
+                <ul><li>{% for service in entry.services.all() %}
+                <a href="/work#{{ service.slug }}">{{ service.title }}</a>
+                {{ not loop.last ? "," }}
+                {% endfor %}</li></ul>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="project-images clearfix">
+        {% for block in entry.projectBlocks.all() %}
+            {% if block.type == "blockHeader" %}
+              <div class="project-summary user-content">
+                {% if block.numberHeader %}
+                  <h3 class="h1 number-header">{{ block.numberHeader }}</h3>
+                {% endif %}
+                {% if block.blockTitle %}
+                  <h2>{{ block.blockTitle }}</h2>
+                {% endif %}
+                {{ block.blockDescription }}
+              </div>
+            {% elseif block.type == "blockImages" %}
+              {% for image in block.images.all() %}
+                {% if image.filename matches '{\.gif$}' %}
+                  <p><img class="lazy" src="/assets/images/gray.gif" data-original="{{ craft.app.config.general.cdnUrl }}{{ image.getUrl() }}" alt="{{ image.title }}"></p>
+                {% else %}
+                  <p><img class="lazy" src="/assets/images/gray.gif" data-original="{{ craft.app.config.general.cdnUrl }}{{ image.getUrl() }}" alt="{{ image.title }}"></p>
+                {% endif %}
+              {% endfor %}
+            {% elseif block.type == "blockHtml" %}
+                <div class="block-html">{{ block.html }}</div>
+            {% elseif block.type == "blockQuote" %}
+                <div class="block-quote" style="color: {{ block.textColor }}; background-color: {{ block.backgroundColor }};"><blockquote>{{ block.quote }}</blockquote></div>
+            {% elseif block.type == "blockImageLink" %}
+              {% for image in block.images.all() %}
+                <p><a href="{{ block.imageLinkUrl }}" target="_blank"><img class="lazy" src="/assets/images/gray.gif" data-original="{{ craft.app.config.general.cdnUrl }}{{ image.getUrl() }}" alt="{{ image.title }}"></a></p>
+              {% endfor %}
+            {% endif %}
+        {% endfor %}
+      </div>
+    </section>
+  </article>
+  {% include "partials/_pagination_structure" with {'paginationSection': 'work', 'postName': 'Project'} %}
+  {% endcache %}
+{% endblock %}

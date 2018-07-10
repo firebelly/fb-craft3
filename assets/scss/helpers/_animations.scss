@@ -1,0 +1,24 @@
+// Animations
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+// Custom cubic easings
+
+$cubic-ease1: cubic-bezier(0.77, 0, 0.175, 1);
+$cubic-ease2: cubic-bezier(0.165, 0.84, 0.44, 1);

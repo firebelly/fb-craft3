@@ -1,0 +1,321 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style type="text/css">
+      /* -------------------------------------
+          GLOBAL
+      ------------------------------------- */
+      * {
+        margin:0;
+        padding:0;
+      }
+      * {
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      }
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+      body {
+        -webkit-font-smoothing:antialiased;
+        -webkit-text-size-adjust:none;
+        width:100% !important;
+        height: 100%;
+      }
+      a {
+        color: #9999ff;
+        text-decoration: none;
+      }
+
+      /* -------------------------------------
+          BODY
+      ------------------------------------- */
+      table.body-wrap { width: 100%; }
+
+      /* -------------------------------------
+          HEADER
+      ------------------------------------- */
+      table.header-wrap {
+        width: 100%;
+        clear:both;
+        background: #d2f1db;
+      }
+      img.header-logo {
+        display: block;
+        width: 190px;
+        height: auto;
+        margin: 16px auto 10px auto;
+      }
+
+      /* -------------------------------------
+          FOOTER
+      ------------------------------------- */
+      table.footer-wrap {
+        width: 100%;
+        clear:both;
+        background: #231F20;
+        color: #FFFFFF;
+        font-size: 12px;
+        letter-spacing: .2em;
+        line-height: 2em;
+      }
+      .footer-wrap a {
+        color: #FFFFFF;
+        font-size: 12px;
+        letter-spacing: .2em;
+        line-height: 2em;
+      }
+      .footer-wrap .container {
+        padding: 25px 0 150px;
+        position: relative;
+      }
+      .footer-wrap .endash {
+        width: 14px;
+        height: 22px;
+        display: block;
+        margin: 10px 0;
+      }
+      .footer-wrap .logo {
+        width: 75px;
+        height: 21px;
+        display: block;
+      }
+      table.footer-f {
+        display: none; /* Just hiding for now in mobile */
+        height: 75px;
+        width: 100%;
+      }
+      .footer-f .wrap {
+        text-align: center;
+        width: 100%;
+        margin: 0 auto;
+      }
+      .footer-f img {
+        display: inline-block;
+        margin: 0 auto;
+        width: 50px;
+        height: 50px;
+      }
+      .footer-social,
+      .footer-wrap .column {
+        text-align:center;
+        margin: 20px 0;
+      }
+      .footer-wrap .logo,
+      .footer-wrap .endash {
+        margin: 10px auto;
+      }
+
+
+      /* -------------------------------------
+          TYPOGRAPHY
+      ------------------------------------- */
+      h1,h2,h3 {
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        line-height: 1.1;
+        margin-bottom: 15px;
+        color: #231F20;
+      }
+      h2 {
+        font-weight:700;
+        font-size: 24px;
+      }
+      h3 {
+        font-weight:700;
+        font-size: 12px;
+        color: #A7A9AC;
+        letter-spacing: .1em;
+        text-transform: uppercase;
+        margin: 20px 0 10px 0;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #d0d3d8;
+      }
+      p, ul {
+        margin-bottom: 10px;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 1.6;
+      }
+      ul li {
+        margin-left: 5px;
+        list-style-position: inside;
+      }
+
+      /* -------------------------------------
+          STRUCTURE
+      ------------------------------------- */
+
+      .container {
+        display:block;
+        max-width:600px;
+        margin:0 auto;
+        clear:both;
+      }
+      .main-content {
+        padding: 20px 0;
+      }
+      table {
+        width: 100%;
+      }
+      .clear {
+        display: block;
+        clear: both;
+      }
+      .column {
+        width: auto;
+        float: none;
+      }
+
+      /* -------------------------------------
+          ORDER ITEMS
+      ------------------------------------- */
+      table.order-items {
+        border-collapse: collapse;
+        font-size: 14px;
+        line-height: 1.2;
+      }
+      table.order-items th {
+        font-size: 10px;
+        padding: 0;
+      }
+      table.order-items td {
+        padding: 8px 0 4px 0;
+      }
+      table.order-items tr.order-item td {
+        border-bottom: 1px solid #DDE2E8;
+        padding: 8px 0;
+      }
+      .ta-l {
+        text-align: left;
+      }
+      .ta-r {
+        text-align: right;
+      }
+      .ta-c {
+        text-align: center;
+      }
+
+
+      /* ----------------------------------------
+          For clients that support media queries
+      ------------------------------------------- */
+      @media only screen and (min-width: 600px) {
+        table.order-items th {
+          font-size: 14px!important;
+        }
+        .column {
+          width: 300px!important;
+          float: left!important;
+        }
+        .column-wrap {
+          padding: 0!important;
+          margin: 0 auto!important;
+          max-width: 600px!important;
+        }
+        table.footer-f {
+          display: table!important;
+        }
+        .footer-f .wrap {
+          width: 600px!important;
+          text-align: right!important;
+        }
+        .footer-social {
+          text-align: right!important;
+          margin: 0!important;
+        }
+        .footer-wrap .column {
+          text-align: left!important;
+          margin: 0!important;
+        }
+        .footer-wrap .logo,
+        .footer-wrap .endash {
+          margin: 0 0 10px 0!important;
+        }
+
+      }
+  </style>
+</head>
+<body bgcolor="#FFFFFF" topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+  <table class="header-wrap">
+    <tr>
+      <td bgcolor="#d2f1db" align="center">
+          <img class="header-logo" src="https://firebelly.s3.amazonaws.com/fb3/header-logo@4x.png">
+      </td>
+    </tr>
+  </table><!-- HEADER WRAP -->
+
+  <table class="body-wrap">
+    <tr>
+      <td></td>
+      <td class="container" bgcolor="#FFFFFF">
+
+        <table cellspacing="0" cellpadding="0" border="0" width="100%">
+          <tr>
+            <td bgcolor="#ffffff">
+              <div class="main-content">
+                {% block content %}{% endblock %}
+              </div>
+            </td>
+          </tr>
+        </table>
+
+      </td>
+      <td></td>
+    </tr>
+  </table><!-- BODY WRAP -->
+
+  <table class="footer-f" background="img/footer-f-bg.png">
+    <tr>
+      <td align="center">
+        <table class="wrap">
+        <tr><td><img src="https://firebelly.s3.amazonaws.com/fb3/footer-logo-f@4x.png" class="logo-f"></td></tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+  <table class="footer-wrap">
+    <tr>
+      <td></td>
+      <td class="container">
+
+        <div class="column-wrap">
+
+          <div class="column">
+            <table align="left">
+              <tr>
+                <td>
+                  <img src="https://firebelly.s3.amazonaws.com/fb3/footer-logo@4x.png" alt="Firebelly" class="logo">
+                  <img src="https://firebelly.s3.amazonaws.com/fb3/endash.png" class="endash">
+                  <a target="_blank" href="https://goo.gl/maps/im4YsDbLnFH2">1402 N WESTERN AVE<br> CHICAGO IL 60622</a><br>
+                  <a target="_blank" href="mailto:info@firebellydesign.com">INFO@FIREBELLYDESIGN.COM</a><br>
+                  <a target="_blank" href="tel:7734893200">773 489 3200</a><br>
+                </td>
+              </tr>
+            </table>
+          </div>
+
+          <div class="column">
+            <table align="right" class="footer-social">
+              <tr>
+                <td>
+                  <a target="_blank" href="https://www.facebook.com/firebellydesign">FACEBOOK</a><br>
+                  <a target="_blank" href="https://twitter.com/firebellydesign">TWITTER</a><br>
+                  <a target="_blank" href="https://www.instagram.com/firebellydesign/">INSTAGRAM</a><br>
+                  <a target="_blank" href="https://www.firebellydesign.com/work">WEB</a><br><br>
+                </td>
+              </tr>
+            </table>
+          </div>
+
+          <div class="clear"></div>
+
+        </div><!-- /COLUMN WRAP -->
+
+      </td>
+      <td></td>
+    </tr>
+  </table><!-- /FOOTER -->
+
+</body>
+</html>

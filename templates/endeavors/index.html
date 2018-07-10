@@ -1,0 +1,65 @@
+{% extends (craft.app.request.isAjax and not craft.request.isLivePreview) ? "_ajax-layout" : "_layout" %}
+
+{% set title = entry.title %}
+{% if entry.seoTitle %}{% set seoTitle = entry.seoTitle %}{% endif %}
+{% if entry.seoDescription %}{% set seoDescription = entry.seoDescription %}{% endif %}
+
+{% set bodyClass = 'single page endeavors' %}
+
+{% block content %}
+<section class="content interior no-padding grid">
+
+  <div class="intro one-half -left clearfix">
+    <div class="-inner">
+      <header class="section-title">
+        <h1>{{ entry.title }}</h1>
+      </header>
+      <div class="summary">
+        {{ entry.body }}
+      </div>
+      {# <%= render :partial => '/shared/edit_bug', :locals => { :obj => @page, :edit_path => refinery.admin_edit_page_path(@page) }%> #}
+    </div>
+  </div>
+
+  <ul class="child-pages">
+  {% for block in entry.endeavors.all() %}
+    <li class="page user-content clearfix item" data-page="{{ block.endeavorTitle }}" id="{{ block.endeavorTitle|kebab }}">
+
+      <div class="intro one-half -left clearfix">
+        <div class="-inner">
+          <header class="section-title">
+            <h1>{{ block.endeavorTitle }}.</h1>
+          </header>
+          <div class="summary">
+            {{ block.endeavorDescription }}
+          </div>
+        </div>
+      </div>
+      <aside class="secondary one-half -right">
+        <div class=" one-half -left">
+          <div class="secondary-item">
+            {{ block.endeavorColumn1 }}
+          </div>
+        </div>
+        <div class=" one-half -right">
+          <div class="secondary-item">
+            {{ block.endeavorColumn2 }}
+          </div>
+        </div>
+      </aside>
+    </li>
+  {% endfor %}
+  </ul>
+</section>
+{% endblock %}
+
+{% block aside %}
+  <section id="filters" class="divider section-nav">
+    <h1>{{ entry.title }}</h1>
+    <ul class="option-set clearfix smoothscroll">
+      {% for block in entry.endeavors.all() %}
+        <li><a href="#{{ block.endeavorTitle|kebab }}">{{ block.endeavorTitle }}</a></li>
+      {% endfor %}
+    </ul>
+  </section>
+{% endblock aside %}

@@ -1,0 +1,60 @@
+{% extends (craft.app.request.isAjax and not craft.request.isLivePreview) ? "_ajax-layout" : "_layout" %}
+{% set title = "Thoughts" %}
+
+{% if tag is defined %}
+  {% set tag = craft.tags.slug(tag).one() %}
+  {% paginate craft.entries({
+    section: 'thoughts',
+    relatedTo: tag,
+    with: [
+      'headerImage'
+    ]
+  }) as paginationInfo, thoughtEntries %}
+{% else %}
+  {% paginate craft.entries({
+    section: 'thoughts',
+    with: [
+      'headerImage'
+    ]
+  }).limit(5) as paginationInfo, thoughtEntries %}
+{% endif %}
+
+{% block content %}
+  {% cache unless currentUser %}
+	<section class="thoughts-list page-content" data-page="/thoughts" data-page-title="{{ title }}">
+    {% if tag is defined %}
+      <div class="filter-header active"><div class="filter-header-wrap">Filter:<p><span class="filter">{{ tag.title }}</span> <a href="/thoughts" class="tcon tcon-no-animate tcon-menu--xcross xcross-open xcross-small" aria-label="remove tag filter"><span class="tcon-menu__lines" aria-hidden="true"></span><span class="tcon-visuallyhidden">remove tag filter</span></a></p></div></div>
+    {% endif %}
+
+		{% for entry in thoughtEntries %}
+			{% include "thoughts/_article" %}
+		{% endfor %}
+
+    <nav class="footer-pagination">
+      <ul>
+        {% if paginationInfo.prevUrl %}
+        <li class="prev">
+          <a rel="prev" href="{{ paginationInfo.prevUrl }}"><span class="arrow">&larr;</span> Previous Page</a>
+        </li>
+        {% else %}
+          <li class="prev disabled"></li>
+        {% endif %}
+        {% if paginationInfo.nextUrl %}
+        <li class="next">
+          <a rel="next" href="{{ paginationInfo.nextUrl }}">Next Page <span class="arrow">&rarr;</span></a>
+        </li>
+        {% else %}
+          <li class="next disabled"></li>
+        {% endif %}
+      </ul>
+    </nav>
+
+	</section>
+	{% endcache %}
+{% endblock %}
+
+{% block aside %}
+  {% cache globally using key "thoughts-nav" %}
+    {% include "partials/_thoughts_nav" %}
+  {% endcache %}
+{% endblock aside %}

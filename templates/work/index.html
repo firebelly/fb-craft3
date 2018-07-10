@@ -1,0 +1,73 @@
+{% extends (craft.app.request.isAjax and not craft.request.isLivePreview) ? "_ajax-layout" : "_layout" %}
+
+{% set seoTitle = "Firebelly Design | Branding | Strategy | Graphic Design | Chicago" %}
+{% set seoDescription = "Firebelly Design is a socially conscious boutique design studio based in Chicago. We specialize in branding, strategy and Good Design for Good Reason™." %}
+
+{% block content %}
+  {% cache unless currentUser %}
+  <header class="section-title">
+    <h1>Good Design<br> for Good <span class="last-word">Reason.<sup>&trade;</sup></span></h1>
+    <h2>We create positive human experiences<br> through beautiful, sustainable design.</h2>
+  </header>
+
+  <section class="portfolio">
+    <ul class="projects filter-items clearfix">
+      {% set entries = craft.entries({
+          section: 'work',
+          with: [
+            'services',
+            'industry',
+            ['altImage', {
+                withTransforms: ['projectThumb']
+            }],
+            ['mainImage', {
+                withTransforms: ['projectThumb']
+            }]
+          ]
+      }) %}
+      {% for entry in entries.all() %}
+        {% set altImage = entry.altImage[0] ?? null %}
+        {% if entry.altImage %}
+          {% set mainImage = altImage %}
+        {% else %}
+          {% set mainImage = entry.mainImage[0] ?? null %}
+        {% endif %}
+        <li class="project interior" data-services="{% for service in entry.services %}{{ service.slug }} {% endfor %}" data-industry="{% for industry in entry.industry %}{{ industry.slug }} {% endfor %}">
+          <article>
+            {% if mainImage %}
+              <div class="project-image lazy" style="background-image:url('/assets/images/gray.gif');" data-original="{{ craft.app.config.general.cdnUrl }}{{ mainImage.getUrl('projectThumb') }}"></div>
+            {% endif %}
+            <header>
+              <h1><a href="{{ entry.getUrl() }}">{{ entry.title }}</a></h1>
+              {% if entry.rolloverSubtitle %}
+                <h3>{{ entry.rolloverSubtitle }}</h3>
+              {% endif %}
+            </header>
+            <a aria-label="{{ entry.title }}: {{ entry.rolloverSubtitle }}" class="view-project" href="{{ entry.getUrl() }}"><span>View Project</span></a>
+          </article>
+        </li>
+      {% endfor %}
+    </ul>
+  </section>
+  {% endcache %}
+{% endblock %}
+
+{% block aside %}
+  {% cache unless currentUser %}
+  <section id="filters" class="divider section-nav interior">
+    <h1>Filter:</h1>
+    <ul class="filter-set">
+      <li class="show-all"><a href="#filter" data-filter="" class="selected">all</a></li>
+      {% set entryIds = craft.entries({section: 'work'}).ids() %}
+      {% set industries = craft.categories.relatedTo({ sourceElement: entryIds }).group('industry').all() %}
+      {% for industry in industries %}
+        <li><a href="#filter" data-filter="{{ industry.slug }}" class="{{ industry.slug }}">{{ industry.title }}</a></li>
+      {% endfor %}
+      {% set services = craft.tags.relatedTo({ sourceElement: entryIds }).group('services').all() %}
+      {% for service in services %}
+        <li><a href="#filter" data-filter="{{ service.slug }}" class="hidden">{{ service.title }}</a></li>
+      {% endfor %}
+    </ul>
+  </section>
+  {% endcache %}
+{% endblock aside %}

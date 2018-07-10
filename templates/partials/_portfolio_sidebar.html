@@ -1,0 +1,37 @@
+<nav class="project-nav" role="navigation">
+  <ul class="projects clearfix">
+    {% set entries = craft.entries({
+        section: 'work',
+        with: [
+          ['altImage', {
+              withTransforms: ['projectThumbSmall']
+          }],
+          ['mainImage', {
+              withTransforms: ['projectThumbSmall']
+          }]
+        ]
+    }) %}
+    {% for entry in entries.all() %}
+      {% set altImage = entry.altImage[0] ?? null %}
+      {% if entry.altImage %}
+        {% set mainImage = altImage %}
+      {% else %}
+        {% set mainImage = entry.mainImage[0] ?? null %}
+      {% endif %}
+      {% if mainImage %}
+        <li class="project">
+          <article>
+              <div class="project-image lazy-side" style="background-image:url('/assets/images/gray.gif');" data-original="{{ craft.app.config.general.cdnUrl }}{{ mainImage.getUrl('projectThumbSmall') }}" alt="{{ mainImage.title }}"></div>
+            <header>
+              <h1><a href="{{ entry.getUrl() }}">{{ entry.title }}</a></h1>
+              {% if entry.rolloverSubtitle %}
+                <h3>{{ entry.rolloverSubtitle }}</h3>
+              {% endif %}
+            </header>
+            <a aria-label="{{ entry.title }}: {{ entry.rolloverSubtitle }}" class="view-project" href="{{ entry.getUrl() }}"></a>
+          </article>
+        </li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+</nav>

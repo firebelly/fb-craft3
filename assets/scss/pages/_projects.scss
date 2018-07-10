@@ -1,0 +1,317 @@
+// Projects
+
+.filter-header {
+  @extend %small-caps;
+  @extend %fade-links;
+  display: none;
+  padding: $padding * 2;
+  display: none;
+  a,button {
+    display: inline-block;
+    margin-left: 4px;
+  }
+  &.active {
+    display: block;
+  }
+}
+
+#work-page.single {
+  .portfolio {
+    padding-top: 46px;
+    @include min-screen($breakpoint-small) {
+      padding-top: 132px;
+    }
+  }
+
+  .project-banner {
+    height: 400px; // Fallback for viewport units
+    height: 50vh;
+    overflow: hidden;
+    max-height: 400px;
+    position: relative;
+    background-size: cover;
+    background-position: center center;
+
+    @include min-screen($breakpoint-medium) {
+      height: 800px; // Fallback for viewport units
+      height: 70vh;
+      max-height: 800px;
+    }
+
+    &.video {
+      height: auto;
+      max-height: none;
+
+      @include min-screen($breakpoint-medium) {
+        height: auto;
+        max-height: 800px;
+        max-height: 75vh;
+      }
+    }
+
+    video {
+      height: auto;
+      min-width: 100%;
+      max-width: 100%;
+      position: relative;
+    }
+  }
+
+
+  .section-title {
+    text-align: center;
+    padding-top: 0;
+    padding-bottom: ($padding * 6);
+    h1 {
+      font-size: 36px;
+      margin-bottom: $padding;
+    }
+    h4 {
+      color: $black-fade;
+      @extend %small-caps;
+    }
+
+    @include min-screen($breakpoint-small) {
+      h1 {
+        font-size: 48px;
+        max-width: 600px;
+      }
+    }
+  }
+
+  .project-meta {
+    padding: 0 25px;
+    max-width: 600px;
+    text-align: center;
+    margin: ($padding * 5) auto 0;
+    > div {
+      @extend %clearfix;
+    }
+    @extend %fade-links;
+    h3 {
+      @extend %small-caps;
+    }
+    ul {
+      li {
+        display: inline;
+        @extend %small-caps;
+      }
+    }
+
+    .services {
+      margin-top: ($padding * 2);
+    }
+
+    @include min-screen($breakpoint-medium) {
+      padding: 0;
+      text-align: left;
+      h3 {
+        float: left;
+        width: 90px;
+      }
+      ul {
+        margin-left: 90px;
+      }
+      .services {
+        margin-top: 0;
+      }
+    }
+  }
+
+  .block-quote {    
+    padding: ($padding * 6) 25px;
+
+    @include min-screen($breakpoint-medium) {
+      padding-top: ($padding * 12);
+      padding-bottom: ($padding * 12);
+    }
+
+    blockquote {
+      margin: auto;
+      max-width: 800px;
+      text-align: center;
+      font: 36px/#{(41/36)} $font-display;
+      @include min-screen($breakpoint-small) {
+        font-size: 48px;
+        line-height: (55/48);
+      }
+    }
+  }
+
+  // A hacky fix for the unwanted borders created around fit-vided video blocks due to iframes and subpixel rounding
+  // Tried hard, but couldn't find a better way.  May god have mercy on my soul.
+  .block-html {
+    overflow: hidden;
+    .video-container {
+      margin: -1px;
+    }
+  }
+
+  .summary, .project-summary {
+    &.user-content {
+      padding-left: 25px;
+      padding-right: 25px;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      margin: 0 auto;
+      max-width: 600px;
+      text-align: center;
+    }
+    > p {
+      font-size: 16px;
+      max-width: 600px;
+      line-height: 1.375em;
+      margin: ($padding * 2) auto 0;
+      &:first-of-type {
+        margin-top: 0;
+      }
+    }
+  }
+
+  // The project summary
+  .intro {
+    padding: ($padding * 6) 0;
+
+    @include min-screen($breakpoint-medium) {
+      padding-bottom: ($padding * 9);
+    }
+  }
+
+  .summary {
+    blockquote {
+      margin: ($padding * 6) auto;
+    }
+  }
+
+  // centered paragraphs
+  .fb-centered-paragraph {
+    font-size: 16px;
+    max-width: 600px;
+    line-height: 1.375em;
+    margin: ($padding * 2);
+
+    @include min-screen($breakpoint-small) {
+      margin: ($padding * 6);
+    }
+
+    @include min-screen($breakpoint-medium) {
+      margin: ($padding * 12) auto;
+    }
+  }
+
+  .project-summary {
+    padding: ($padding * 6) 25px;
+
+    h3.number-header {
+      margin-bottom: 0;
+    }
+
+    h2 {
+      margin-bottom: ($padding * 6);
+    }
+
+    @include min-screen($breakpoint-small) {
+      padding: ($padding * 6) 100px;
+    }
+
+    @include min-screen($breakpoint-medium) {
+      padding: ($padding * 12);
+    }
+  }
+
+  .project-images {
+    margin: 0;
+    img {
+      width: 100%;
+      display: block;
+      max-width: none;
+    }
+  }
+}
+
+// Impromptu front end batch image upload interface
+.batch-upload {
+  text-align: center;
+}
+.dropzone {
+  margin: 20px;
+  background: #E2E2E2;
+  border: none;
+  text-align: center;
+  h2 {
+    margin-bottom: 20px;
+  }
+  .dz-message {
+    padding: 4em 0;
+    margin: 0;
+    color: #aaa;
+  }
+  .dz-preview {
+    &.dragged {
+      position: absolute;
+      margin: 0;
+    }
+    &.dz-image-preview {
+      background: none;
+    }
+    .dz-remove {
+      margin: 8px 0 0;
+    }
+  }
+  input[type=text],
+  textarea {
+    text-transform: none;
+    font: 14px/1 sans-serif;
+    letter-spacing: 0;
+    color: #666;
+    padding: 10px;
+    width: 100%;
+    margin: 10px auto;
+    max-width: 600px;
+    background: #eee;
+    border: none;
+  }
+  #images_desc {
+    height: 100px;
+  }
+}
+
+// Impromptu alt tag editing UI
+.alt-tag-edit {
+  position: relative;
+  input {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    padding: 4px 6px;
+    font-size: 18px;
+    width: calc(100% - 40px);
+    background: rgba($black,.1);
+    color: $white;
+    text-transform: none;
+    letter-spacing: .02em;
+    border: 1px solid rgba($black,.1);
+    transition: all .2s ease-out;
+    &::placeholder {
+      color: rgba($white,.5);
+    }
+    &.done {
+      border: 1px solid yellow;
+    }
+  }
+  &:hover input,
+  input:focus {
+    border: 1px solid $white;
+    background: $white;
+    color: $black;
+    &::placeholder {
+      color: lighten($black,50%);
+    }
+  }
+  @include min-screen($breakpoint-medium) {
+    input {
+      width: 50%;
+    }
+  }
+}

@@ -1,0 +1,63 @@
+// Forms
+
+input {
+  width: 100%;
+  border: none;
+  display: block;
+  background: none;
+  border-radius: 0;
+  padding: .5em 0 0;
+  color: $black-fade;
+  @extend %small-caps;
+  border-bottom: 1px solid $gray-light;
+  &:focus {
+    outline: none;
+    background: rgba($black, .05);
+  }
+  &::placeholder {
+    color: $black-fade;
+  }
+}
+
+label {
+  border: 0;
+  background: 0;
+  border-radius: 0;
+  color: $black-fade;
+  @extend %small-caps;
+  letter-spacing: 0;
+  &.error, &.success {
+    display: block;
+    padding: .5em 0;
+  }
+  &.error {
+    background: $peach;
+  }
+  &.success {
+    background: $green;
+    // animation: fadeOut .5s 5s forwards;
+  }
+}
+
+// Newsletter form
+#newsletter-form {
+  input, label {
+    width: 19em;
+  }
+}
+
+// Submit buttons
+.submit {
+  cursor: pointer;
+  border-radius: 0;
+  background: $gray;
+  padding: .25em 1em;
+  display: inline-block;
+  @extend %small-caps;
+  -webkit-appearance: none;
+  transition: background .2s ease-out;
+  &:hover, &:focus, &:active {
+    outline: none;
+    background: darken($gray, 20%);
+  }
+}

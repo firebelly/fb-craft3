@@ -1,0 +1,34 @@
+{% extends "_email-layout" %}
+{% block content %}
+  <h2>A new order has been received:</h2>
+
+  <h3>Order items</h3>
+  {% include 'store/_order_items' %}
+  <p>Paid with {{ card.brand }} *{{ card.last4 }}</p>
+
+  <h3>Ship to</h3>
+  <p>
+    {{ customer.shipping_name }}<br>
+    {{ customer.shipping_address_line1 }}<br>
+    {{ customer.shipping_address_city }}, {{ customer.shipping_address_state }}, {{ customer.shipping_address_zip }}<br>
+    {% if customer.shipping_address_country_code != 'US' %}
+      {{ customer.shipping_address_country }}
+    {% endif %}
+  </p>
+
+  <h3>Billing info</h3>
+  <p>
+    {{ customer.billing_name }}<br>
+    {{ customer.email }}<br>
+    {{ customer.billing_address_line1 }}<br>
+    {{ customer.billing_address_city }}, {{ customer.billing_address_state }}, {{ customer.billing_address_zip }}<br>
+    {% if customer.billing_address_country_code != 'US' %}
+      {{ customer.billing_address_country }}
+    {% endif %}
+  </p>
+
+  <br>
+
+  <p><strong>Stripe orders dashboard:</strong> https://dashboard.stripe.com/orders</p>
+
+{% endblock %}

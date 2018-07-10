@@ -1,0 +1,15 @@
+// About
+
+.about {
+  #page {
+    background: $purple;
+
+    // Highlights table
+    .highlights {
+      .date {
+        color: $black;
+        white-space: nowrap;
+      }
+    }
+  }
+}

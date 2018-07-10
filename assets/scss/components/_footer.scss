@@ -1,0 +1,154 @@
+// Footer
+
+.site-footer {
+  @extend %clearfix;
+  @extend %fade-links;
+  padding: ($padding * 6) 25px;
+
+  @include min-screen($breakpoint-small) {
+    padding: ($padding * 12) 25px;
+  }
+  @include min-screen($breakpoint-medium) {
+    // padding: ($padding * 24) 25px ($padding * 24) 25;
+
+    .-left {
+      padding-right: 25px;
+    }
+  }
+  .site-nav {
+    padding: 26px 0 0;
+    li {
+      line-height: 1;
+      &.nav-contact {
+        display: none;
+      }
+      a {
+        padding: 0;
+      }
+    }
+  }
+
+
+  h3 {
+    color: $black;
+    margin: 0 0 .6em;
+    @extend %title;
+    @extend %smooth;
+    position: relative;
+    padding-bottom: .5em;
+    &:after {
+      left: 0;
+      bottom: 0;
+      content: '';
+      height: 1px;
+      width: .25em;
+      background: $black;
+      position: absolute;
+    }
+    a {
+      color: $black;
+      @extend %title;
+      letter-spacing: 0;
+      text-transform: capitalize;
+      &:hover {
+        color: $black-fade;
+      }
+    }
+  }
+
+  p, a, li {
+    color: $black-fade;
+    @extend %small-caps;
+  }
+
+  #contact {
+    @include min-screen($breakpoint-medium) {
+      padding-left: (($padding * 12) - 25);
+    }
+  }
+
+  .contact-info {
+    @include max-screen($breakpoint-large) {
+      .one-half {
+        width: 100%;
+        float: none;
+      }
+    }
+  }
+  
+  .contact-item {
+    margin-top: ($padding * 6);
+
+    @include min-screen($breakpoint-medium) {
+      &.-first {
+        margin-top: 0;
+      }
+    }
+    @include min-screen($breakpoint-large) {
+      &:first-of-type {
+        margin-top: 0;
+      }
+    }
+  }
+}
+
+// Footer next/prev buttons
+.footer-pagination {
+  @extend %clearfix;
+  padding: 0 25px;
+
+  ul {
+    @extend %clearfix;
+    margin: 130px 0 -30px 0;
+
+    &:after {
+      content: ' ';
+      display: block;
+      border-bottom: 1px solid #C2C3C5;
+      width: 80%;
+    }
+
+  }
+
+  li {
+    padding-bottom: 10px;
+    a {
+      font: 24px/1.375em $font-display;
+    }
+  }
+
+  @include min-screen($breakpoint-medium) {
+    ul {
+      width: 50%;
+      float: right;
+    }
+    a {
+      transition: margin .2s $cubic-ease2;
+    }
+    li.prev a {
+      margin-left: -24px;
+      &:hover {
+        margin-left: -30px;
+      }
+    }
+    li.next a:hover {
+      margin-left: 6px;
+    }
+
+  }
+
+  @include min-screen(1050px) {
+    li {
+      width: 50%;
+      float: left;
+    }
+  }
+
+  @include max-screen($breakpoint-large) {
+    .one-half {
+      width: 100%;
+      float: none;
+    }
+  }
+
+}

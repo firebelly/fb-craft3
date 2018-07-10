@@ -1,0 +1,96 @@
+{% extends (craft.app.request.isAjax and not craft.request.isLivePreview) ? "_ajax-layout" : "_layout" %}
+
+{% set title = entry.title %}
+{% if entry.seoTitle %}{% set seoTitle = entry.seoTitle %}{% endif %}
+{% if entry.seoDescription %}{% set seoDescription = entry.seoDescription %}{% endif %}
+{% set mobile = {
+    mode: 'fit',
+    width: 800,
+    quality: 75,
+} %}
+
+{% set bodyClass = 'single page people' %}
+
+{% block content %}
+  {% cache unless currentUser %}
+  <section class="content interior grid">
+
+    <div class="intro clearfix">
+      <header class="one-half -left">
+        <div class="section-title">
+          <h1>{{ entry.title }}</h1>
+        </div>
+        <div class="summary">
+          {{ entry.body }}
+        </div>
+        {# <%= render :partial => '/shared/edit_bug', :locals => { :obj => @page, :edit_path => refinery.admin_edit_page_path(@page) }%> #}
+      </header>
+
+      {% for block in entry.secondaryPageHeaderContent %}
+      <div class="filters one-half -right">
+        <div class="one-half -left">
+          {{ block.leftColumnContent }}
+        </div>
+
+        <div class="one-half -right">
+          {{ block.rightColumnContent }}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <ul class="people-list">
+      {% for block in entry.people %}
+        {% set image = block.photo.one() %}
+        <li class="page user-content clearfix person" id="{{ block.personNameFirst|kebab }}-{{ block.personNameLast|kebab }}">
+          <div class="toggle-container">
+            <button class="person-toggle"><span class="inner"><span class="name">{{ block.personNameFirst }}</span> <span class="tagline">{{ block.tagline }}</span></span></span></button>
+            {% if image|length %}
+              <img class="hover-image" src="{{ craft.app.config.general.cdnUrl }}{{ image.getUrl(mobile) }}" alt="{{ block.personNameFirst }} {{ block.personNameLast }}">
+            {% endif %}
+          </div>
+          <div class="person-body clearfix">
+            {% if image|length %}
+              <img class="mobile-portrait" src="{{ craft.app.config.general.cdnUrl }}{{ image.getUrl(mobile) }}" alt="{{ block.personNameFirst }} {{ block.personNameLast }}">
+            {% endif %}
+            <div class="inner">
+              <div class="bio -left">
+                <h1>{{ block.personNameFirst }} {{ block.personNameLast }}</h1>
+                {% if block.personTitle %}
+                  <h2>{{ block.personTitle }}</h2>
+                {% endif %}
+                {{ block.bio }}
+              </div>
+              <div class="-right">
+                {% if image|length %}
+                  <div class="desktop-portrait" style="background-image:url('{{ craft.app.config.general.cdnUrl }}{{ image.getUrl('hero') }}');"></div>
+                {% endif %}
+                {% if block.socialLinks %}
+                <div class="links">
+                  <h3>Links</h3>
+                  {{ block.socialLinks }}
+                </div>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+       </li>
+      {% endfor %}
+    </ul>
+
+  </section>
+  {% endcache %}
+{% endblock %}
+
+{% block aside %}
+  {% cache unless currentUser %}
+  <section id="filters" class="divider section-nav">
+    <h1>{{ entry.title }}</h1>
+    <ul class="option-set clearfix smoothscroll">
+      {% for block in entry.people %}
+        <li><a href="#{{ block.personNameFirst|kebab }}-{{ block.personNameLast|kebab }}">{{ block.personNameFirst }}</a></li>
+      {% endfor %}
+    </ul>
+  </section>
+  {% endcache %}
+{% endblock aside %}

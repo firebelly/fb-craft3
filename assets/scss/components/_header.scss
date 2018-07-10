@@ -1,0 +1,101 @@
+// Header
+
+.site-header {
+  top: 0;
+  left: 0;
+  z-index: 4;
+  width: 100%;
+  position: fixed;
+  padding: 21px 25px;
+  background: $white;
+  transition: padding .4s $cubic-ease1, top .3s ease-out, background .2s ease-out;
+  &.nav-down {
+    top: 0;
+  }
+  &.nav-up {
+    @include max-screen($breakpoint-medium) {
+      &:not(.project-side-open) {
+        padding: 8px 25px;
+        .project-side-toggle,
+        .menu-toggle {
+          top: 10px;
+        }
+      }
+    }
+    @include min-screen($breakpoint-medium) {
+      #logo {
+        opacity: 0;
+      }
+      background: transparent;
+    }
+  }
+
+}
+
+#logo {
+  font-size: 24px;
+  text-align: center;
+  font-family: $font-display;
+}
+
+.menu-toggle {
+  top: 23px;
+  right: 70px;
+  position: absolute;
+}
+
+.project-side-toggle {
+  top: 23px;
+  right: 25px;
+  position: absolute;
+}
+
+// Page Title Area
+.section-title {
+  padding: 66px 22px;
+  position: relative;
+  text-align: center;
+  h1 {
+    color: $black;
+    margin: 0 0 44px;
+    display: inline-block;
+    font: 48px/1.145833333em $font-display;
+    @extend %smooth;
+    letter-spacing: -.01em;
+    a {
+      padding: 0;
+      line-height: 1em;
+      background: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+  h2 {
+    margin: 0 auto;
+    color: $black-fade;
+    @extend %small-caps;
+  }
+  
+  // move TM to more reasonable location
+  .last-word {
+    position: relative;
+    sup {
+      top: 14px;
+      left: 100%;
+      position: absolute;
+    }
+  }
+  
+  // This was originally just on the homepage
+  h2 br {
+    display: none;
+    @include min-screen($breakpoint-small) {
+      display: inline-block;
+    }
+  }
+
+  @include min-screen($breakpoint-medium) {
+    padding: 132px 44px;
+  }
+}

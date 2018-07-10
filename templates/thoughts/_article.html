@@ -1,0 +1,21 @@
+{% set headerImage = entry.headerImage[0] ?? null %}
+<article class="news-article listing clearfix">
+  {% if headerImage|length %}
+    <div class="featured-image" style="background-image:url({{ headerImage.getUrl('hero') }});"></div>
+    {% if entry.headerImageCaption %}
+    <div class="featured-image-caption"><p>{{ entry.headerImageCaption }}</p></div>
+    {% endif %}
+  {% else %}
+    <hr class="article-divider">
+  {% endif %}
+
+  <header class="section-title">
+    <h1><a href="{{ entry.getUrl() }}"><span>{{ entry.title }}</span></a></h1>
+    <h3 class="date">{{ entry.postDate.format('F j, Y') }}{% if entry.manualAuthor %} &ndash; by {{ entry.manualAuthor }}{% endif %}</h3>
+
+    {# <%= render partial: '/shared/edit_bug', :locals => { :obj => news_post, :edit_path => refinery.edit_news_posts_admin_news_post_path(news_post) }%> #}
+  </header>
+  <section class="summary user-content">
+    {{ entry.body }}
+  </section>
+</article>

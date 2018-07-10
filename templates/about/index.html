@@ -1,0 +1,48 @@
+{% extends (craft.app.request.isAjax and not craft.request.isLivePreview) ? "_ajax-layout" : "_layout" %}
+
+{% set title = entry.title %}
+{% if entry.seoTitle %}{% set seoTitle = entry.seoTitle %}{% endif %}
+{% if entry.seoDescription %}{% set seoDescription = entry.seoDescription %}{% endif %}
+
+{% set bodyClass = 'single page about' %}
+{% set bodyId = 'about-page' %}
+
+{% block content %}
+  {% cache unless currentUser %}
+  <section class="content interior grid">
+    <div class="intro one-half -left clearfix">
+      <div class="-inner">
+        <header class="section-title">
+          <h1>Good Design for Good <span class="last-word">Reason.<sup>&trade;</sup></span></h1>
+        </header>
+        <div class="summary">
+          {{ entry.body }}
+        </div>
+        {# <%= render :partial => '/shared/edit_bug', :locals => { :obj => @page, :edit_path => refinery.admin_edit_page_path(@page) }%> #}
+      </div>
+    </div>
+
+    <div class="secondary one-half -right user-content">
+      <div class="secondary-item">
+        <header>
+          <h1>Highlights</h1>
+        </header>
+        <div class="summary highlights">
+          {% if entry.highlights|length %}
+            <table>
+              <tbody>
+                {% for block in entry.highlights.all() %}
+                  <tr>
+                    <td class="date">{{ block.highlightDate|date("M y") }}</td>
+                    <td>{{ block.highlightTitle }}</td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </section>
+  {% endcache %}
+{% endblock %}

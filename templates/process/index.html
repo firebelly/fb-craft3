@@ -1,0 +1,60 @@
+{% extends (craft.app.request.isAjax and not craft.request.isLivePreview) ? "_ajax-layout" : "_layout" %}
+
+{% set title = entry.title %}
+{% if entry.seoTitle %}{% set seoTitle = entry.seoTitle %}{% endif %}
+{% if entry.seoDescription %}{% set seoDescription = entry.seoDescription %}{% endif %}
+
+{% set bodyClass = 'single page process' %}
+{% set bodyId = 'process-page' %}
+
+{% block content %}
+  <section class="content interior no-padding grid">
+
+    <div class="intro one-half -left clearfix">
+      <div class="-inner">
+        <header class="section-title">
+          <h1>{{ entry.title }}</h1>
+        </header>
+        <div class="summary">
+          {{ entry.body }}
+        </div>
+        {# <%= render :partial => '/shared/edit_bug', :locals => { :obj => @page, :edit_path => refinery.admin_edit_page_path(@page) }%> #}
+      </div>
+    </div>
+
+    <ul class="child-pages">
+    {% for block in entry.pageSections.all() %}
+      <li class="page user-content clearfix item" data-page="{{ block.pageSectionTitle }}" id="{{ block.pageSectionTitle|kebab }}">
+
+        <div class="intro one-half -left clearfix">
+          <div class="-inner">
+            <header class="section-title">
+              {% if block.sectionNumber %}
+              <h1><span class="section-number">{{ block.sectionNumber }} </span>{{ block.pageSectionTitle }}</h1>
+              {% else %}
+              <h1>{{ block.pageSectionTitle }}</h1>
+              {% endif %}
+            </header>
+            <div class="summary">
+              {{ block.pageSectionDescription }}
+            </div>
+          </div>
+        </div>
+        <aside class="secondary one-half -right">
+          <div class=" one-half -left">
+            <div class="secondary-item">
+              {{ block.leftColumnContent }}
+            </div>
+          </div>
+          <div class=" one-half -right">
+            <div class="secondary-item">
+              {{ block.rightColumnContent }}
+            </div>
+          </div>
+        </aside>
+      </li>
+    {% endfor %}
+    </ul>
+
+  </section>
+{% endblock %}

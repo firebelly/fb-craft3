@@ -1,6 +1,6 @@
 <section class="cart">
   <h3>Your Cart:</h3>
-  <form action="/store?action=fbStore/payments/charge" class="cart-wrap" method="post" data-stripe-publishable-key="{{ craft.app.config.general.stripePublishableKey }}" data-stripe-checkout-logo="{{ rev('images/checkout-logo.png') }}">
+  <form action="/store?action=fbstore/payment/charge" class="cart-wrap" method="post" data-stripe-publishable-key="{{ craft.app.config.general.stripePublishableKey }}" data-stripe-checkout-logo="{{ rev('images/checkout-logo.png') }}">
     <ul class="cart-items"></ul>
     <button type="submit" class="submit checkout">Checkout</button>
     {{ csrfInput() }}

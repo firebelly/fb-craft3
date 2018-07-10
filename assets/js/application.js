@@ -437,9 +437,6 @@ $.gdgr.main = (function() {
         }
       }
     });
-    // console.log('baz');
-    // $('.lazy').on('load', function() {
-    // });
   }
 
   function _filterProjects(filter) {
@@ -512,7 +509,7 @@ $.gdgr.main = (function() {
             $('.cart-feedback').html('<h3>Oh no!</h3><p>There was a transaction error: ' + response.error + '</p>').slideDown('fast');
             setTimeout(function() { $('.cart').removeClass('working'); }, 2500);
           }
-        }).fail(function() {
+        }, 'json').fail(function() {
           $('.cart-feedback').html('<h3>Oh no!</h3><p>There was a transaction error. Please try again.</p>').slideDown('fast');
           setTimeout(function() { $('.cart').removeClass('working'); }, 2500);
       });

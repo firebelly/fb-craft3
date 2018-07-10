@@ -1,0 +1,40 @@
+{
+    "name": "firebelly/fbstore",
+    "description": "Stripe checkout for Firebelly store.",
+    "type": "craft-plugin",
+    "version": "1.0.0",
+    "keywords": [
+        "craft",
+        "cms",
+        "craftcms",
+        "craft-plugin",
+        "fbstore"
+    ],
+    "support": {
+        "docs": "???",
+        "issues": "???"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Firebelly",
+            "homepage": "https://firebellydesign.com/"
+        }
+    ],
+    "require": {
+        "craftcms/cms": "^3.0.0-RC1"
+    },
+    "autoload": {
+        "psr-4": {
+          "firebelly\\fbstore\\": "src/"
+        }
+    },
+    "extra": {
+        "name": "Fbstore",
+        "handle": "fbstore",
+        "hasCpSettings": false,
+        "hasCpSection": false,
+        "changelogUrl": "???",
+        "class": "firebelly\\fbstore\\Fbstore"
+    }
+}

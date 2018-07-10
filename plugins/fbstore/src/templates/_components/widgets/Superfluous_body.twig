@@ -1,0 +1,20 @@
+{# @var craft \craft\web\twig\variables\CraftVariable #}
+{#
+/**
+ * Fbstore plugin for Craft CMS
+ *
+ * Superfluous Widget Body
+ *
+ * @author    Firebelly
+ * @copyright Copyright (c) 2018 Firebelly
+ * @link      https://firebellydesign.com/
+ * @package   Fbstore
+ * @since     1.0.0
+ */
+#}
+
+{% set iconUrl = view.getAssetManager().getPublishedUrl('@firebelly/fbstore/assetbundles/superfluouswidget/dist', true) ~ '/img/Superfluous-icon.svg' %}
+
+<img src="{{ iconUrl }}" height="64" width="64" />
+
+<p>{{ message }}</p>

@@ -1,0 +1,26 @@
+{# @var craft \craft\web\twig\variables\CraftVariable #}
+{#
+/**
+ * Fbstore plugin for Craft CMS
+ *
+ * Superfluous Widget Settings
+ *
+ * @author    Firebelly
+ * @copyright Copyright (c) 2018 Firebelly
+ * @link      https://firebellydesign.com/
+ * @package   Fbstore
+ * @since     1.0.0
+ */
+#}
+
+{% import "_includes/forms" as forms %}
+
+{% do view.registerAssetBundle("firebelly\\fbstore\\assetbundles\\fbstore\\FbstoreAsset") %}
+
+{{ forms.textField({
+    label: 'Message',
+    instructions: 'Enter a message here.',
+    id: 'message',
+    name: 'message',
+    value: widget['message']})
+}}

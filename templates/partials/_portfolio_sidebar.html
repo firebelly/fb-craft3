@@ -21,7 +21,7 @@
       {% if mainImage %}
         <li class="project">
           <article>
-              <div class="project-image lazy-side" style="background-image:url('/assets/images/gray.gif');" data-original="{{ craft.app.config.general.cdnUrl }}{{ mainImage.getUrl('projectThumbSmall') }}" alt="{{ mainImage.title }}"></div>
+              <div class="project-image lazy-side" style="background-image:url('/assets/dist/images/gray.gif');" data-original="{{ craft.app.config.general.cdnUrl }}{{ mainImage.getUrl('projectThumbSmall') }}" alt="{{ mainImage.title }}"></div>
             <header>
               <h1><a href="{{ entry.getUrl() }}">{{ entry.title }}</a></h1>
               {% if entry.rolloverSubtitle %}

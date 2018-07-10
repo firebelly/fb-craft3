@@ -26,7 +26,7 @@
         {# <%= render :partial => '/shared/edit_bug', :locals => { :obj => @page, :edit_path => refinery.admin_edit_page_path(@page) }%> #}
       </header>
 
-      {% for block in entry.secondaryPageHeaderContent %}
+      {% for block in entry.secondaryPageHeaderContent.all() %}
       <div class="filters one-half -right">
         <div class="one-half -left">
           {{ block.leftColumnContent }}
@@ -40,7 +40,7 @@
     </div>
 
     <ul class="people-list">
-      {% for block in entry.people %}
+      {% for block in entry.people.all() %}
         {% set image = block.photo.one() %}
         <li class="page user-content clearfix person" id="{{ block.personNameFirst|kebab }}-{{ block.personNameLast|kebab }}">
           <div class="toggle-container">

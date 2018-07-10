@@ -12,7 +12,7 @@ env.remote_protocol = 'http'
 def production():
   env.hosts = ['www.firebellydesign.com']
   env.user = 'deployer'
-  env.remotepath = '/var/www/fb_craft3/'
+  env.remotepath = '/var/www/fb-craft3/'
   env.git_branch = 'master'
   env.remote_protocol = 'https'
 

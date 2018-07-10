@@ -18,12 +18,21 @@
     "docs": "https://craftcms.com/docs",
     "rss": "https://craftcms.com/changelog.rss"
   },
+  "repositories": [
+    {
+      "type": "path",
+      "url": "plugins/fbstore"
+    }
+  ],
   "require": {
     "craftcms/cms": "^3.0.0",
     "vlucas/phpdotenv": "^2.4.0",
     "clubstudioltd/craft-asset-rev": "v6.0.0",
     "craftcms/redactor": "2.1.0",
-    "aelvan/imager": "v2.0.1.2"
+    "aelvan/imager": "v2.0.1.2",
+    "firebelly/fbstore": "^1.0.0",
+    "pelago/emogrifier": "^2.0",
+    "stripe/stripe-php": "^6.10"
   },
   "autoload": {
     "psr-4": {

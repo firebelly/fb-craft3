@@ -19,7 +19,7 @@
         <li class="product">
           {% set productImage = entry.productImages[0] ?? null %}
           {% if productImage %}
-            <div class="product-image lazy" style="background-image:url('/assets/dist/images/gray.gif');" data-original="{{ craft.app.config.general.cdnUrl }}{{ productImage.getUrl('projectThumb') }}"></div>
+            <div class="product-image lazy" style="background-image:url('{{ rev('images/gray.gif') }}');" data-original="{{ craft.app.config.general.cdnUrl }}{{ productImage.getUrl('projectThumb') }}"></div>
           {% endif %}
           <header>
             <h1><a href="{{ entry.getUrl() }}">{{ entry.title }}</a></h1>

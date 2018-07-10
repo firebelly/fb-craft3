@@ -4,6 +4,7 @@
 {% set seoDescription = "Firebelly Design is a socially conscious boutique design studio based in Chicago. We specialize in branding, strategy and Good Design for Good Reason™." %}
 
 {% block content %}
+  {% cache unless currentUser %}
   <header class="section-title">
     <h1>Good Design<br> for Good <span class="last-word">Reason.<sup>&trade;</sup></span></h1>
     <h2>We create positive human experiences<br> through beautiful, sustainable design.</h2>
@@ -48,22 +49,25 @@
       {% endfor %}
     </ul>
   </section>
+  {% endcache %}
 {% endblock %}
 
 {% block aside %}
-  <section id="filters" class="divider section-nav interior">
-    <h1>Filter:</h1>
-    <ul class="filter-set">
-      <li class="show-all"><a href="#filter" data-filter="" class="selected">all</a></li>
-      {% set entryIds = craft.entries({section: 'work'}).ids() %}
-      {% set industries = craft.categories.relatedTo({ sourceElement: entryIds }).group('industry').all() %}
-      {% for industry in industries %}
-        <li><a href="#filter" data-filter="{{ industry.slug }}" class="{{ industry.slug }}">{{ industry.title }}</a></li>
-      {% endfor %}
-      {% set services = craft.tags.relatedTo({ sourceElement: entryIds }).group('services').all() %}
-      {% for service in services %}
-        <li><a href="#filter" data-filter="{{ service.slug }}" class="hidden">{{ service.title }}</a></li>
-      {% endfor %}
-    </ul>
-  </section>
+  {% cache globally using key "work-nav" %}
+    <section id="filters" class="divider section-nav interior">
+      <h1>Filter:</h1>
+      <ul class="filter-set">
+        <li class="show-all"><a href="#filter" data-filter="" class="selected">all</a></li>
+        {% set entryIds = craft.entries({section: 'work'}).ids() %}
+        {% set industries = craft.categories.relatedTo({ sourceElement: entryIds }).group('industry').all() %}
+        {% for industry in industries %}
+          <li><a href="#filter" data-filter="{{ industry.slug }}" class="{{ industry.slug }}">{{ industry.title }}</a></li>
+        {% endfor %}
+        {% set services = craft.tags.relatedTo({ sourceElement: entryIds }).group('services').all() %}
+        {% for service in services %}
+          <li><a href="#filter" data-filter="{{ service.slug }}" class="hidden">{{ service.title }}</a></li>
+        {% endfor %}
+      </ul>
+    </section>
+  {% endcache %}
 {% endblock aside %}

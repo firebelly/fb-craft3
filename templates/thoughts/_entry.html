@@ -30,5 +30,7 @@
 {% endblock %}
 
 {% block aside %}
-  {% include "partials/_thoughts_nav" %}
+  {% cache globally using key "thoughts-nav" %}
+    {% include "partials/_thoughts_nav" %}
+  {% endcache %}
 {% endblock aside %}

@@ -22,7 +22,7 @@
       padding: 0;
     }
 
-    .project-image, 
+    .project-image,
     .product-image {
       top: 0;
       left: 0;
@@ -86,7 +86,7 @@
       }
     }
 
-    @include min-screen(1000px) {    
+    @include min-screen(1000px) {
       width: 50%;
       float: left;
       padding-bottom: 1 / 3 * 100%;
@@ -94,7 +94,7 @@
   }
 }
 // If not a touch device, do the hover
-.no-touch {
+.no-touchevents {
   .project,
   .product {
     &:hover, &:focus {

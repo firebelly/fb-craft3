@@ -5,17 +5,15 @@
 {% if entry.seoDescription %}{% set seoDescription = entry.seoDescription %}{% endif %}
 
 {% block content %}
-  {% cache unless currentUser %}
-    <article class="clearfix news-article">
-      <div class="inner-wrapper">
+  <article class="clearfix news-article">
+    <div class="inner-wrapper">
 
-        <header class="section-title">
-          <h1>{{ entry.title }}</h1>
-        </header>
-        <section class="summary user-content">
-          {{ entry.body }}
-        </section>
-      </div>
-    </article>
-  {% endcache %}
+      <header class="section-title">
+        <h1>{{ entry.title }}</h1>
+      </header>
+      <section class="summary user-content">
+        {{ entry.body }}
+      </section>
+    </div>
+  </article>
 {% endblock %}

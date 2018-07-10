@@ -34,7 +34,7 @@ return [
     // Dev environment settings
     'dev' => [
         // Base site URL
-        'siteUrl' => 'fb-craft3.localhost',
+        'siteUrl' => 'http://fb-craft3.localhost',
 
         // Dev Mode (see https://craftcms.com/support/dev-mode)
         'devMode' => true,

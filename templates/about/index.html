@@ -8,7 +8,6 @@
 {% set bodyId = 'about-page' %}
 
 {% block content %}
-  {% cache unless currentUser %}
   <section class="content interior grid">
     <div class="intro one-half -left clearfix">
       <div class="-inner">
@@ -44,5 +43,4 @@
       </div>
     </div>
   </section>
-  {% endcache %}
 {% endblock %}

@@ -12,7 +12,6 @@
 {% set bodyClass = 'single page people' %}
 
 {% block content %}
-  {% cache unless currentUser %}
   <section class="content interior grid">
 
     <div class="intro clearfix">
@@ -79,11 +78,9 @@
     </ul>
 
   </section>
-  {% endcache %}
 {% endblock %}
 
 {% block aside %}
-  {% cache unless currentUser %}
   <section id="filters" class="divider section-nav">
     <h1>{{ entry.title }}</h1>
     <ul class="option-set clearfix smoothscroll">
@@ -92,5 +89,4 @@
       {% endfor %}
     </ul>
   </section>
-  {% endcache %}
 {% endblock aside %}

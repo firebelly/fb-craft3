@@ -3,7 +3,6 @@
 {# {% if entry.seoDescription %}{% set description = entry.seoDescription %}{% endif %} #}
 
 {% block content %}
-  {% cache unless currentUser %}
   <header class="section-title">
     <h1>Store</h1>
     <h2>right now, it’s kind of<br> just typeforce books.</h2>
@@ -30,7 +29,6 @@
       {% endfor %}
     </ul>
   </section>
-  {% endcache %}
 {% endblock %}
 
 {% block aside %}

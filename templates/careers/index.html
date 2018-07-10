@@ -5,53 +5,51 @@
 {% if entry.seoDescription %}{% set seoDescription = entry.seoDescription %}{% endif %}
 
 {% block content %}
-  {% cache unless currentUser %}
-    {% set pageHeaderImage = entry.pageHeaderImage.one() %}
+  {% set pageHeaderImage = entry.pageHeaderImage.one() %}
 
-    <article class="clearfix">
-      {% if pageHeaderImage|length %}
-        <div class="featured-image" style="background-image:url({{ pageHeaderImage.getUrl('hero') }});"></div>
-      {% else %}
-        <hr class="article-divider">
-      {% endif %}
+  <article class="clearfix">
+    {% if pageHeaderImage|length %}
+      <div class="featured-image" style="background-image:url({{ pageHeaderImage.getUrl('hero') }});"></div>
+    {% else %}
+      <hr class="article-divider">
+    {% endif %}
 
-      <div class="inner-wrapper">
+    <div class="inner-wrapper">
 
-        <header class="section-title">
-          <h1>{{ entry.title }}</h1>
-        </header>
-        <section class="summary user-content">
-          {{ entry.body }}
+      <header class="section-title">
+        <h1>{{ entry.title }}</h1>
+      </header>
+      <section class="summary user-content">
+        {{ entry.body }}
 
-          <div class="current-positions">
-          {% for block in entry.currentPositions.all() %}
-            <div class="position">
-              <h6>{{ block.positionTitle }}</h6>
-              {{ block.positionDescription }}
-            </div>
+        <div class="current-positions">
+        {% for block in entry.currentPositions.all() %}
+          <div class="position">
+            <h6>{{ block.positionTitle }}</h6>
+            {{ block.positionDescription }}
+          </div>
+        {% endfor %}
+        </div>
+
+        {% if entry.pastPositions %}
+        <div class="past-positions">
+          <hr class="article-divider">
+
+          <h1>Previous Openings</h1>
+
+          {% for block in entry.pastPositions.all() %}
+          <div class="position">
+            <h6>{{ block.positionTitle }}</h6>
+            {{ block.positionDescription }}
+          </div>
           {% endfor %}
-          </div>
 
-          {% if entry.pastPositions %}
-          <div class="past-positions">
-            <hr class="article-divider">
+        </div>
+        {% endif %}
 
-            <h1>Previous Openings</h1>
+      </section>
 
-            {% for block in entry.pastPositions.all() %}
-            <div class="position">
-              <h6>{{ block.positionTitle }}</h6>
-              {{ block.positionDescription }}
-            </div>
-            {% endfor %}
+    </div>
 
-          </div>
-          {% endif %}
-
-        </section>
-
-      </div>
-
-    </article>
-  {% endcache %}
+  </article>
 {% endblock %}

@@ -60,7 +60,8 @@
         <div class="slider"><div class="wrap">
           <ul class="product-images">
             {% for image in entry.productImages.all() %}
-              <li><img class="lazy" src="{{ rev('images/gray.gif') }}" data-original="{{ craft.app.config.general.cdnUrl }}{{ image.getUrl('hero') }}" alt="{{ image.title }}"></li>
+              {% set transformedImage = craft.imager.transformImage(image, { width: 1800 }) %}
+              <li><img class="lazy" src="{{ rev('images/gray.gif') }}" data-original="{{ craft.app.config.general.cdnUrl }}{{ transformedImage.getUrl() }}" alt="{{ image.title }}"></li>
             {% endfor %}
           </ul>
         </div></div>

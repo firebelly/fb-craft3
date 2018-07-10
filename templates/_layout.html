@@ -18,7 +18,8 @@
   <script src="https://checkout.stripe.com/checkout.js"></script>
 
   {% if mainImage is defined %}
-    <meta property="og:image" content="{{ mainImage.getUrl('hero') }}"/>
+    {% set transformedImage = craft.imager.transformImage(mainImage, { width: 1800 }) %}
+    <meta property="og:image" content="{{ transformedImage.getUrl() }}"/>
   {% else %}
     <meta property="og:image" content=""/>
   {% endif %}

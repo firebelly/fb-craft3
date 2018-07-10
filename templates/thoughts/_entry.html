@@ -7,8 +7,9 @@
 {% block content %}
   {% set headerImage = entry.headerImage.inReverse().one() %}
   <article class="news-article listing clearfix">
-    {% if headerImage|length %}
-      <div class="featured-image" style="background-image:url({{ craft.app.config.general.cdnUrl }}{{ headerImage.getUrl('hero') }});"></div>
+    {% if headerImage %}
+      {% set transformedImage = craft.imager.transformImage(headerImage, { width: 1800 }) %}
+      <div class="featured-image" style="background-image:url({{ craft.app.config.general.cdnUrl }}{{ transformedImage.getUrl() }});"></div>
       {% if entry.headerImageCaption %}
       <div class="featured-image-caption"><p>{{ entry.headerImageCaption }}</p></div>
       {% endif %}

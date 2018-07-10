@@ -3,13 +3,14 @@
 {% set title = entry.title %}
 {% if entry.seoTitle %}{% set seoTitle = entry.seoTitle %}{% endif %}
 {% if entry.seoDescription %}{% set seoDescription = entry.seoDescription %}{% endif %}
+{% set pageHeaderImage = entry.pageHeaderImage.one() %}
 
 {% block content %}
-  {% set pageHeaderImage = entry.pageHeaderImage.one() %}
 
   <article class="clearfix">
-    {% if pageHeaderImage|length %}
-      <div class="featured-image" style="background-image:url({{ pageHeaderImage.getUrl('hero') }});"></div>
+    {% if pageHeaderImage %}
+      {% set transformedImage = craft.imager.transformImage(pageHeaderImage, { width: 1800 }) %}
+      <div class="featured-image" style="background-image:url({{ transformedImage.getUrl() }});"></div>
     {% else %}
       <hr class="article-divider">
     {% endif %}

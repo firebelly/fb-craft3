@@ -3,11 +3,6 @@
 {% set title = entry.title %}
 {% if entry.seoTitle %}{% set seoTitle = entry.seoTitle %}{% endif %}
 {% if entry.seoDescription %}{% set seoDescription = entry.seoDescription %}{% endif %}
-{% set mobile = {
-    mode: 'fit',
-    width: 800,
-    quality: 75,
-} %}
 
 {% set bodyClass = 'single page people' %}
 
@@ -42,16 +37,20 @@
     <ul class="people-list">
       {% for block in entry.people.all() %}
         {% set image = block.photo.one() %}
+        {% if image %}
+          {% set mobileImage = craft.imager.transformImage(image, { width: 800 }) %}
+          {% set desktopImage = craft.imager.transformImage(image, { width: 1800 }) %}
+        {% endif %}
         <li class="page user-content clearfix person" id="{{ block.personNameFirst|kebab }}-{{ block.personNameLast|kebab }}">
           <div class="toggle-container">
             <button class="person-toggle"><span class="inner"><span class="name">{{ block.personNameFirst }}</span> <span class="tagline">{{ block.tagline }}</span></span></span></button>
-            {% if image|length %}
-              <img class="hover-image" src="{{ craft.app.config.general.cdnUrl }}{{ image.getUrl(mobile) }}" alt="{{ block.personNameFirst }} {{ block.personNameLast }}">
+            {% if mobileImage %}
+              <img class="hover-image" src="{{ craft.app.config.general.cdnUrl }}{{ mobileImage.getUrl() }}" alt="{{ block.personNameFirst }} {{ block.personNameLast }}">
             {% endif %}
           </div>
           <div class="person-body clearfix">
-            {% if image|length %}
-              <img class="mobile-portrait" src="{{ craft.app.config.general.cdnUrl }}{{ image.getUrl(mobile) }}" alt="{{ block.personNameFirst }} {{ block.personNameLast }}">
+            {% if mobileImage %}
+              <img class="mobile-portrait" src="{{ craft.app.config.general.cdnUrl }}{{ mobileImage.getUrl() }}" alt="{{ block.personNameFirst }} {{ block.personNameLast }}">
             {% endif %}
             <div class="inner">
               <div class="bio -left">
@@ -62,8 +61,8 @@
                 {{ block.bio }}
               </div>
               <div class="-right">
-                {% if image|length %}
-                  <div class="desktop-portrait" style="background-image:url('{{ craft.app.config.general.cdnUrl }}{{ image.getUrl('hero') }}');"></div>
+                {% if desktopImage %}
+                  <div class="desktop-portrait" style="background-image:url('{{ craft.app.config.general.cdnUrl }}{{ desktopImage.getUrl() }}');"></div>
                 {% endif %}
                 {% if block.socialLinks %}
                 <div class="links">

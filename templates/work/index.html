@@ -17,12 +17,8 @@
           with: [
             'services',
             'industry',
-            ['altImage', {
-                withTransforms: ['projectThumb']
-            }],
-            ['mainImage', {
-                withTransforms: ['projectThumb']
-            }]
+            'altImage',
+            'mainImage'
           ]
       }) %}
       {% for entry in entries.all() %}
@@ -35,7 +31,8 @@
         <li class="project interior" data-services="{% for service in entry.services %}{{ service.slug }} {% endfor %}" data-industry="{% for industry in entry.industry %}{{ industry.slug }} {% endfor %}">
           <article>
             {% if mainImage %}
-              <div class="project-image lazy" style="background-image:url({{ rev('images/gray.gif') }});" data-original="{{ craft.app.config.general.cdnUrl }}{{ mainImage.getUrl('projectThumb') }}"></div>
+              {% set transformedImage = craft.imager.transformImage(mainImage, { width: 800, height: 600, mode: 'crop' }) %}
+              <div class="project-image lazy" style="background-image:url({{ rev('images/gray.gif') }});" data-original="{{ craft.app.config.general.cdnUrl }}{{ transformedImage.getUrl() }}"></div>
             {% endif %}
             <header>
               <h1><a href="{{ entry.getUrl() }}">{{ entry.title }}</a></h1>

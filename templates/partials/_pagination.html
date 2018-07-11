@@ -1,5 +1,5 @@
   {# Pagination for Channel sections #}
-  {% set params = craft.entries.section(paginationSection).order('postDate desc, id asc') %}
+  {% set params = craft.entries.section(paginationSection).orderBy('postDate desc, id asc') %}
   {% set prevEntry = entry.getPrev(params) %}
   {% if not prevEntry %}
     {% set prevEntry = params.inReverse().one() %}

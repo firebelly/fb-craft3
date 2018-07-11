@@ -13,8 +13,8 @@
  */
 #}
 
-{% set iconUrl = view.getAssetManager().getPublishedUrl('@firebelly/fbstore/assetbundles/superfluouswidget/dist', true) ~ '/img/Superfluous-icon.svg' %}
+{% set devLuv4evr = view.getAssetManager().getPublishedUrl('@firebelly/fbstore/assetbundles/superfluouswidget/dist', true) ~ '/img/hearts.gif' %}
 
-<img src="{{ iconUrl }}" height="64" width="64" />
+<img class="devLuv" src="{{ devLuv4evr }}">
 
 <p>{{ message }}</p>

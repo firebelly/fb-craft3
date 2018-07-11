@@ -3,17 +3,14 @@ import os
 
 env.hosts = ['firebelly.webfactional.com']
 env.user = 'firebelly'
-env.path = '/Users/developer/Sites/fb-craft3'
 env.remotepath = '/home/firebelly/webapps/fb_craft3'
 env.git_branch = 'master'
 env.warn_only = True
 env.remote_protocol = 'http'
 
 def production():
-  env.hosts = ['www.firebellydesign.com']
-  env.user = 'deployer'
-  env.remotepath = '/var/www/fb-craft3/'
-  env.git_branch = 'master'
+  env.hosts = ['firebellydesign.com']
+  env.remotepath = '/home/firebelly/webapps/fb_craft3'
   env.remote_protocol = 'https'
 
 def assets():

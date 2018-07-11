@@ -3,7 +3,7 @@
 
     # Ensure consistent URL
     RewriteCond %{REQUEST_URI} !\.well-known/acme-challenge
-    RewriteCond %{HTTP_HOST} !^www\.firebellydesign\.org [NC]
+    RewriteCond %{HTTP_HOST} !^www\.firebellydesign\.com [NC]
     RewriteCond %{HTTP_HOST} !^craft3\.firebelly\.co [NC]
     RewriteCond %{HTTP_HOST} !^fb-craft3\.localhost [NC]
     RewriteRule ^(.*)$ https://www.firebellydesign.com/$1 [R=301,L]

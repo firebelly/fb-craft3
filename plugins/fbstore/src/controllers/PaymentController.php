@@ -173,7 +173,7 @@ class PaymentController extends Controller
             // Shop order email
             $message = new Message();
             $message->setFrom([$emailSettings['fromEmail'] => $emailSettings['fromName']]);
-            $message->setTo(['nate@firebellydesign.com' => 'Nate Beaty']);
+            $message->setTo('nate@firebellydesign.com');
             // $message->setReplyTo($customer->email); // giving dire error in gmail as phishing attempt
             if (!Craft::$app->getConfig()->general->devMode) {
                 $message->setCc([

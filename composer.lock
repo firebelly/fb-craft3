@@ -4,15 +4,15 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "1ade9ef358de4241b36a1293d1bd55a6",
+    "content-hash": "e948dc2e046e41db28a076f9835cbb09",
     "packages": [
         {
             "name": "aelvan/imager",
-            "version": "v2.0.1.2",
+            "version": "v2.0.2",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aelvan/Imager-Craft/zipball/56c84bb0a7aabf2fc24abe70fe3ee82b3f86f39c",
-                "reference": "56c84bb0a7aabf2fc24abe70fe3ee82b3f86f39c",
+                "url": "https://api.github.com/repos/aelvan/Imager-Craft/zipball/703d82fb9f5f43b0bbb4a84b36b211f474c8fc6e",
+                "reference": "703d82fb9f5f43b0bbb4a84b36b211f474c8fc6e",
                 "shasum": ""
             },
             "require": {
@@ -67,15 +67,15 @@
                 "docs": "https://github.com/aelvan/Imager-Craft/blob/craft3/README.md",
                 "issues": "https://github.com/aelvan/Imager-Craft/issues"
             },
-            "time": "2018-06-12T19:59:07+00:00"
+            "time": "2018-07-13T14:33:34+00:00"
         },
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.62.12",
+            "version": "3.63.1",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/53b59b0ab96c92aa6f5e52df00c4af1991c97c5d",
-                "reference": "53b59b0ab96c92aa6f5e52df00c4af1991c97c5d",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/d67dc8846739f4a1f93f25ce5d5cbfb3a555530d",
+                "reference": "d67dc8846739f4a1f93f25ce5d5cbfb3a555530d",
                 "shasum": ""
             },
             "require": {
@@ -88,17 +88,6 @@
                 "guzzlehttp/psr7": "^1.4.1",
                 "mtdowling/jmespath.php": "~2.2",
                 "php": ">=5.5"
-            },
-            "require-dev": {
-                "andrewsville/php-token-reflection": "^1.4",
-                "aws/aws-php-sns-message-validator": "~1.0",
-                "behat/behat": "~3.0",
-                "doctrine/cache": "~1.4",
-                "ext-dom": "*",
-                "ext-openssl": "*",
-                "nette/neon": "^2.3",
-                "phpunit/phpunit": "^4.8.35|^5.4.3",
-                "psr/cache": "^1.0"
             },
             "suggest": {
                 "aws/aws-php-sns-message-validator": "To validate incoming SNS notifications",
@@ -120,7 +109,6 @@
                     "src/functions.php"
                 ]
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "Apache-2.0"
             ],
@@ -142,7 +130,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2018-07-10T00:18:49+00:00"
+            "time": "2018-07-13T21:46:58+00:00"
         },
         {
             "name": "cebe/markdown",
@@ -632,11 +620,11 @@
         },
         {
             "name": "craftcms/redactor",
-            "version": "2.1.0",
+            "version": "2.1.2",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/craftcms/redactor/zipball/7d72a873e12ea7c92a8a6d00e025e303089d504e",
-                "reference": "7d72a873e12ea7c92a8a6d00e025e303089d504e",
+                "url": "https://api.github.com/repos/craftcms/redactor/zipball/d49309d7c251d15c729093e208dd21b9cfc05a19",
+                "reference": "d49309d7c251d15c729093e208dd21b9cfc05a19",
                 "shasum": ""
             },
             "require": {
@@ -678,7 +666,7 @@
                 "docs": "https://github.com/craftcms/redactor",
                 "rss": "https://github.com/craftcms/redactor/commits/master.atom"
             },
-            "time": "2018-05-15T21:58:54+00:00"
+            "time": "2018-07-14T09:42:21+00:00"
         },
         {
             "name": "craftcms/server-check",
@@ -1125,11 +1113,11 @@
         },
         {
             "name": "google/cloud",
-            "version": "v0.70.0",
+            "version": "v0.71.0",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GoogleCloudPlatform/google-cloud-php/zipball/e41812b66d728bdb4f989a6b40c82bf245256415",
-                "reference": "e41812b66d728bdb4f989a6b40c82bf245256415",
+                "url": "https://api.github.com/repos/GoogleCloudPlatform/google-cloud-php/zipball/b47d69981c5134478391c57df4928ab6cd14552b",
+                "reference": "b47d69981c5134478391c57df4928ab6cd14552b",
                 "shasum": ""
             },
             "require": {
@@ -1143,34 +1131,35 @@
                 "rize/uri-template": "~0.3"
             },
             "replace": {
-                "google/cloud-bigquery": "1.2.4",
+                "google/cloud-bigquery": "1.3.0",
                 "google/cloud-bigquerydatatransfer": "0.6.1",
-                "google/cloud-bigtable": "0.5.1",
+                "google/cloud-bigtable": "0.5.2",
                 "google/cloud-container": "0.5.1",
-                "google/cloud-core": "1.20.7",
-                "google/cloud-dataproc": "0.5.1",
+                "google/cloud-core": "1.21.0",
+                "google/cloud-dataproc": "0.5.2",
                 "google/cloud-datastore": "1.5.4",
                 "google/cloud-debugger": "0.12.1",
                 "google/cloud-dialogflow": "0.3.1",
-                "google/cloud-dlp": "0.11.0",
+                "google/cloud-dlp": "0.11.1",
                 "google/cloud-error-reporting": "0.11.1",
                 "google/cloud-firestore": "0.11.2",
                 "google/cloud-iot": "0.3.1",
-                "google/cloud-kms": "0.1.0",
+                "google/cloud-kms": "0.1.1",
                 "google/cloud-language": "0.15.1",
-                "google/cloud-logging": "1.12.3",
+                "google/cloud-logging": "1.12.4",
                 "google/cloud-monitoring": "0.11.1",
                 "google/cloud-oslogin": "0.6.0",
                 "google/cloud-pubsub": "1.4.0",
-                "google/cloud-redis": "0.3.1",
+                "google/cloud-redis": "0.3.2",
                 "google/cloud-spanner": "1.6.1",
                 "google/cloud-speech": "0.15.1",
                 "google/cloud-storage": "1.5.2",
                 "google/cloud-tasks": "0.1.0",
+                "google/cloud-text-to-speech": "0.1.0",
                 "google/cloud-trace": "0.10.1",
                 "google/cloud-translate": "1.2.3",
-                "google/cloud-videointelligence": "1.0.2",
-                "google/cloud-vision": "0.14.2"
+                "google/cloud-videointelligence": "1.0.3",
+                "google/cloud-vision": "0.15.0"
             },
             "suggest": {
                 "opis/closure": "May be used to serialize closures to process jobs in the batch daemon. Please require version ^3.",
@@ -1219,6 +1208,7 @@
                     "Google\\Cloud\\Speech\\": "Speech/src",
                     "Google\\Cloud\\Storage\\": "Storage/src",
                     "Google\\Cloud\\Tasks\\": "Tasks/src",
+                    "Google\\Cloud\\TextToSpeech\\": "TextToSpeech/src",
                     "Google\\Cloud\\Trace\\": "Trace/src",
                     "Google\\Cloud\\Translate\\": "Translate/src",
                     "Google\\Cloud\\VideoIntelligence\\": "VideoIntelligence/src",
@@ -1235,6 +1225,7 @@
                     "GPBMetadata\\Google\\Cloud\\Redis\\": "Redis/metadata",
                     "GPBMetadata\\Google\\Cloud\\Speech\\": "Speech/metadata",
                     "GPBMetadata\\Google\\Cloud\\Tasks\\": "Tasks/metadata",
+                    "GPBMetadata\\Google\\Cloud\\Texttospeech\\": "TextToSpeech/metadata",
                     "GPBMetadata\\Google\\Cloud\\Videointelligence\\": "VideoIntelligence/metadata",
                     "GPBMetadata\\Google\\Cloud\\Vision\\": "Vision/metadata",
                     "GPBMetadata\\Google\\Devtools\\Clouddebugger\\": "Debugger/metadata",
@@ -1291,7 +1282,7 @@
                 "translation",
                 "vision"
             ],
-            "time": "2018-07-03T15:31:33+00:00"
+            "time": "2018-07-11T17:47:34+00:00"
         },
         {
             "name": "google/gax",

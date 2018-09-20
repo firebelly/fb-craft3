@@ -1,4 +1,4 @@
-{% extends (craft.app.request.isAjax and not craft.request.isLivePreview) ? "_ajax-layout" : "_layout" %}
+{% extends (craft.app.request.isAjax and not craft.app.request.isLivePreview) ? "_ajax-layout" : "_layout" %}
 
 {% set seoTitle = "Firebelly Design | Branding | Strategy | Graphic Design | Chicago" %}
 {% set seoDescription = "Firebelly Design is a socially conscious boutique design studio based in Chicago. We specialize in branding, strategy and Good Design for Good Reason™." %}

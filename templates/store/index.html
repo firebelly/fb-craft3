@@ -1,4 +1,4 @@
-{% extends (craft.app.request.isAjax and not craft.request.isLivePreview) ? "_ajax-layout" : "_layout" %}
+{% extends (craft.app.request.isAjax and not craft.app.request.isLivePreview) ? "_ajax-layout" : "_layout" %}
 {% set title = "Store" %}
 {# {% if entry.seoDescription %}{% set description = entry.seoDescription %}{% endif %} #}
 

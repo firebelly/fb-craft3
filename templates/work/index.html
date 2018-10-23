@@ -31,7 +31,7 @@
         <li class="project interior" data-services="{% for service in entry.services %}{{ service.slug }} {% endfor %}" data-industry="{% for industry in entry.industry %}{{ industry.slug }} {% endfor %}">
           <article>
             {% if mainImage %}
-              {% set transformedImage = craft.imager.transformImage(mainImage, { width: 800, height: 600, mode: 'crop' }) %}
+              {% set transformedImage = craft.imager.transformImage(mainImage, { width: 900, height: 600, mode: 'crop' }) %}
               <div class="project-image lazy" style="background-image:url({{ rev('images/gray.gif') }});" data-original="{{ craft.app.config.general.cdnUrl }}{{ transformedImage.getUrl() }}"></div>
             {% endif %}
             <header>

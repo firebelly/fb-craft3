@@ -145,6 +145,11 @@
     .video-container {
       margin: -1px;
     }
+
+    // Removing margins on figure, which videos are placed in now
+    figure {
+      margin: 0;
+    }
   }
 
   .summary, .project-summary {
@@ -204,7 +209,7 @@
     padding: ($padding * 6) 25px;
 
     h3.number-header {
-      margin-bottom: 0;
+      margin-bottom: 11px;
     }
 
     h2 {

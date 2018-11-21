@@ -11,6 +11,7 @@
     # Force SSL
     RewriteCond %{REQUEST_URI} !\.well-known/acme-challenge
     RewriteCond %{HTTP:X-Forwarded-SSL} !on
+    RewriteCond %{HTTP_HOST} !^craft3\.firebelly\.co [NC]
     RewriteCond %{HTTP_HOST} !^fb-craft3\.localhost [NC]
     RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
 

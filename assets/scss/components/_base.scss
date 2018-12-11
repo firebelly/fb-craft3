@@ -75,3 +75,17 @@ sup {
 .edit-bug {
   margin-top: 20px;
 }
+
+
+// Hide edit link for now
+.edit-link {
+  position: absolute;
+  top: 25px;
+  left: 20px;
+  visibility: hidden;
+}
+.site-header:hover {
+  .edit-link {
+    visibility: visible;
+  }
+}

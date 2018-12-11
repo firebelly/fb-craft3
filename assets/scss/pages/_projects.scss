@@ -60,8 +60,7 @@
 
   .section-title {
     text-align: center;
-    padding-top: 0;
-    padding-bottom: ($padding * 6);
+    padding: ($padding * 6) 0 0;
     h1 {
       font-size: 36px;
       margin-bottom: $padding;
@@ -423,9 +422,4 @@
   @include min-screen($breakpoint-medium) {
     padding: #{$padding * 9} #{$padding * 12};
   }
-}
-
-// Hide edit link for now
-.edit-link {
-  margin: $padding;
 }

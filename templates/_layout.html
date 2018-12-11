@@ -50,6 +50,10 @@
 
 <body class="{% if bodyClass is defined %}{{ bodyClass }}{% else %}index{% endif %}" id="{% if bodyId is defined %}{{ bodyId }}{% else %}{{ craft.app.request.getSegment(1)}}-page{% endif %}">
   <header class="site-header clearfix" role="banner">
+    {% if entry is defined and entry.isEditable() %}
+      <div class="edit-link"><a href="{{ entry.cpEditUrl ~ '?redirect=' ~ craft.app.request.getUrl()|url_encode }}">Edit Entry</a></div>
+    {% endif %}
+
     <h1 id="logo">
       <a href="/work">Firebelly</a>
     </h1>

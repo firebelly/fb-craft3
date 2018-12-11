@@ -26,9 +26,6 @@
           <div class="section-title">
             <h1 class="project-client">{{ entry.title }}</h1>
             <h4 class="project-name">{{ entry.subtitle }}</h4>
-            {% if entry is defined and entry.isEditable() %}
-              <div class="edit-link"><a href="{{ entry.cpEditUrl ~ '?redirect=' ~ craft.app.request.getUrl()|url_encode }}">Edit Entry</a></div>
-            {% endif %}
           </div>
 
         </div>

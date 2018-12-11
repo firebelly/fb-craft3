@@ -28,6 +28,13 @@ $.firebelly.main = (function() {
   function _init() {
     $('#flash').hide().css('visibility','visible').fadeIn();
 
+    $('.flickity').flickity({
+      pageDots: false,
+      cellSelector: 'div',
+      lazyLoad: 2,
+      arrowShape: 'M24.1,71c-0.6-6.1-1.7-13.6-5.2-18.8H100v-4.3H18.8c3.5-5.2,4.9-13,5.2-18.8C18,38,9.9,45.8,0,50.1 C9.9,54.2,17.4,62.3,24.1,71z'
+    });
+
     // remove useless alt tooltips
     $('img').each(function () {
       if (!$(this).attr('title')) {

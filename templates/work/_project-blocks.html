@@ -22,15 +22,17 @@
 
     {% case "blockImages" %}
       <div class="fullbleed-images">
-        {% if block.carousel %}<div class="flickity carousel">{% endif %}
-        {% for image in block.images.all() %}
-          {% if image.filename matches '{\.gif$}' %}
+        {% if block.carousel %}
+          <div class="flickity">
+            {% for image in block.images.all() %}
+              <div class="slide"><img src="{{ rev('images/gray.gif') }}" data-flickity-lazyload="{{ craft.app.config.general.cdnUrl }}{{ image.getUrl() }}" alt="{{ image.title }}"></div>
+            {% endfor %}
+          </div>
+        {% else %}
+          {% for image in block.images.all() %}
             <p><img class="lazy" src="{{ rev('images/gray.gif') }}" data-original="{{ craft.app.config.general.cdnUrl }}{{ image.getUrl() }}" alt="{{ image.title }}"></p>
-          {% else %}
-            <p><img class="lazy" src="{{ rev('images/gray.gif') }}" data-original="{{ craft.app.config.general.cdnUrl }}{{ image.getUrl() }}" alt="{{ image.title }}"></p>
-          {% endif %}
-        {% endfor %}
-        {% if block.carousel %}</div>{% endif %}
+          {% endfor %}
+        {% endif %}
       </div>
     {% case "blockHtml" %}
       <div class="block-html">{{ block.html }}</div>

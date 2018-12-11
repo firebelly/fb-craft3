@@ -9,7 +9,8 @@
 @import "helpers/grid";
 
 // Vendor
-@import "vendor/fancybox";
+// @import "vendor/fancybox";
+@import "components/flickity";
 
 // Components
 @import "components/base";
@@ -21,7 +22,6 @@
 @import "components/forms";
 @import "components/work-grid";
 @import "components/footer";
-@import "components/flickity";
 
 // Pages
 @import "pages/home";

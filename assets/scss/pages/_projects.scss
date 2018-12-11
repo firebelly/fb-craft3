@@ -423,3 +423,18 @@
     padding: #{$padding * 9} #{$padding * 12};
   }
 }
+
+.flickity {
+  .flickity-prev-next-button {
+    display: none;
+  }
+  .slide {
+    width: 80%;
+    margin-right: #{$padding * 6};
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+  }
+}

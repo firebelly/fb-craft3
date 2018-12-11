@@ -9,10 +9,14 @@
     color: $black-fade;
     @extend %small-caps;
   }
+  h3 {
+    margin: 0 0 .5em;
+  }
 
   p {
-    font-size: 1em;
-    line-height: 1.375em;
+    font: 16px/1.375 $font-body, sans-serif;
+    letter-spacing: .025em;
+    margin: 0 0 1em;
   }
 
   @extend %fade-links;

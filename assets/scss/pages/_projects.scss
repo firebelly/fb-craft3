@@ -118,7 +118,7 @@
     }
   }
 
-  .block-quote {    
+  .block-quote {
     padding: ($padding * 6) 25px;
 
     @include min-screen($breakpoint-medium) {
@@ -138,10 +138,13 @@
     }
   }
 
-  // A hacky fix for the unwanted borders created around fit-vided video blocks due to iframes and subpixel rounding
+  // A hacky fix for the unwanted borders created around fit-vid'ed video blocks due to iframes and subpixel rounding
   // Tried hard, but couldn't find a better way.  May god have mercy on my soul.
   .block-html {
+    @extend %clearfix;
     overflow: hidden;
+    clear: left;
+    width: 100%;
     .video-container {
       margin: -1px;
     }
@@ -152,7 +155,8 @@
     }
   }
 
-  .summary, .project-summary {
+  .summary,
+  .project-summary {
     &.user-content {
       padding-left: 25px;
       padding-right: 25px;
@@ -189,7 +193,7 @@
     }
   }
 
-  // centered paragraphs
+  // Centered paragraphs
   .fb-centered-paragraph {
     font-size: 16px;
     max-width: 600px;
@@ -233,90 +237,195 @@
       max-width: none;
     }
   }
-}
 
-// Impromptu front end batch image upload interface
-.batch-upload {
-  text-align: center;
-}
-.dropzone {
-  margin: 20px;
-  background: #E2E2E2;
-  border: none;
-  text-align: center;
-  h2 {
-    margin-bottom: 20px;
-  }
-  .dz-message {
-    padding: 4em 0;
-    margin: 0;
-    color: #aaa;
-  }
-  .dz-preview {
-    &.dragged {
-      position: absolute;
-      margin: 0;
+  .block-color {
+    @extend %clearfix;
+    &.color-gray {
+      background: #E6E8E5;
     }
-    &.dz-image-preview {
-      background: none;
-    }
-    .dz-remove {
-      margin: 8px 0 0;
+    &.color-black {
+      background: $black-dark;
+      .user-content {
+        &,
+        h2,
+        h3 {
+          color: $white;
+        }
+      }
     }
   }
-  input[type=text],
-  textarea {
-    text-transform: none;
-    font: 14px/1 sans-serif;
-    letter-spacing: 0;
-    color: #666;
-    padding: 10px;
-    width: 100%;
-    margin: 10px auto;
-    max-width: 600px;
-    background: #eee;
-    border: none;
-  }
-  #images_desc {
-    height: 100px;
-  }
-}
 
-// Impromptu alt tag editing UI
-.alt-tag-edit {
-  position: relative;
-  input {
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
-    padding: 4px 6px;
-    font-size: 18px;
-    width: calc(100% - 40px);
-    background: rgba($black,.1);
+  // Full page header style
+  header.full-page-header {
+    .section-title {
+      // Much larger type that overlays header image
+      h1 {
+        font-size: 60px;
+        line-height: 1;
+        color: $white;
+      }
+      h4 {
+        color: $white;
+        font: 18px/1 $font-body, sans-serif;
+        letter-spacing: 0;
+        text-transform: none;
+      }
+
+      @include min-screen($breakpoint-small) {
+        h1 {
+          font-size: 80px;
+        }
+      }
+      @include min-screen($breakpoint-medium) {
+        h1 {
+          font-size: 120px;
+        }
+        h4 {
+          font: 20px/1 $font-body, sans-serif;
+        }
+      }
+    }
+
+    .header-wrap {
+      position: relative;
+      height: 100vh;
+      // Use flex to center align header text
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      // Expand project-banner image to full viewport
+      .project-banner {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        // Override attributes of standard header image
+        height: auto;
+        width: auto;
+        max-height: none;
+      }
+    }
+  }
+
+  // Two-column, alt header style
+  .intro.two-column {
+    background: $black-dark;
     color: $white;
-    text-transform: none;
-    letter-spacing: .02em;
-    border: 1px solid rgba($black,.1);
-    transition: all .2s ease-out;
-    &::placeholder {
-      color: rgba($white,.5);
+    .intro-wrap {
+      @extend %clearfix;
+      max-width: 960px;
+      margin: 0 auto;
     }
-    &.done {
-      border: 1px solid yellow;
+
+    .summary,
+    .project-meta {
+      max-width: none;
+      ul li,
+      h3 {
+        color: $white;
+        font: 16px/1 $font-body, sans-serif;
+        letter-spacing: 0;
+        text-transform: none;
+        margin: 0 0 4px;
+        text-align: left;
+      }
+      h3 {
+        float: none;
+        width: auto;
+        font-weight: bold;
+      }
+      ul {
+        margin: 0 0 #{$padding * 2} 0;
+        li {
+          display: block;
+          color: rgba(255,255,255,0.35);
+        }
+      }
+    }
+    .summary {
+      > p {
+        margin: 0 0 2em;
+      }
+    }
+
+    .summary.user-content a,
+    .project-meta a {
+      color: rgba(255,255,255,0.35);
+      transition: 0.1s all;
+      &:hover {
+        color: rgba(255,255,255,1);
+      }
+    }
+
+    @include max-screen($breakpoint-medium) {
+      .summary {
+        position: relative;
+        padding-bottom: #{$padding * 3};
+        &::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 60px;
+          right: 60px;
+          border-bottom: 1px solid $white;
+        }
+      }
+    }
+    @include min-screen($breakpoint-medium) {
+      padding: ($padding * 6);
+
+      .summary {
+        position: relative;
+        width: 50%;
+        float: left;
+        padding-right: $padding * 6;
+        &::after {
+          content: '';
+          position: absolute;
+          right: 0;
+          top: 20px;
+          bottom: 40px;
+          border-right: 1px solid $white;
+        }
+      }
+      .project-meta {
+        width: 50%;
+        float: left;
+        padding: 0 #{$padding * 6};
+        margin: 0;
+        .extra-info,
+        .one-half {
+          float: none;
+          width: auto;
+        }
+      }
     }
   }
-  &:hover input,
-  input:focus {
-    border: 1px solid $white;
-    background: $white;
-    color: $black;
-    &::placeholder {
-      color: lighten($black,50%);
-    }
-  }
+}
+
+.block-text,
+.block-image {
+  padding: #{$padding * 3};
+  clear: left;
+
   @include min-screen($breakpoint-medium) {
-    input {
+    padding: #{$padding * 6};
+    &.halfWidth {
+      clear: none;
       width: 50%;
+      float: left;
     }
   }
+}
+.block-text {
+  padding: #{$padding * 6};
+  @include min-screen($breakpoint-medium) {
+    padding: #{$padding * 9} #{$padding * 12};
+  }
+}
+
+// Hide edit link for now
+.edit-link {
+  margin: $padding;
 }

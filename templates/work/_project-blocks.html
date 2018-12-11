@@ -1,0 +1,72 @@
+{% set blockColor = 'white' %}
+<div class="block-color color-white">
+{% for block in entry.projectBlocks.all() %}
+  {% switch block.type %}
+
+    {% case "blockColorChange" %}
+      {% if blockColor != block.color %}
+        {% set blockColor = block.color %}
+        </div><div data-id="55" class="block-color color-{{ block.color }}">
+      {% endif %}
+
+    {% case "blockHeader" %}
+      <div class="project-summary user-content">
+        {% if block.numberHeader %}
+          <h3 class="h1 number-header">{{ block.numberHeader }}</h3>
+        {% endif %}
+        {% if block.blockTitle %}
+          <h2>{{ block.blockTitle }}</h2>
+        {% endif %}
+        {{ block.blockDescription }}
+      </div>
+
+    {% case "blockImages" %}
+      <div class="fullbleed-images">
+        {% if block.carousel %}<div class="flickity carousel">{% endif %}
+        {% for image in block.images.all() %}
+          {% if image.filename matches '{\.gif$}' %}
+            <p><img class="lazy" src="{{ rev('images/gray.gif') }}" data-original="{{ craft.app.config.general.cdnUrl }}{{ image.getUrl() }}" alt="{{ image.title }}"></p>
+          {% else %}
+            <p><img class="lazy" src="{{ rev('images/gray.gif') }}" data-original="{{ craft.app.config.general.cdnUrl }}{{ image.getUrl() }}" alt="{{ image.title }}"></p>
+          {% endif %}
+        {% endfor %}
+        {% if block.carousel %}</div>{% endif %}
+      </div>
+    {% case "blockHtml" %}
+      <div class="block-html">{{ block.html }}</div>
+
+    {% case "blockText" %}
+      <div class="block-text user-content {{ block.size }}">{{ block.text }}</div>
+
+    {% case "blockPaddedImage" %}
+      {% for image in block.image.all() %}
+        {% set width = (block.size == 'halfWidth' ? 900 : 1800) %}
+        {% if block.treated %}
+          {% set treatedImage = craft.imager.transformImage(image, { width: width, effects: { modulate: [100, 0, 100], clut: 'gradient:#222222-#ffffff' } }) %}
+        {% else %}
+          {% set treatedImage = craft.imager.transformImage(image, { width: width }) %}
+        {% endif %}
+
+        <div data-id="54" class="block-image {{ block.size }}">
+          {%- if block.imageLinkUrl %}<a href="{{ block.imageLinkUrl }}" target="_blank" rel="noopener">{% endif -%}
+            <img class="lazy" src="{{ rev('images/gray.gif') }}" data-original="{{ craft.app.config.general.cdnUrl }}{{ treatedImage.getUrl() }}" alt="{{ image.title }}">
+          {%- if block.imageLinkUrl %}</a>{% endif -%}
+        </div>
+      {% endfor %}
+
+    {% case "blockQuote" %}
+        <div class="block-quote" style="color: {{ block.textColor }}; background-color: {{ block.backgroundColor }};">
+          <blockquote>{{ block.quote }}</blockquote>
+        </div>
+
+    {% case "blockImageLink" %}
+      {% for image in block.images.all() %}
+        <p><a href="{{ block.imageLinkUrl }}" target="_blank"><img class="lazy" src="{{ rev('images/gray.gif') }}" data-original="{{ craft.app.config.general.cdnUrl }}{{ image.getUrl() }}" alt="{{ image.title }}"></a></p>
+      {% endfor %}
+
+    {% default %}
+      Hello?
+
+  {% endswitch %}
+{% endfor %}
+</div>

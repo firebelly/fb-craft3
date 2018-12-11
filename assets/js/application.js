@@ -8,6 +8,7 @@
 //=include "../bower_components/jquery_lazyload/jquery.lazyload.js"
 //=include "../bower_components/waypoints/lib/jquery.waypoints.js"
 //=include "../bower_components/jquery-validation/dist/jquery.validate.js"
+//=include "../bower_components/flickity/dist/flickity.pkgd.js"
 
 $.gdgr = $.gdgr || {};
 

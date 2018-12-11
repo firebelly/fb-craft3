@@ -1,6 +1,7 @@
 /.env
 /.idea
 /vendor
+!assets/scss/vendor
 .DS_Store
 
 # Build

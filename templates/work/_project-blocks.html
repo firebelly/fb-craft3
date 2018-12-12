@@ -68,7 +68,7 @@
       {% for image in block.image.all() %}
         {% set width = (block.size == 'halfWidth' ? 900 : 1800) %}
         {% if block.treated %}
-          {% set treatedImage = craft.imager.transformImage(image, { width: width, effects: { modulate: [100, 0, 100], clut: 'gradient:#222222-#ffffff' } }) %}
+          {% set treatedImage = craft.imager.transformImage(image, { width: width, effects: { modulate: [100, 0, 100], clut: 'gradient:#000000-#ffffff' } }) %}
         {% else %}
           {% set treatedImage = craft.imager.transformImage(image, { width: width }) %}
         {% endif %}

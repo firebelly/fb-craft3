@@ -271,7 +271,7 @@
 
     .header-wrap {
       position: relative;
-      height: 100vh;
+      height: calc(100vh - 66px);
       // Use flex to center align header text
       display: flex;
       align-items: center;
@@ -364,6 +364,7 @@
 
     // Desktop styles
     @include min-screen($breakpoint-medium) {
+      padding-top: #{$padding * 9};
       .summary {
         position: relative;
         width: 50%;

@@ -1,12 +1,29 @@
 {% set blockColor = 'white' %}
-<div class="block-color color-white">
+{% set hasBlockColorChange = false %}
+{# Check if any blockColorChanges #}
+{% for block in entry.projectBlocks.all() %}
+  {% if block.type == 'blockColorChange' %}
+    {% set hasBlockColorChange = true %}
+    {% if loop.index == 1 %}
+      {# Check if first block is a color change and set initial block-color to that #}
+      {% set blockColor = entry.projectBlocks[0].color %}
+    {% else %}
+{% endif %}
+
+  {% endif %}
+{% endfor %}
+
+{# Only init block-color if project has any color changes #}
+{% if hasBlockColorChange %}<div class="block-color color-{{ blockColor }}"><div class="block-wrap">{% endif %}
+
 {% for block in entry.projectBlocks.all() %}
   {% switch block.type %}
 
     {% case "blockColorChange" %}
       {% if blockColor != block.color %}
         {% set blockColor = block.color %}
-        </div><div data-id="55" class="block-color color-{{ block.color }}">
+        </div></div>
+        <div data-id="55" class="block-color color-{{ block.color }}"><div class="block-wrap">
       {% endif %}
 
     {% case "blockHeader" %}
@@ -21,19 +38,26 @@
       </div>
 
     {% case "blockImages" %}
+      </div><!-- /.block-wrap -->
       <div class="fullbleed-images">
         {% if block.carousel %}
           <div class="flickity">
             {% for image in block.images.all() %}
-              <div class="slide"><img src="{{ rev('images/gray.gif') }}" data-flickity-lazyload="{{ craft.app.config.general.cdnUrl }}{{ image.getUrl() }}" alt="{{ image.title }}"></div>
+              <div class="slide">
+                {%- if block.imageLinkUrl %}<a href="{{ block.imageLinkUrl }}" target="_blank" rel="noopener">{% endif -%}
+                  <img src="{{ rev('images/gray.gif') }}" data-flickity-lazyload="{{ craft.app.config.general.cdnUrl }}{{ image.getUrl() }}" alt="{{ image.title }}"></div>
+                {%- if block.imageLinkUrl %}</a>{% endif -%}
             {% endfor %}
           </div>
         {% else %}
           {% for image in block.images.all() %}
-            <p><img class="lazy" src="{{ rev('images/gray.gif') }}" data-original="{{ craft.app.config.general.cdnUrl }}{{ image.getUrl() }}" alt="{{ image.title }}"></p>
+            {%- if block.imageLinkUrl %}<a href="{{ block.imageLinkUrl }}" target="_blank" rel="noopener">{% endif -%}
+              <p><img class="lazy" src="{{ rev('images/gray.gif') }}" data-original="{{ craft.app.config.general.cdnUrl }}{{ image.getUrl() }}" alt="{{ image.title }}"></p>
+            {%- if block.imageLinkUrl %}</a>{% endif -%}
           {% endfor %}
         {% endif %}
       </div>
+      <div class="block-wrap">
     {% case "blockHtml" %}
       <div class="block-html">{{ block.html }}</div>
 
@@ -61,14 +85,10 @@
           <blockquote>{{ block.quote }}</blockquote>
         </div>
 
-    {% case "blockImageLink" %}
-      {% for image in block.images.all() %}
-        <p><a href="{{ block.imageLinkUrl }}" target="_blank"><img class="lazy" src="{{ rev('images/gray.gif') }}" data-original="{{ craft.app.config.general.cdnUrl }}{{ image.getUrl() }}" alt="{{ image.title }}"></a></p>
-      {% endfor %}
-
     {% default %}
       Hello?
 
   {% endswitch %}
 {% endfor %}
-</div>
+
+{% if hasBlockColorChange %}</div></div><!-- /.block-wrap/.block-color -->{% endif %}

@@ -79,7 +79,7 @@
   }
 
   .project-meta {
-    padding: 0 25px;
+    padding: 0 $mobile-padding;
     max-width: 600px;
     text-align: center;
     margin: ($padding * 5) auto 0;
@@ -118,7 +118,7 @@
   }
 
   .block-quote {
-    padding: ($padding * 6) 25px;
+    padding: ($padding * 6) $mobile-padding;
 
     @include min-screen($breakpoint-medium) {
       padding-top: ($padding * 12);
@@ -156,9 +156,10 @@
 
   .summary,
   .project-summary {
+    width: 100%;
     &.user-content {
-      padding-left: 25px;
-      padding-right: 25px;
+      padding-left: $mobile-padding;
+      padding-right: $mobile-padding;
     }
 
     h1, h2, h3, h4, h5, h6 {
@@ -209,7 +210,7 @@
   }
 
   .project-summary {
-    padding: ($padding * 6) 25px;
+    padding: ($padding * 6) $mobile-padding;
 
     h3.number-header {
       margin-bottom: 11px;
@@ -235,23 +236,7 @@
       display: block;
       max-width: none;
     }
-  }
-
-  .block-color {
-    @extend %clearfix;
-    &.color-gray {
-      background: #E6E8E5;
-    }
-    &.color-black {
-      background: $black-dark;
-      .user-content {
-        &,
-        h2,
-        h3 {
-          color: $white;
-        }
-      }
-    }
+    + .block-color
   }
 
   // Full page header style
@@ -313,8 +298,13 @@
     color: $white;
     .intro-wrap {
       @extend %clearfix;
-      max-width: 960px;
+      max-width: 1200px;
       margin: 0 auto;
+    }
+
+    // Override 1-column mobile styles
+    .services {
+      margin-top: 0;
     }
 
     .summary,
@@ -357,6 +347,7 @@
       }
     }
 
+    // Small screen styles
     @include max-screen($breakpoint-medium) {
       .summary {
         position: relative;
@@ -365,23 +356,24 @@
           content: '';
           position: absolute;
           bottom: 0;
-          left: 60px;
-          right: 60px;
+          left: $mobile-padding;
+          right: $mobile-padding;
           border-bottom: 1px solid $white;
         }
       }
     }
-    @include min-screen($breakpoint-medium) {
-      padding: ($padding * 6);
 
+    // Desktop styles
+    @include min-screen($breakpoint-medium) {
       .summary {
         position: relative;
         width: 50%;
         float: left;
-        padding-right: $padding * 6;
+        padding: 0 #{$padding * 6};
         &::after {
           content: '';
           position: absolute;
+          left: auto;
           right: 0;
           top: 20px;
           bottom: 40px;
@@ -403,24 +395,74 @@
   }
 }
 
+.block-color {
+  &.color-gray {
+    background: #E6E8E5;
+  }
+  &.color-black {
+    background: $black-dark;
+    .user-content {
+      &,
+      h2,
+      h3 {
+        color: $white;
+      }
+    }
+  }
+  .block-wrap {
+    padding: $mobile-padding;
+    @include min-screen($breakpoint-medium) {
+      padding: 0;
+    }
+    @include min-screen($breakpoint-large) {
+      padding: #{$padding * 6} 0;
+    }
+
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
 .block-text,
 .block-image {
-  padding: #{$padding * 3};
-  clear: left;
+  padding: #{$padding * 1} 0;
+  flex: 0 1 100%;
 
   @include min-screen($breakpoint-medium) {
-    padding: #{$padding * 6};
     &.halfWidth {
       clear: none;
-      width: 50%;
-      float: left;
+      flex: 0 1 50%;
     }
   }
 }
-.block-text {
-  padding: #{$padding * 6};
+.block-image {
   @include min-screen($breakpoint-medium) {
-    padding: #{$padding * 9} #{$padding * 12};
+    padding: #{$padding * 3};
+  }
+
+}
+.block-text {
+  @include min-screen($breakpoint-medium) {
+    padding: #{$padding * 6};
+  }
+
+  &.user-content {
+    h2,
+    h3 {
+      font: bold 16px/1 $font-body, sans-serif;
+      letter-spacing: 0;
+      text-transform: none;
+      margin: 0 0 4px;
+      text-align: left;
+      font-weight: bold;
+    }
+    h2 {
+      color: inherit;
+      font: 36px/1 $font-display, sans-serif;
+      margin: 0 0 .6em;
+    }
   }
 }
 
@@ -430,11 +472,19 @@
   }
   .slide {
     width: 80%;
-    margin-right: #{$padding * 6};
+    margin-right: #{$padding * 3};
     img {
       display: block;
       width: 100%;
       height: auto;
+    }
+  }
+
+  // Desktop styles
+  @include min-screen($breakpoint-medium) {
+    .slide {
+      width: 80%;
+      margin-right: #{$padding * 6};
     }
   }
 }

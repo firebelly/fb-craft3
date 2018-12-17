@@ -11,7 +11,7 @@
   {% cache unless currentUser %}
   <article class="content-block single-project" data-id="{{ entry.id }}">
     <section class="content interior">
-      <header class="{{ entry.workHeader.fullPageHeaderImage ? ' full-page-header' : ''}}">
+      <header class="{{ entry.headerOptions.fullPageHeaderImage ? ' full-page-header' : ''}}">
         <div class="header-wrap">
 
           {% if entry.vimeoHeaderVideo %}
@@ -31,7 +31,7 @@
         </div>
       </header>
 
-      <div class="intro clearfix {{ entry.workHeader.twoColumnLayout ? ' two-column' : ''}}">
+      <div class="intro clearfix {{ entry.headerOptions.twoColumnLayout ? ' two-column' : ''}}">
         <div class="intro-wrap">
           <div class="summary user-content">{{ entry.body }}</div>
           <div class="project-meta grid">
@@ -57,10 +57,21 @@
               </div>
             </div>
 
-            {% if entry.workHeader.extraDetails %}
+            {% if entry.extraDetails | length %}
               <div class="extra-info">
                 <div class="inner">
-                  {{ entry.workHeader.extraDetails }}
+                  {% for details in entry.extraDetails.all() %}
+                    <h3>{{ details.header }}</h3>
+                    <ul>
+                    {% for item in details.items %}
+                      <li>
+                        {%- if item['url'] %}<a rel="noopener" target="_blank" href="{{ item['url'] }}">{% endif -%}
+                        {{ item['title'] }}
+                        {%- if item['url'] %}</a>{% endif -%}
+                      </li>
+                    {% endfor %}
+                    </ul>
+                  {% endfor %}
                 </div>
               </div>
             {% endif %}

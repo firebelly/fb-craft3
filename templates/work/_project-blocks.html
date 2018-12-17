@@ -43,9 +43,11 @@
         {% if block.carousel %}
           <div class="flickity">
             {% for image in block.images.all() %}
-              <div class="slide">
+              {% set treatedImage = craft.imager.transformImage(image, { mode: 'fit', width: 1800, height: 900 }) %}
+              {% set orientation = image.getWidth() > image.getHeight() ? 'landscape' : 'portrait' %}
+              <div class="slide {{ orientation }}">
                 {%- if block.imageLinkUrl %}<a href="{{ block.imageLinkUrl }}" target="_blank" rel="noopener">{% endif -%}
-                  <img src="{{ rev('images/gray.gif') }}" data-flickity-lazyload="{{ craft.app.config.general.cdnUrl }}{{ image.getUrl() }}" alt="{{ image.title }}"></div>
+                  <img src="{{ rev('images/gray.gif') }}" data-flickity-lazyload="{{ craft.app.config.general.cdnUrl }}{{ treatedImage.getUrl() }}" alt="{{ image.title }}"></div>
                 {%- if block.imageLinkUrl %}</a>{% endif -%}
             {% endfor %}
           </div>

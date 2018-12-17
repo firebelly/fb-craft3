@@ -16,6 +16,9 @@
   p {
     font: 16px/1.375 $font-body, sans-serif;
     margin: 0 0 1em;
+    &:last-of-type {
+      margin: 0;
+    }
   }
 
   @extend %fade-links;

@@ -76,7 +76,7 @@ body.page.single {
 #store-page.single,
 body.page.single {
   .interior {
-    &:not(.no-padding) {    
+    &:not(.no-padding) {
       padding: ($padding * 6) 25px;
       @include min-screen($breakpoint-medium) {
         padding: ($padding * 12) 25px ($padding * 12) 25px;
@@ -88,7 +88,7 @@ body.page.single {
       text-align: left;
       position: relative;
       @include min-screen(1000px) {
-        .section-number {        
+        .section-number {
           right: 100%;
           text-align: center;
           position: absolute;
@@ -137,6 +137,10 @@ body.page.single {
             position: absolute;
             background: $black-fade;
           }
+        }
+        p {
+          @extend %small-caps;
+          margin: 0;
         }
 
         ul {

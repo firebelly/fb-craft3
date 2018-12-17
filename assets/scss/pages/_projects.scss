@@ -427,7 +427,8 @@
       .project-meta {
         width: 50%;
         float: left;
-        padding: 0 #{$padding * 6};
+        // Arbitrary "move project-meta over a column" spacing
+        padding: 0 #{$padding * 6} 0 16%;
         margin: 0;
         .extra-info,
         .one-half {

@@ -47,7 +47,7 @@
               {% set orientation = image.getWidth() > image.getHeight() ? 'landscape' : 'portrait' %}
               <div class="slide {{ orientation }}">
                 {%- if block.imageLinkUrl %}<a href="{{ block.imageLinkUrl }}" target="_blank" rel="noopener">{% endif -%}
-                  <img src="{{ rev('images/gray.gif') }}" data-flickity-lazyload="{{ craft.app.config.general.cdnUrl }}{{ treatedImage.getUrl() }}" alt="{{ image.title }}"></div>
+                  <img src="{{ craft.app.config.general.cdnUrl }}{{ treatedImage.getUrl() }}" alt="{{ image.title }}"></div>
                 {%- if block.imageLinkUrl %}</a>{% endif -%}
             {% endfor %}
           </div>

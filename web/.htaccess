@@ -15,6 +15,15 @@
     RewriteCond %{HTTP_HOST} !^fb-craft3\.localhost [NC]
     RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
 
+    # Custom redirects
+    RewriteRule ^flor/?$ /work/flor-rebrand [R=301,L]
+    RewriteRule ^expertise/?$ /process [R=301,L]
+    RewriteRule ^(wheel|Wheel)/?$ /uploads/Firebelly-Project-Wheel.pdf [R=301,L]
+    RewriteRule ^WorkshoppingWorkshops/?$ /uploads/Firebelly-Workshopping-Workshops.pdf [R=301,L]
+
+    # Redirect people & endeavors single URLs to hashes
+    RewriteRule ^(endeavors|people)/([^/]+)/? /$1#$2 [R=301,NE,L]
+
     # Send would-be 404 requests to Craft
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d

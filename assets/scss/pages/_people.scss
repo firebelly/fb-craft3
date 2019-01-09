@@ -126,7 +126,7 @@
         }
       }
 
-      @include min-screen($breakpoint-medium) {      
+      @include min-screen($breakpoint-medium) {
         &:hover {
           .duplicate-title {
             display: inline-block;
@@ -180,6 +180,9 @@
 
       .bio {
         padding: ($padding * 3) 25px;
+        .pronoun {
+          display: block;
+        }
       }
 
       h1 {
@@ -271,7 +274,7 @@
         padding: 0 #{$padding * 12};
         .name {
           font: 48px/1.145833333em $font-display;
-          letter-spacing: -.01em;          
+          letter-spacing: -.01em;
         }
       }
 
@@ -298,7 +301,7 @@
         .-right {
           max-width: 50%;
           flex-basis: 50%;
-        } 
+        }
         .-right {
           background: $black;
           img {

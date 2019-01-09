@@ -56,7 +56,10 @@
               <div class="bio -left">
                 <h1>{{ block.personNameFirst }} {{ block.personNameLast }}</h1>
                 {% if block.personTitle %}
-                  <h2>{{ block.personTitle }}</h2>
+                  <h2>
+                    {{ block.personTitle }}
+                    {% if block.pronouns %}<span class="pronoun">{{ block.pronouns }}</span>{% endif %}
+                  </h2>
                 {% endif %}
                 {{ block.bio }}
               </div>

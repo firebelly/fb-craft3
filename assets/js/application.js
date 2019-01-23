@@ -35,13 +35,13 @@ $.firebelly.main = (function() {
     $('.flickity').flickity({
       pageDots: false,
       imagesLoaded: true,
-    }).on( 'dragMove.flickity', function( event, pointer, moveVector ) {
-      // update custom cursor location
-      $customCursor.css({
-        'transform': 'translate3d(' + pointer.clientX + 'px, ' + pointer.clientY + 'px, 0)'
-      });
-
     });
+    // .on( 'dragMove.flickity', function( event, pointer, moveVector ) {
+    //   // update custom cursor location
+    //   $customCursor.css({
+    //     'transform': 'translate3d(' + pointer.clientX + 'px, ' + pointer.clientY + 'px, 0)'
+    //   });
+    // });
 
     // remove useless alt tooltips
     $('img').each(function () {
@@ -105,7 +105,7 @@ $.firebelly.main = (function() {
     _hideHeader();
     _initFilterNav();
     _initSmoothScroll();
-    _initCustomCursor();
+    // _initCustomCursor();
 
     if ($('body').is('#people-page')) {
       _initPeopleFunctions();

@@ -339,6 +339,7 @@
   .intro.two-column {
     background: $black-dark;
     color: $white;
+    @extend %smooth;
     .intro-wrap {
       @extend %clearfix;
       max-width: 1200px;
@@ -450,6 +451,7 @@
       &,
       h2,
       h3 {
+        @extend %smooth;
         color: $white;
       }
     }

@@ -41,7 +41,7 @@
       </div><!-- /.block-wrap -->
       <div class="fullbleed-images">
         {% if block.carousel %}
-          <div class="flickity">
+          <div class="flickity js-cursor">
             {% for image in block.images.all() %}
               {% set treatedImage = craft.imager.transformImage(image, { mode: 'fit', width: 1800, height: 900 }) %}
               {% set orientation = image.getWidth() > image.getHeight() ? 'landscape' : 'portrait' %}

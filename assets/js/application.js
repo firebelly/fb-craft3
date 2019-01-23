@@ -23,14 +23,24 @@ $.firebelly.main = (function() {
       adminStatus = false,
       isAnimating = false,
       personClosing = false,
-      numLazyLoaded = 0;
+      numLazyLoaded = 0,
+      $body,
+      $customCursor;
 
   function _init() {
+    $body = $(document.body);
+
     $('#flash').hide().css('visibility','visible').fadeIn();
 
     $('.flickity').flickity({
       pageDots: false,
       imagesLoaded: true,
+    }).on( 'dragMove.flickity', function( event, pointer, moveVector ) {
+      // update custom cursor location
+      $customCursor.css({
+        'transform': 'translate3d(' + pointer.clientX + 'px, ' + pointer.clientY + 'px, 0)'
+      });
+
     });
 
     // remove useless alt tooltips
@@ -95,10 +105,46 @@ $.firebelly.main = (function() {
     _hideHeader();
     _initFilterNav();
     _initSmoothScroll();
+    _initCustomCursor();
 
     if ($('body').is('#people-page')) {
       _initPeopleFunctions();
     }
+  }
+
+  function _initCustomCursor() {
+    $customCursor = $('<div class="cursor">&larr; &rarr;</div>').appendTo($body);
+
+    var lastMousePosition = { x: 0, y: 0 };
+
+      // Update the mouse position
+      function onMouseMove(evt) {
+        lastMousePosition.x = evt.clientX;
+        lastMousePosition.y = evt.clientY;
+        requestAnimationFrame(update);
+      }
+
+      function update() {
+        // Get the element we're hovered on
+        var hoveredEl = document.elementFromPoint(lastMousePosition.x, lastMousePosition.y);
+
+        // Check if the element or any of its parents have a .js-cursor class
+        if ($(hoveredEl).parents('.js-cursor').length || $(hoveredEl).hasClass('js-cursor')) {
+          $body.addClass('-cursor-active');
+        } else {
+          $body.removeClass('-cursor-active');
+        }
+
+        // now draw object at lastMousePosition
+        $customCursor.css({
+          'transform': 'translate3d(' + lastMousePosition.x + 'px, ' + lastMousePosition.y + 'px, 0)'
+        });
+      }
+
+      // Listen for mouse movement
+      document.addEventListener('mousemove', onMouseMove, false);
+      // Make sure a user is still hovered on an element when they start scrolling
+      document.addEventListener('scroll', update, false);
   }
 
   function _newsletterInit() {

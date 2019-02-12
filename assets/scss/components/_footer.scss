@@ -56,6 +56,14 @@
     }
   }
 
+  a {
+    text-decoration: none;
+    &:hover,
+    &:focus {
+      text-decoration: underline;
+    }
+  }
+
   p, a, li {
     color: $black-fade;
     @extend %small-caps;

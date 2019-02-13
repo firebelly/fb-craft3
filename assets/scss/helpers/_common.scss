@@ -13,9 +13,7 @@
     color: $black-fade;
     text-decoration: underline;
     transition: color .2s ease-out;
-    &:hover, &:focus {
-      color: $black;
-    }
+    @include linkHover($gray);
   }
 }
 

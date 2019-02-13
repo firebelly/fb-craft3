@@ -3,6 +3,10 @@
 #people-page {
   #page {
     background: $yellow;
+
+    .user-content a {
+      @include linkHover($yellow);
+    }
   }
 
   .interior {
@@ -219,9 +223,10 @@
           @extend %small-caps;
         }
         a {
-          opacity: .4;
+          opacity: .75;
           &:hover, &:focus, &:active {
             opacity: 1;
+            mix-blend-mode: screen;
           }
         }
       }

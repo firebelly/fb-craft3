@@ -24,12 +24,16 @@
       }
     }
   }
-  
+
   .interior {
     padding: 0;
   }
   #page {
     background: $peach;
+
+    .user-content a {
+      @include linkHover($peach);
+    }
   }
   .secondary.user-content {
     ul, li {

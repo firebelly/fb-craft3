@@ -3,6 +3,10 @@
 .single.page.endeavors {
   #page {
     background: $blue;
+
+    .user-content a {
+      @include linkHover($blue);
+    }
   }
 
   .content {

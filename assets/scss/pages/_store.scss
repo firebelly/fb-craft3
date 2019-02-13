@@ -43,6 +43,12 @@
   }
 
   .product {
+    .summary {
+      @extend %fade-links;
+      a {
+        @include linkHover($green);
+      }
+    }
     .actions {
       margin-top: ($padding * 4);
       .submit {

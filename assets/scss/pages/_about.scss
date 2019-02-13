@@ -4,6 +4,10 @@
   #page {
     background: $purple;
 
+    .user-content a {
+      @include linkHover($purple);
+    }
+
     // Highlights table
     .highlights {
       .date {

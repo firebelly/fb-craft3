@@ -8,10 +8,7 @@
       @include linkHover($yellow);
     }
     .person .links a {
-      &:hover,
-      &:focus {
-        mix-blend-mode: screen;
-      }
+      @include linkHover($yellow, screen);
     }
   }
 

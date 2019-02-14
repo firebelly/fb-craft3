@@ -1,12 +1,12 @@
 // Mixins
 
 // Link Hover
-@mixin linkHover($color) {
+@mixin linkHover($color, $blendMode: multiply) {
   &:hover,
   &:focus {
     color: $black;
     background-color: $color;
-    mix-blend-mode: multiply;
+    mix-blend-mode: $blendMode;
   }
 }
 

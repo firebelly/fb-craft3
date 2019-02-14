@@ -372,7 +372,7 @@
         margin: 0 0 #{$padding * 2} 0;
         li {
           display: block;
-          color: rgba(255,255,255,0.35);
+          color: rgba(255,255,255,0.65);
         }
       }
     }
@@ -384,11 +384,9 @@
 
     .summary.user-content a,
     .project-meta a {
-      color: rgba(255,255,255,0.35);
-      transition: 0.1s all;
-      &:hover {
-        color: rgba(255,255,255,1);
-      }
+      transition: none;
+      color: rgba(255,255,255,0.65);
+      @include linkHover($white, screen);
     }
 
     // Small screen styles
@@ -444,6 +442,9 @@
 .block-color {
   &.color-gray {
     background: #E6E8E5;
+    .user-content a {
+      @include linkHover(#E6E8E5);
+    }
   }
   &.color-black {
     background: $black-dark;
@@ -453,6 +454,10 @@
       h3 {
         @extend %smooth;
         color: $white;
+      }
+      a {
+        color: rgba($white,.65);
+        @include linkHover($white, screen);
       }
     }
   }

@@ -96,14 +96,20 @@
           margin-bottom: 0;
           flex-basis: auto;
 
+          &#glyphsTypeToggle {
+            padding-right: 0;
+          }
           &#fontSizeTool {
             order: 1;
+            padding-right: 0;
           }
           &#textAlignment {
             order: 2;
+            padding-left: 0;
           }
           &#colorPairs {
             order: 3;
+            padding-left: 0;
           }
         }
       }

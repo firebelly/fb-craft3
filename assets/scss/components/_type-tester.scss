@@ -359,8 +359,8 @@
     }
 
     @include min-screen($breakpoint-medium) {
-      padding-left: $padding * 3;
-      padding-right: $padding * 3;
+      padding-left: $padding * 6;
+      padding-right: $padding * 6;
     }
   }
 }

@@ -515,7 +515,7 @@ $.firebelly.main = (function() {
       var $fontStyle;
       var $typeTester = $('.type-tester');
       var $typeTesterInner = $('.type-tester-inner');
-      var $para = $typeTester.find('.test-para');
+      var $para = $typeTester.find('#test-para');
       var fontFamily = $typeTester.attr('data-font');
       var startingFontSize = $typeTester.attr('data-font-size');
       var lineHeight = $typeTester.attr('data-line-height');
@@ -535,7 +535,7 @@ $.firebelly.main = (function() {
       // Get SVG font file if it is set and generate the glypgh chart
       if ($typeTester.attr('data-svg-url')) {
         var glyphsLineHeight = $typeTester.attr('data-glyphs-line-height');
-        $('.type-tester-inner').append('<div id="typeTesterSvgFont" style="display:none;"></div><div id="glyphChart" class="block-wrap" style="font-family:'+fontFamily+';font-size:'+startingFontSize+';line-height:'+glyphsLineHeight+';"><ul id="glyphsLowercase"></ul><ul id="glyphsUppercase"></ul><ul id="glyphsOther"></ul></div>');
+        $('.type-tester-inner').append('<div id="typeTesterSvgFont" style="display:none;"></div><div id="glyphChart" class="block-wrap" style="font-family:'+fontFamily+';font-size:'+startingFontSize+'px;line-height:'+glyphsLineHeight+';"><ul id="glyphsLowercase"></ul><ul id="glyphsUppercase"></ul><ul id="glyphsOther"></ul></div>');
         var $svgContainer = $('#typeTesterSvgFont');
         var $glyphChart = $('#glyphChart');
 
@@ -698,7 +698,7 @@ $.firebelly.main = (function() {
         $textAlignment.find('button.-active').removeClass('-active');
         $(this).addClass('-active');
         var alignment = $(this).attr('data-alignment');
-        $typeTesterInner.css('text-align', alignment);
+        $para.css('text-align', alignment);
       });
 
       // Type Tester Activation

@@ -18,6 +18,12 @@
   }
 }
 
+@keyframes blink {
+  to {
+    visibility: hidden;
+  }
+}
+
 // Custom cubic easings
 
 $cubic-ease1: cubic-bezier(0.77, 0, 0.175, 1);

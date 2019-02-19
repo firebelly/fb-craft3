@@ -702,9 +702,12 @@ $.firebelly.main = (function() {
       });
 
       // Type Tester Activation
-      $para.on('click', function(e) {
-        $(this).find('.cursor').addClass('-hidden');
-        $(this).focus();
+      $para.on('focus', function(e) {
+        $(this).find('.type-cursor').remove();
+      }).on('blur', function(e) {
+        paraText = $(this).html().replace(/(<br>\s*)+$/,'');
+        $(this).html(paraText);
+        $(this).append('<span class="type-cursor"></span>');
       });
 
     }

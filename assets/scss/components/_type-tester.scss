@@ -5,53 +5,41 @@
   position: relative;
   box-sizing: border-box;
 
+  .type-tester-inner {
+    text-align: center;
+  }
+
   #test-para {
+    width: 100%;
     display: none;
-    margin: 1em auto 0;
+    margin: 0 auto;
+    text-align: left;
     position: relative;
     line-height: inherit;
     &.-active {
-      display: block;
+      display: inline-block;
     }
+
     &:first-of-type {
       margin-top: 0;
     }
     &:focus {
       outline: none;
     }
-    // &:hover {
-    //   background: rgba(0,0,0,.15);
-    //   &::after {
-    //     display: block;
-    //   }
-    // }
-    // &::after {
-    //   top: 0;
-    //   left: 0;
-    //   z-index: 1;
-    //   height: 30px;
-    //   color: $white;
-    //   display: none;
-    //   padding: 0 10px;
-    //   position: absolute;
-    //   content: 'click to edit';
-    //   font: 16px/30px $font-body;
-    //   background: rgba(0,0,0,.9);
-    // }
+
+    .type-cursor {
+      z-index: 1;
+      padding: 0;
+      color: inherit;
+      position: relative;
+      visibility: visible;
+      border-right: .014em solid;
+      animation: blink 1s steps(2, start) infinite;
+    }
 
     @include min-screen($breakpoint-medium) {
       padding: $padding * 6;
     }
-  }
-
-  .cursor {
-    width: 2px;
-    height: 1.2em;
-    bottom: -.2em;
-    background: #000;
-    position: relative;
-    display: inline-block;
-    animation: blink 1s steps(2, end) infinite;
   }
 
   #typetools {

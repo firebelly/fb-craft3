@@ -37,6 +37,39 @@
         {{ block.blockDescription }}
       </div>
 
+    {% case "blockTypeSpecimen" %}
+      </div><!-- /.block-wrap -->
+      {% set colorPairs = '' %}
+      {% if block.colors | length %}
+        {% set colorPairsArray = [] %}
+        {% for colorPair in block.colors %}
+          {% set colorPairVals = [colorPair.textColor, colorPair.backgroundColor]|filter|join('-') %}
+          {% set colorPairsArray = colorPairsArray|merge([colorPairVals]) %}
+        {% endfor %}
+        {% set colorPairs = colorPairsArray|join(' ') %}
+      {% endif %}
+      <div id="{{ block.fontName }}" class="type-tester" data-font="{{ block.fontName }}" data-styles="" data-font-size="{{ block.startingFontSize }}" data-line-height="{{ block.lineHeight }}" data-glyphs-line-height="{{ block.glyphsLineHeight ? block.glyphsLineHeight : '1' }}" data-min-size="{{ block.minFontSize }}" data-max-size="{{ block.maxFontSize }}" data-color-pairs="{{ colorPairs }}" data-svg-url="{{ craft.config.cdnUrl }}{{ block.svgFontFile[0].getUrl() }}">
+        <style>
+          @font-face {
+            font-family: '{{ block.fontName }}';
+            src: url('{{ craft.config.cdnUrl }}{{ block.woffFontFile[0].getUrl() }}') format('woff'),
+                 url('{{ craft.config.cdnUrl }}{{ block.svgFontFile[0].getUrl() }}') format('svg');
+            font-weight: normal;
+            font-style: normal;
+          }
+          {% include "partials/_blank-font-face" %}
+        </style>
+        <div class="type-tester-inner">
+          <p id="test-para" class="test-para block-wrap -active" contenteditable="true">
+            {% if block.sampleText %}
+              {{ block.sampleText }}
+            {% else %}
+              Start typing here to test font lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum accusantium laboriosam velit distinctio atque eius rerum necessitatibus in doloribus nemo aspernatur, aut, blanditiis debitis numquam saepe ab neque repellat tenetur.
+            {% endif %}
+          </p>
+        </div>
+      </div>
+      <div class="block-wrap">
     {% case "blockImages" %}
       </div><!-- /.block-wrap -->
       <div class="fullbleed-images">

@@ -26,6 +26,9 @@ return [
         // The secure key Craft will use for hashing and encrypting data
         'securityKey' => getenv('SECURITY_KEY'),
 
+        // Allow extra file extensions to be uploaded to assets
+        'extraAllowedFileExtensions' => 'woff, svg',
+
         // FB specifics
         'cdnUrl' => getenv('CDN_URL'),
         'stripePublishableKey' => getenv('STRIPE_PUBLISHABLE_KEY'),

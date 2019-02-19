@@ -600,7 +600,7 @@ $.firebelly.main = (function() {
       var minSize = $typeTester.attr('data-min-size');
       var maxSize = $typeTester.attr('data-max-size');
 
-      $toolsContainer.append('<div class="type-tool type-only"><label for="fontSize" id="fontSizeLabel">Size: <span id="currentFontSize"></span></label><input type="range" name="fontSize" id="fontSize" min="'+minSize+'" max="'+maxSize+'" step="6"></div>');
+      $toolsContainer.append('<div class="type-tool type-only" id="fontSizeTool"><label for="fontSize" id="fontSizeLabel">Size: <span id="currentFontSize"></span></label><input type="range" name="fontSize" id="fontSize" min="'+minSize+'" max="'+maxSize+'" step="6"></div>');
       var $fontSize = $('#fontSize');
       var $currentFontSize = $('#currentFontSize');
       // Set starting font size
@@ -647,7 +647,7 @@ $.firebelly.main = (function() {
       }
 
       // Paragraph Style
-      $toolsContainer.append('<div class="type-tool type-only" id="textAlignment"><label>Alignment</label><button class="alignment -left -active" data-alignment="left"><span class="visually-hidden">Left</span><span class="lines"></span></button><button class="alignment -center" data-alignment="center"><span class="visually-hidden">Center</span><span class="lines"></span></button><button class="alignment -right" data-alignment="right"><span class="visually-hidden">Right</span><span class="lines"></span></button></div>');
+      $toolsContainer.append('<div class="type-tool type-only" id="textAlignment"><label>Align</label><button class="alignment -left -active" data-alignment="left"><span class="visually-hidden">Left</span><span class="lines"></span></button><button class="alignment -center" data-alignment="center"><span class="visually-hidden">Center</span><span class="lines"></span></button><button class="alignment -right" data-alignment="right"><span class="visually-hidden">Right</span><span class="lines"></span></button></div>');
       var $textAlignment = $('#textAlignment');
 
       // Color Pairs

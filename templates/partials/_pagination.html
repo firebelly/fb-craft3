@@ -1,20 +1,18 @@
   {# Pagination for Channel sections #}
-  {% set params = craft.entries.section(paginationSection).orderBy('postDate desc, id asc') %}
+  {% set params = craft.entries.section(paginationSection).orderBy('postDate asc, id asc') %}
   {% set prevEntry = entry.getPrev(params) %}
-  {% if not prevEntry %}
-    {% set prevEntry = params.inReverse().one() %}
-  {% endif %}
   {% set nextEntry = entry.getNext(params) %}
-  {% if not nextEntry %}
-    {% set nextEntry = params.one() %}
-  {% endif %}
   <nav class="footer-pagination">
     <ul>
+      {% if prevEntry %}
       <li class="prev">
         <a rel="prev" href="{{ prevEntry.getUrl() }}"><span class="arrow">&larr;</span> Previous {{ postName }}</a>
       </li>
+      {% endif %}
+      {% if nextEntry %}
       <li class="next">
         <a rel="next" href="{{ nextEntry.getUrl() }}">Next {{ postName }} <span class="arrow">&rarr;</span></a>
       </li>
+      {% endif %}
     </ul>
   </nav>

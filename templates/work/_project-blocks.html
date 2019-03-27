@@ -7,9 +7,7 @@
     {% if loop.index == 1 %}
       {# Check if first block is a color change and set initial block-color to that #}
       {% set blockColor = entry.projectBlocks[0].color %}
-    {% else %}
-{% endif %}
-
+    {% endif %}
   {% endif %}
 {% endfor %}
 
@@ -69,6 +67,8 @@
           </div>
         </div>
       </div>
+      <div class="block-wrap">
+
     {% case "blockImages" %}
       </div><!-- /.block-wrap -->
       <div class="fullbleed-images">
@@ -92,6 +92,7 @@
         {% endif %}
       </div>
       <div class="block-wrap">
+
     {% case "blockHtml" %}
       <div class="block-html">{{ block.html }}</div>
 

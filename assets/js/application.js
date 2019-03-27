@@ -107,6 +107,7 @@ $.firebelly.main = (function() {
     _initSmoothScroll();
     // _initCustomCursor();
     _initTypeTester();
+    _removeEmptyProjectBlocks();
 
     if ($('body').is('#people-page')) {
       _initPeopleFunctions();
@@ -720,6 +721,23 @@ $.firebelly.main = (function() {
     } else {
       return null;
     }
+  }
+
+  function _removeEmptyProjectBlocks() {
+    // The way we have project blocks set up,
+    // full-width blocks might end up adding an empty
+    // .block-wrap element after them that only contains
+    // white space. This function is a banaid fix to remove
+    // those blocks with just white space so they don't
+    // create unwanted space between blocks
+    $blockWraps = $('.block-wrap');
+
+    $blockWraps.each(function() {
+      var contents = $(this).html();
+      if(!contents.replace(/\s/g, '').length) {
+        $(this).css('display', 'none');
+      }
+    });
   }
 
   function _resize() {

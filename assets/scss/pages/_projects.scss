@@ -240,8 +240,37 @@
 
     // Carousels
     .flickity {
+      position: relative;
       .flickity-prev-next-button {
-        display: none;
+        top: 0;
+        bottom: 0;
+        width: 50%;
+        height: 100%;
+        transform: none;
+        background: none;
+        border-radius: 0;
+        svg {
+          display: none;
+        }
+
+        &.previous {
+          &,
+          &:focus,
+          &:active {
+            left: 0;
+            cursor: url('/assets/dist/images/left-arrow.png') 50 50, w-resize;
+            cursor: url('/assets/dist/images/left-arrow.svg') 50 50, w-resize;
+          }
+        }
+        &.next {
+          &,
+          &:focus,
+          &:active {
+            right: 0;
+            cursor: url('/assets/dist/images/right-arrow.png') 50 50, e-resize;
+            cursor: url('/assets/dist/images/right-arrow.svg') 50 50, e-resize;
+          }
+        }
       }
       .slide {
         margin-right: #{$padding * 3};

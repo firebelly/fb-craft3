@@ -15,7 +15,7 @@
 {% if hasBlockColorChange %}<div class="block-color color-{{ blockColor }}"><div class="block-wrap">{% endif %}
 
 {% for block in entry.projectBlocks.all() %}
-  {% set loopIndex = loop.index %}
+  {% set loopIndex = loop.index - 1 %}
 
   {% switch block.type %}
 
@@ -69,7 +69,7 @@
           </div>
         </div>
       </div>
-      {% if entry.projectBlocks.all()[loopIndex].type != "blockColorChange" %}
+      {% if loopIndex + 1 < entry.projectBlocks.all()|length and entry.projectBlocks.all()[loopIndex + 1].type != "blockColorChange" %}
       <div class="block-wrap">
       {% endif %}
 
@@ -95,7 +95,7 @@
           {% endfor %}
         {% endif %}
       </div>
-      {% if entry.projectBlocks.all()[loopIndex].type != "blockColorChange" %}
+      {% if loopIndex + 1 < entry.projectBlocks.all()|length and entry.projectBlocks.all()[loopIndex + 1].type != "blockColorChange" %}
       <div class="block-wrap">
       {% endif %}
 

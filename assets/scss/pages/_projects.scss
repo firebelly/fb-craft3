@@ -246,30 +246,12 @@
         bottom: 0;
         width: 50%;
         height: 100%;
+        cursor: none!important;
         transform: none;
         background: none;
         border-radius: 0;
         svg {
           display: none;
-        }
-
-        &.previous {
-          &,
-          &:focus,
-          &:active {
-            left: 0;
-            cursor: url('/assets/dist/images/left-arrow.png') 50 50, w-resize;
-            cursor: url('/assets/dist/images/left-arrow.svg') 50 50, w-resize;
-          }
-        }
-        &.next {
-          &,
-          &:focus,
-          &:active {
-            right: 0;
-            cursor: url('/assets/dist/images/right-arrow.png') 50 50, e-resize;
-            cursor: url('/assets/dist/images/right-arrow.svg') 50 50, e-resize;
-          }
         }
       }
       .slide {
@@ -519,10 +501,47 @@
   }
 }
 .block-image {
-  @include min-screen($breakpoint-medium) {
-    padding: #{$padding * 3};
+  img {
+    display: block;
   }
 
+  .block-text {
+    padding-left: 0;
+    padding-top: #{$padding * 2};
+  }
+
+  @include min-screen($breakpoint-medium) {
+    padding: #{$padding * 3};
+
+    .block-text {
+      padding-top: #{$padding * 6};
+    }
+
+    &.lightbox {
+      .lightbox-image {
+        width: 0;
+        height: 0;
+        opacity: 0;
+        overflow: hidden;
+        background-color: rgba($black,.75);
+
+        img {
+          width: 100%;
+        }
+
+        &.-active {
+          top: 0;
+          left: 0;
+          opacity: 1;
+          width: 100%;
+          z-index: 10;
+          height: 100%;
+          position: fixed;
+          text-align: center;
+        }
+      }
+    }
+  }
 }
 .block-text {
   @include min-screen($breakpoint-medium) {

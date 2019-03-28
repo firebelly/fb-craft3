@@ -183,7 +183,7 @@ $tcon-menu-arrow360left-transformation: (
 //
 
 body.-cursor-active {
-  cursor: none;
+  // cursor: none;
   .cursor {
     display: block;
   }
@@ -195,13 +195,17 @@ body.-cursor-active {
   z-index: 1000;
   pointer-events: none;
   display: none;
-  width: 50px;
-  height: 50px;
-  background: $white;
-  color: $black;
-  border: 1px solid $black;
-  border-radius: 50%;
-  text-align: center;
-  line-height: 48px;
-  word-spacing: 2px;
+  width: 51px;
+  height: 51px;
+  margin-left: -25px;
+  margin-top: -25px;
+
+  &.previous {
+    mix-blend-mode: difference;
+    background-image: url('/assets/dist/images/left-arrow.svg');
+  }
+  &.next {
+    mix-blend-mode: difference;
+    background-image: url('/assets/dist/images/right-arrow.svg');
+  }
 }

@@ -105,9 +105,10 @@ $.firebelly.main = (function() {
     _hideHeader();
     _initFilterNav();
     _initSmoothScroll();
-    // _initCustomCursor();
+    _initCustomCursor();
     _initTypeTester();
-    _removeEmptyProjectBlocks();
+    // _removeEmptyProjectBlocks();
+    // _initLightbox();
 
     if ($('body').is('#people-page')) {
       _initPeopleFunctions();
@@ -115,7 +116,7 @@ $.firebelly.main = (function() {
   }
 
   function _initCustomCursor() {
-    $customCursor = $('<div class="cursor">&larr; &rarr;</div>').appendTo($body);
+    $customCursor = $('<div class="cursor"></div>').appendTo($body);
 
     var lastMousePosition = { x: 0, y: 0 };
 
@@ -133,6 +134,18 @@ $.firebelly.main = (function() {
         // Check if the element or any of its parents have a .js-cursor class
         if ($(hoveredEl).parents('.js-cursor').length || $(hoveredEl).hasClass('js-cursor')) {
           $body.addClass('-cursor-active');
+
+          if ($(hoveredEl).is('.previous')) {
+            $customCursor.addClass('previous');
+          } else {
+            $customCursor.removeClass('previous');
+          }
+
+          if ($(hoveredEl).is('.next')) {
+            $customCursor.addClass('next');
+          } else {
+            $customCursor.removeClass('next');
+          }
         } else {
           $body.removeClass('-cursor-active');
         }
@@ -730,13 +743,27 @@ $.firebelly.main = (function() {
     // white space. This function is a banaid fix to remove
     // those blocks with just white space so they don't
     // create unwanted space between blocks
-    $blockWraps = $('.block-wrap');
+    var $blockWraps = $('.block-wrap');
 
     $blockWraps.each(function() {
       var contents = $(this).html();
       if(!contents.replace(/\s/g, '').length) {
         $(this).css('display', 'none');
       }
+    });
+  }
+
+  function _initLightbox() {
+    var $lightboxes = $('.lightbox');
+
+    $lightboxes.each(function() {
+      var $img = $(this).find('img').clone();
+      var imgSrc = $img.attr('data-original');
+      $(this).append('<div class="lightbox-image"><img src="'+imgSrc+'"></div>');
+    });
+
+    $lightboxes.on('click', function() {
+      $(this).find('.lightbox-image').addClass('-active');
     });
   }
 

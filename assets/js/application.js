@@ -530,6 +530,9 @@ $.firebelly.main = (function() {
       var $typeTester = $('.type-tester');
       var $typeTesterInner = $('.type-tester-inner');
       var $para = $typeTester.find('#test-para');
+      var $svgContainer = $('#typeTesterSvgFont');
+      var $glyphChart = $('#glyphChart');
+
       var fontFamily = $typeTester.attr('data-font');
       var startingFontSize = $typeTester.attr('data-font-size');
       var lineHeight = $typeTester.attr('data-line-height');
@@ -548,13 +551,9 @@ $.firebelly.main = (function() {
 
       // Get SVG font file if it is set and generate the glypgh chart
       if ($typeTester.attr('data-svg-url')) {
-        var glyphsLineHeight = $typeTester.attr('data-glyphs-line-height');
-        $('.type-tester-inner').append('<div id="typeTesterSvgFont" style="display:none;"></div><div id="glyphChart" class="block-wrap" style="font-family:'+fontFamily+';font-size:'+startingFontSize+'px;line-height:'+glyphsLineHeight+';"><ul id="glyphsLowercase"></ul><ul id="glyphsUppercase"></ul><ul id="glyphsOther"></ul></div>');
-        var $svgContainer = $('#typeTesterSvgFont');
-        var $glyphChart = $('#glyphChart');
 
         // Add glyphs button to toolbar
-        $toolsContainer.append('<div class="type-tool" id="glyphsTypeToggle"><h4>View</h4><button id="typeToggle" class="-active" data-target=".test-para">Type Tester</button><button id="glyphsToggle" data-target="#glyphChart">Glyphs</button></div>');
+        $toolsContainer.append('<div class="type-tool" id="glyphsTypeToggle"><h4>View</h4><button id="typeToggle" data-target=".test-para">Type Tester</button><button id="glyphsToggle" data-target="#glyphChart">Glyphs</button></div>');
 
         // Watch for glyphs/type toggle
         $(document).on('click', '#glyphsTypeToggle button', function() {
@@ -622,26 +621,6 @@ $.firebelly.main = (function() {
       $fontSize.val(startingFontSize);
       $currentFontSize.html(startingFontSize+'px');
 
-      // Font Styles
-      // if ($typeTester.attr('data-styles')) {
-      //   var dataStyles = $typeTester.attr('data-styles');
-      //   var styles = dataStyles.split('-');
-
-      //   if (styles.length > 1) {
-      //     $toolsContainer.append('<div class="type-tool"><label for="fontStyle">Style</label><select name="fontStyle" id="fontStyle"></select></div>');
-      //     var $fontStyle = $('#fontStyle');
-      //     $.each(styles, function(i) {
-      //       $fontStyle.append('<option value="'+this+'">'+this+'</option>');
-      //     });
-      //   }
-
-      //   // Style
-      //   $fontStyle.on('change', function(e) {
-      //     var currentStyle = $(this).val();
-      //     $typeTesterInner.css('font-style', currentStyle);
-      //   });
-      // }
-
       // Font Weights
       if ($typeTester.attr('data-weights')) {
         $toolsContainer.append('<div class="type-tool"><label for="fontWeight">Weight</label><select name="fontWeight" id="fontWeight"></select></div>');
@@ -661,42 +640,57 @@ $.firebelly.main = (function() {
       }
 
       // Paragraph Style
-      $toolsContainer.append('<div class="type-tool type-only" id="textAlignment"><label>Align</label><button class="alignment -left -active" data-alignment="left"><span class="visually-hidden">Left</span><span class="lines"></span></button><button class="alignment -center" data-alignment="center"><span class="visually-hidden">Center</span><span class="lines"></span></button><button class="alignment -right" data-alignment="right"><span class="visually-hidden">Right</span><span class="lines"></span></button></div>');
+      $toolsContainer.append('<div class="type-tool type-only" id="textAlignment"><label>Align</label><button class="alignment -left" data-alignment="left"><span class="visually-hidden">Left</span><span class="lines"></span></button><button class="alignment -center" data-alignment="center"><span class="visually-hidden">Center</span><span class="lines"></span></button><button class="alignment -right" data-alignment="right"><span class="visually-hidden">Right</span><span class="lines"></span></button></div>');
       var $textAlignment = $('#textAlignment');
+      var initialAlignment = $typeTester.attr('data-initial-alignment');
+      $para.css('text-align', initialAlignment);
+      $textAlignment.find('button[data-alignment='+initialAlignment+']').addClass('-active');
 
       // Color Pairs
       if ($typeTester.attr('data-color-pairs') !== 'undefined') {
-        $toolsContainer.append('<div class="type-tool" id="colorPairs"><label>Color</label><div id="colorPairsContainer"></div></div>');
-        var $colorPairs = $('#colorPairs');
         var colorData = $typeTester.attr('data-color-pairs');
         var colorPairs = colorData.split(' ');
 
-        $.each(colorPairs, function(i) {
-          var colors = this.split('-');
-          var textColor = colors[0];
-          var backgroundColor = colors[1];
+        if (colorPairs.length > 1) {
+          $toolsContainer.append('<div class="type-tool" id="colorPairs"><label>Color</label><div id="colorPairsContainer"></div></div>');
+          var $colorPairs = $('#colorPairs');
 
-          $('#colorPairsContainer').append('<button class="color-pair" data-text-color="'+textColor+'" data-background-color="'+backgroundColor+'"><span style="color:'+textColor+';background-color:'+backgroundColor+';">A</span></button>');
-        });
+          $.each(colorPairs, function(i) {
+            var colors = this.split('-');
+            var textColor = colors[0];
+            var backgroundColor = colors[1];
 
-        $('#colorPairs .color-pair:first').addClass('-active');
-        var textColor = $('#colorPairs .color-pair:first').attr('data-text-color');
-        var backgroundColor = $('#colorPairs .color-pair:first').attr('data-background-color');
-        $('.type-tester-inner').css({
-          'color': textColor,
-          'background-color': backgroundColor
-        });
+            $('#colorPairsContainer').append('<button class="color-pair" data-text-color="'+textColor+'" data-background-color="'+backgroundColor+'"><span style="color:'+textColor+';background-color:'+backgroundColor+';">A</span></button>');
+          });
 
-        $colorPairs.on('click', 'button', function() {
-          $('.color-pair.-active').removeClass('-active');
-          $(this).addClass('-active');
-          var textColor = $(this).attr('data-text-color');
-          var backgroundColor = $(this).attr('data-background-color');
+          $('#colorPairs .color-pair:first').addClass('-active');
+          var textColor = $('#colorPairs .color-pair:first').attr('data-text-color');
+          var backgroundColor = $('#colorPairs .color-pair:first').attr('data-background-color');
           $('.type-tester-inner').css({
             'color': textColor,
             'background-color': backgroundColor
           });
-        });
+
+          $colorPairs.on('click', 'button', function() {
+            $('.color-pair.-active').removeClass('-active');
+            $(this).addClass('-active');
+            var textColor = $(this).attr('data-text-color');
+            var backgroundColor = $(this).attr('data-background-color');
+            $('.type-tester-inner').css({
+              'color': textColor,
+              'background-color': backgroundColor
+            });
+          });
+        }
+
+      }
+
+      // Set Active state
+      if ($para.is('.-active')) {
+        $('#typeToggle').addClass('-active');
+      } else if ($glyphChart.is('.-active')) {
+        $('#glyphsToggle').addClass('-active');
+        $('.type-tool.type-only').addClass('hidden');
       }
 
       // Watch for changes on individual tools

@@ -48,7 +48,7 @@
         {% endfor %}
         {% set colorPairs = colorPairsArray|join(' ') %}
       {% endif %}
-      <div id="{{ block.fontName }}" class="type-tester" data-font="{{ block.fontName }}" data-styles="" data-font-size="{{ block.startingFontSize }}" data-line-height="{{ block.lineHeight }}" data-glyphs-line-height="{{ block.glyphsLineHeight ? block.glyphsLineHeight : '1' }}" data-min-size="{{ block.minFontSize }}" data-max-size="{{ block.maxFontSize }}" data-color-pairs="{{ colorPairs }}" data-svg-url="{{ craft.config.cdnUrl }}{{ block.svgFontFile[0].getUrl() }}">
+      <div id="{{ block.fontName }}" class="type-tester" data-font="{{ block.fontName }}" data-font-size="{{ block.startingFontSize }}" data-line-height="{{ block.lineHeight }}" data-min-size="{{ block.minFontSize }}" data-max-size="{{ block.maxFontSize }}" data-color-pairs="{{ colorPairs }}" data-svg-url="{{ craft.config.cdnUrl }}{{ block.svgFontFile[0].getUrl() }}" data-initial-alignment="{{ block.initialAlignment }}">
         <style>
           @font-face {
             font-family: '{{ block.fontName }}';
@@ -60,13 +60,21 @@
           {% include "partials/_blank-font-face" %}
         </style>
         <div class="type-tester-inner">
-          <div id="test-para" class="test-para block-wrap -active" contenteditable="true">
+          <div id="test-para" class="test-para block-wrap{{ block.initialView == 'typeTester' ? ' -active' : '' }}" contenteditable="true">
             {% if block.sampleText %}
               {{ block.sampleText }}<span class="type-cursor"></span>
             {% else %}
               Start typing here to test font lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum accusantium laboriosam velit distinctio atque eius rerum necessitatibus in doloribus nemo aspernatur, aut, blanditiis debitis numquam saepe ab neque repellat tenetur.<span class="type-cursor"></span>
             {% endif %}
           </div>
+          {% if block.svgFontFile[0] %}
+            <div id="typeTesterSvgFont" style="display:none;"></div>
+            <div id="glyphChart" class="block-wrap{{ block.initialView == 'glyphsChart' ? ' -active' : '' }}" style="font-family:{{ block.fontName }};font-size: {{ block.startingFontSize }}px;line-height:{{ block.glyphsLineHeight ? block.glyphsLineHeight : '1' }};">
+              <ul id="glyphsLowercase"></ul>
+              <ul id="glyphsUppercase"></ul>
+              <ul id="glyphsOther"></ul>
+            </div>
+          {% endif %}
         </div>
       </div>
       {% if loopIndex + 1 < entry.projectBlocks.all()|length and entry.projectBlocks.all()[loopIndex + 1].type != "blockColorChange" %}

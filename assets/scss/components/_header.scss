@@ -23,10 +23,17 @@
       }
     }
     @include min-screen($breakpoint-medium) {
+      pointer-events: none;
+      background: transparent;
+
       #logo {
         opacity: 0;
       }
-      background: transparent;
+
+      .edit-link,
+      button {
+        pointer-events: auto;
+      }
     }
   }
 
@@ -76,7 +83,7 @@
     color: $black-fade;
     @extend %small-caps;
   }
-  
+
   // move TM to more reasonable location
   .last-word {
     position: relative;
@@ -86,7 +93,7 @@
       position: absolute;
     }
   }
-  
+
   // This was originally just on the homepage
   h2 br {
     display: none;

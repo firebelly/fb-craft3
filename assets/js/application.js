@@ -107,7 +107,7 @@ $.firebelly.main = (function() {
     _initSmoothScroll();
     _initCustomCursor();
     _initTypeTester();
-    // _removeEmptyProjectBlocks();
+    _removeEmptyProjectBlocks();
     // _initLightbox();
 
     if ($('body').is('#people-page')) {

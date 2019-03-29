@@ -23,8 +23,11 @@
       {% if blockColor != block.color %}
         {% set blockColor = block.color %}
         </div></div>
-        <div data-id="55" class="block-color color-{{ block.color }}"><div class="block-wrap">
+        <div class="block-color color-{{ block.color }}"><div class="block-wrap">
+      {% elseif loopIndex > 1 %}
+        <div class="block"><div class="block-wrap">
       {% endif %}
+
 
     {% case "blockHeader" %}
       <div class="project-summary user-content">

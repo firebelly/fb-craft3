@@ -51,12 +51,12 @@
         {% endfor %}
         {% set colorPairs = colorPairsArray|join(' ') %}
       {% endif %}
-      <div id="{{ block.fontName }}" class="type-tester" data-font="{{ block.fontName }}" data-font-size="{{ block.startingFontSize }}" data-line-height="{{ block.lineHeight }}" data-min-size="{{ block.minFontSize }}" data-max-size="{{ block.maxFontSize }}" data-color-pairs="{{ colorPairs }}" data-svg-url="{{ craft.config.cdnUrl }}{{ block.svgFontFile[0].getUrl() }}" data-initial-alignment="{{ block.initialAlignment }}">
+      <div id="{{ block.fontName }}" class="type-tester" data-font="{{ block.fontName }}" data-font-size="{{ block.startingFontSize }}" data-line-height="{{ block.lineHeight }}" data-min-size="{{ block.minFontSize }}" data-max-size="{{ block.maxFontSize }}" data-color-pairs="{{ colorPairs }}" data-svg-url="{{ craft.app.config.general.cdnUrl }}{{ block.svgFontFile[0].getUrl() }}" data-initial-alignment="{{ block.initialAlignment }}">
         <style>
           @font-face {
             font-family: '{{ block.fontName }}';
-            src: url('{{ craft.config.cdnUrl }}{{ block.woffFontFile[0].getUrl() }}') format('woff'),
-                 url('{{ craft.config.cdnUrl }}{{ block.svgFontFile[0].getUrl() }}') format('svg');
+            src: url('{{ craft.app.config.general.cdnUrl }}{{ block.woffFontFile[0].getUrl() }}') format('woff'),
+                 url('{{ craft.app.config.general.cdnUrl }}{{ block.svgFontFile[0].getUrl() }}') format('svg');
             font-weight: normal;
             font-style: normal;
           }
@@ -122,9 +122,12 @@
         {% if block.treated %}
           {% set treatedImage = craft.imager.transformImage(image, { width: width, effects: { modulate: [100, 0, 100], clut: 'gradient:#000000-#ffffff' } }) %}
         {% else %}
-          {% set treatedImage = craft.imager.transformImage(image, { width: width }) %}
+          {% if image.filename matches '/gif$/' %}
+            {% set treatedImage = image %}
+          {% else %}
+            {% set treatedImage = craft.imager.transformImage(image, { width: width }) %}
+          {% endif %}
         {% endif %}
-
         <div data-id="54" class="block-image {{ block.size }}{{ block.size == 'halfWidth' and block.allowZoom ? ' lightbox' : '' }}">
           {%- if block.imageLinkUrl %}<a href="{{ block.imageLinkUrl }}" target="_blank" rel="noopener">{% endif -%}
             <img class="lazy" src="{{ rev('images/gray.gif') }}" data-original="{{ craft.app.config.general.cdnUrl }}{{ treatedImage.getUrl() }}" alt="{{ image.title }}">

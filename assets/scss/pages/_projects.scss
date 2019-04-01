@@ -246,16 +246,17 @@
         bottom: 0;
         width: 50%;
         height: 100%;
-        cursor: none!important;
+        display: none;
         transform: none;
         background: none;
         border-radius: 0;
+        cursor: none!important;
         svg {
           display: none;
         }
       }
       .slide {
-        margin-right: #{$padding * 3};
+        margin-right: 25px;
         &.landscape {
           width: 80%;
           img {
@@ -274,6 +275,9 @@
 
       // Desktop styles
       @include min-screen($breakpoint-medium) {
+        .flickity-prev-next-button {
+          display: block;
+        }
         .slide {
           margin-right: #{$padding * 6};
           &.portrait {

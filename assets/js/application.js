@@ -35,6 +35,7 @@ $.firebelly.main = (function() {
     $('.flickity').flickity({
       pageDots: false,
       imagesLoaded: true,
+      wrapAround: true,
     });
     // .on( 'dragMove.flickity', function( event, pointer, moveVector ) {
     //   // update custom cursor location
@@ -605,8 +606,11 @@ $.firebelly.main = (function() {
           });
 
         });
-
       }
+
+      // Add style button to toolbar
+      $toolsContainer.append('<div class="type-tool" id="styleToggle"><h4>Style</h4><button class="styleToggle -active" data-style="lowercase">Sans-serif</button><button class="styleToggle" data-style="uppercase">Serif</button></div>');
+      $para.addClass('lowercase');
 
       // Font Size
       // Get min/max from data attributes
@@ -694,11 +698,21 @@ $.firebelly.main = (function() {
       }
 
       // Watch for changes on individual tools
+      // Style
+      $('.styleToggle').on('click', function(e) {
+        var style = $(this).attr('data-style');
+        $typeTester.removeClass('lowercase uppercase');
+        $typeTester.addClass(style);
+        $('#styleToggle').find('button.-active').removeClass('-active');
+        $(this).addClass('-active');
+      });
+
       // Size
       $fontSize.on('input', function(e) {
         var currentSize = $(this).val();
         $currentFontSize.html(currentSize+'px');
         $para.css('font-size', currentSize+'px');
+        $typeTesterInner.css('font-size', currentSize+'px');
       });
 
       // Text Alignment

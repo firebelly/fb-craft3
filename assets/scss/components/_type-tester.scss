@@ -9,6 +9,33 @@
     text-align: center;
   }
 
+  &.lowercase {
+    #test-para {
+      text-transform: lowercase;
+    }
+    #glyphsUppercase {
+      display: none;
+    }
+    // Manual fix for sans/serif for Uptown type - todo: make this universal
+    .glyph-TT,
+    .glyph-UP {
+      display: none;
+    }
+  }
+  &.uppercase {
+    #test-para {
+      text-transform: uppercase;
+    }
+    #glyphsLowercase {
+      display: none;
+    }
+    // Manual fix for sans/serif for Uptown type - todo: make this universal
+    .glyph-tt,
+    .glyph-up {
+      display: none;
+    }
+  }
+
   #test-para {
     width: 100%;
     display: none;
@@ -57,7 +84,7 @@
       display: flex;
       margin: 0 auto;
       flex-wrap: wrap;
-      padding-bottom: $padding * 3;
+      padding-bottom: 13px;
 
       .type-tool {
         max-width: 50%;
@@ -68,32 +95,25 @@
           order: 0;
           padding-right: 20px;
         }
-        &#colorPairs {
+        &#styleToggle {
           order: 1;
-          padding-left: 30px;
+        }
+        &#colorPairs {
+          order: 4;
         }
         &#fontSizeTool {
           order: 2;
-          padding-right: 30px;
         }
         &#textAlignment {
           order: 3;
-          padding-left: 30px;
         }
       }
 
       @include min-screen($breakpoint-medium) {
-        padding-bottom: 13px;
-        padding-left: $padding * 6;
-        padding-right: $padding * 6;
-      }
-
-      @include min-screen($breakpoint-large) {
-        padding-bottom: $padding * 3;
+        padding: #{$padding * 3} 0 13px #{$padding * 3};
 
         .type-tool {
           max-width: none;
-          margin-bottom: 0;
           flex-basis: auto;
 
           &#glyphsTypeToggle {
@@ -142,14 +162,6 @@
         }
         &:focus {
           outline: none;
-        }
-
-        @include min-screen($breakpoint-large) {
-          margin: 0;
-
-          + button {
-            margin-left: 10px;
-          }
         }
       }
 
@@ -235,11 +247,12 @@
         background: $black;
       }
 
+      @include min-screen($breakpoint-medium) {
+        margin-right: #{$padding * 3};
+      }
+
       @include min-screen($breakpoint-large) {
-        + .type-tool {
-          margin-top: 0;
-          margin-left: 60px;
-        }
+        margin-right: 60px;
       }
     }
 
@@ -306,6 +319,7 @@
     }
 
     #colorPairsContainer {
+      max-width: 120px;
       .color-pair {
         width: 30px;
         padding: 2px;
@@ -340,6 +354,7 @@
       display: flex;
       flex-wrap: wrap;
       line-height: inherit;
+      justify-content: center;
       li {
         padding: 0;
         width: 1em;
@@ -367,6 +382,10 @@
     @include min-screen($breakpoint-medium) {
       padding-left: $padding * 6;
       padding-right: $padding * 6;
+
+      ul {
+        justify-content: left;
+      }
     }
   }
 }

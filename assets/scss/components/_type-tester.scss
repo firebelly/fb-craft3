@@ -353,6 +353,7 @@
     ul {
       display: flex;
       flex-wrap: wrap;
+      margin-bottom: 52px;
       line-height: inherit;
       justify-content: center;
       li {
@@ -372,10 +373,10 @@
           border: 1px solid;
           position: absolute;
         }
-      }
 
-      + ul {
-        margin-top: 52px;
+        &:last-of-type {
+          margin-bottom: 0;
+        }
       }
     }
 

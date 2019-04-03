@@ -611,6 +611,7 @@ $.firebelly.main = (function() {
       // Add style button to toolbar
       $toolsContainer.append('<div class="type-tool" id="styleToggle"><h4>Style</h4><button class="styleToggle -active" data-style="lowercase">Sans-serif</button><button class="styleToggle" data-style="uppercase">Serif</button></div>');
       $para.addClass('lowercase');
+      $typeTester.addClass('lowercase');
 
       // Font Size
       // Get min/max from data attributes

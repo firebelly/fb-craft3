@@ -5,7 +5,9 @@
   "homepage": "https://www.firebellydesign.com/",
   "license": "ISC",
   "main": "gulpfile.js",
-  "dependencies": {},
+  "dependencies": {
+    "natives": "^1.1.6"
+  },
   "devDependencies": {
     "browser-sync": "^2.23.6",
     "del": "^2.0.2",

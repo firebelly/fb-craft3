@@ -456,9 +456,9 @@
 
 .block-color {
   &.color-gray {
-    background: #E6E8E5;
+    background: $casestudy-gray;
     .user-content a {
-      @include linkHover(#E6E8E5);
+      @include linkHover($casestudy-gray);
     }
   }
   &.color-black {

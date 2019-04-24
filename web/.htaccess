@@ -21,6 +21,9 @@
     RewriteRule ^(wheel|Wheel)/?$ /uploads/Firebelly-Project-Wheel.pdf [R=301,L]
     RewriteRule ^WorkshoppingWorkshops/?$ /uploads/Firebelly-Workshopping-Workshops.pdf [R=301,L]
 
+    # Redirect tagged pages to landing page for now
+    RewriteRule ^thoughts/tagged* /thoughts [R=301,NE,L]
+
     # Redirect people & endeavors single URLs to hashes
     RewriteRule ^(endeavors|people)/([^/]+)/? /$1#$2 [R=301,NE,L]
 

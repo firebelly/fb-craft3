@@ -346,13 +346,17 @@
         height: auto;
         width: auto;
         max-height: none;
+        background-color: rgba(0,0,0,.2);
         // Video banners
         &.video {
+          background-size: cover;
           iframe {
+            left: 50%;
             width: 100vw;
             height: 56.25vw;
             min-height: 100vh;
             min-width: 177.77vh;
+            transform: translateX(-50%);
           }
         }
       }

@@ -346,6 +346,15 @@
         height: auto;
         width: auto;
         max-height: none;
+        // Video banners
+        &.video {
+          iframe {
+            width: 100vw;
+            height: 56.25vw;
+            min-height: 100vh;
+            min-width: 177.77vh;
+          }
+        }
       }
     }
   }

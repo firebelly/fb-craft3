@@ -111,7 +111,12 @@
       {% endif %}
 
     {% case "blockHtml" %}
+      </div><!-- /.block-wrap -->
       <div class="block-html">{{ block.html }}</div>
+      <div class="block-wrap">
+
+    {% case "paddedVideo" %}
+      <div class="block-html padded-video">{{ block.html }}</div>
 
     {% case "blockText" %}
       <div class="block-text user-content {{ block.size }}">{{ block.text }}</div>

@@ -144,13 +144,24 @@
     overflow: hidden;
     clear: left;
     width: 100%;
-    .video-container {
+    .video-container,
+    // Fluid video wrapper added by vimeo
+    .fluid-width-video-wrapper {
       margin: -1px;
     }
 
     // Removing margins on figure, which videos are placed in now
     figure {
       margin: 0;
+    }
+
+    // Padded Videos
+    &.padded-video {
+      margin: $padding 0;
+
+      @include min-screen($breakpoint-medium) {
+        padding: $padding * 3;
+      }
     }
   }
 

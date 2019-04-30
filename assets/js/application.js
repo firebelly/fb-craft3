@@ -107,7 +107,8 @@ $.firebelly.main = (function() {
               players[i].player.play();
               players[i].status = 'play';
             }
-          }
+          },
+          offset: '50%'
         });
       }
     });

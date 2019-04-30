@@ -25,7 +25,8 @@ $.firebelly.main = (function() {
       personClosing = false,
       numLazyLoaded = 0,
       $body,
-      $customCursor;
+      $customCursor,
+      players = [];
 
   function _init() {
     $body = $(document.body);
@@ -61,6 +62,55 @@ $.firebelly.main = (function() {
 
     // responsive videos
     $('.summary.user-content, .content').fitVids();
+
+    // Vimeo videos
+    $('.vimeo-block').each(function(i) {
+      var $this = $(this);
+      var el;
+      // Set vimeo player options
+      // Note: embed options seem to overwrite these, so autoplay=0
+      // must be in embed for video to stay paused until waypoint triggers play()
+      var opts = {
+        autoplay: true,
+        loop: true,
+        background: true,
+        muted: true,
+        title: false,
+        byline: false,
+        portrait: false
+      };
+      if ($this.find('iframe').length) {
+        // Iframe embed
+        el = $this.find('iframe')[0];
+      } else if ($this.find('div[data-id]').length) {
+        // Div embed (not used yet, future feature)
+        var div = $this.find('div[data-id]');
+        el = div[0];
+        opts.id = div.attr('data-id');
+        // opts.width = 1766;
+        // opts.height = 1260;
+      }
+      if (el) {
+        players[i] = {
+          player: new Vimeo.Player(el, opts),
+          status: 'pause'
+        };
+        players[i].player.ready().then(function() {
+          // Run fitvids again in case this wasn't an embed
+          $('.content').fitVids();
+        });
+        // Add waypoint to trigger play when video block scrolls into view
+        // todo: add support for pausing when exiting viewport w/ rewind, make loop an option
+        $this.waypoint({
+          handler: function(direction) {
+            if (players[i].status !== 'play') {
+              players[i].player.play();
+              players[i].status = 'play';
+            }
+          }
+        });
+      }
+    });
 
     // lazyload images
     _initLazyload();
@@ -493,6 +543,9 @@ $.firebelly.main = (function() {
           $('.lazy:not(.lazyloaded)').trigger('appear');
           numLazyLoaded = -1;
         }
+
+        // Refresh all waypoints in case sizes have changed
+        Waypoint.refreshAll();
       }
     });
   }

@@ -516,7 +516,9 @@
   }
 }
 
+// Full width/half width areas
 .block-text,
+.block-html.padded-video,
 .block-image {
   padding: #{$padding * 1} 0;
   flex: 0 1 100%;
@@ -528,6 +530,7 @@
     }
   }
 }
+
 .block-image {
   img {
     display: block;

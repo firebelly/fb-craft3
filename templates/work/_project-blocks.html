@@ -112,11 +112,11 @@
 
     {% case "blockHtml" %}
       </div><!-- /.block-wrap -->
-      <div class="block-html vimeo-block">{{ block.html|raw }}</div>
+      <div class="block-html vimeo-block">{{ block.html }}</div>
       <div class="block-wrap">
 
     {% case "paddedVideo" %}
-      <div class="block-html vimeo-block padded-video {{ block.size }}">{{ block.html|raw }}</div>
+      <div class="block-html vimeo-block padded-video {{ block.size }}">{{ block.html }}</div>
 
     {% case "blockText" %}
       <div class="block-text user-content {{ block.size }}">{{ block.text }}</div>

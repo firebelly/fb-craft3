@@ -16,6 +16,14 @@ def production():
 def assets():
   local('npx gulp --production')
 
+def dev():
+  local('npx gulp watch')
+
+def syncstaging():
+  with cd(env.remotepath):
+    run('/usr/bin/mysqldump --defaults-extra-file=/home/firebelly/etc/.my.cnf -u fb_craft_sql fb_craft3 | /usr/bin/mysql --defaults-extra-file=/home/firebelly/etc/.my.cnf -u fb_craft_sql fb_craft3_dev')
+    run('/usr/bin/rsync -av --delete /home/firebelly/webapps/fb_craft3/web/uploads/ /home/firebelly/webapps/fb_craft3_dev/web/uploads/')
+
 def devsetup():
   print "Installing composer, node and bower assets...\n"
   local('composer install')

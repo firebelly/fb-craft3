@@ -13,8 +13,6 @@
   <header class="section-title">
     <h1><a href="{{ entry.getUrl() }}"><span>{{ entry.title }}</span></a></h1>
     <h3 class="date">{{ entry.postDate.format('F j, Y') }}{% if entry.manualAuthor %} &ndash; by {{ entry.manualAuthor }}{% endif %}</h3>
-
-    {# <%= render partial: '/shared/edit_bug', :locals => { :obj => news_post, :edit_path => refinery.edit_news_posts_admin_news_post_path(news_post) }%> #}
   </header>
   <section class="summary user-content">
     {{ entry.body }}

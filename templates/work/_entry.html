@@ -5,7 +5,9 @@
 {% if entry.seoDescription %}{% set seoDescription = entry.seoDescription %}{% endif %}
 
 {% set bodyClass = 'single' %}
+{% if entry.mainImage|length %}
 {% set mainImage = entry.mainImage.one() %}
+{% endif %}
 
 {% block content %}
   {% cache unless currentUser %}
@@ -14,7 +16,7 @@
       <header class="{{ entry.headerOptions.fullPageHeaderImage ? ' full-page-header' : ''}}">
         <div class="header-wrap">
 
-          {% if mainImage %}
+          {% if mainImage is defined %}
             {% set transformedImage = craft.imager.transformImage(mainImage, { width: 1800 }) %}
           {% endif %}
 
@@ -22,7 +24,7 @@
             <div class="project-banner video" {% if mainImage %}style="background-image:url({{ craft.app.config.general.cdnUrl }}{{ transformedImage.getUrl() }});"{% endif %}>
               <iframe src="https://player.vimeo.com/video/{{ entry.vimeoHeaderVideo|replace('/[^0-9+]/', '') }}?background=1;autoplay=1&autopause=0&loop=1&title=0&byline=0&portrait=0" width="1245" height="700" frameborder="0"></iframe>
             </div>
-          {% elseif mainImage %}
+          {% elseif mainImage is defined %}
             <div class="project-banner" style="background-image:url({{ craft.app.config.general.cdnUrl }}{{ transformedImage.getUrl() }});"></div>
           {% endif %}
 

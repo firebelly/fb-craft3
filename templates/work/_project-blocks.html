@@ -6,7 +6,6 @@
   {% set blockColor = entry.projectBlocks[0].color %}
 {% endif %}
 
-{# Only init block-color if project has any color changes #}
 <div class="block-color color-{{ blockColor }}">
 
 {% for block in entry.projectBlocks.all() %}

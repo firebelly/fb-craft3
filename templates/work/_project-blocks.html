@@ -1,35 +1,27 @@
 {% set blockColor = 'white' %}
-{% set hasBlockColorChange = false %}
-{# Check if any blockColorChanges #}
-{% for block in entry.projectBlocks.all() %}
-  {% if block.type == 'blockColorChange' %}
-    {% set hasBlockColorChange = true %}
-    {% if loop.index == 1 %}
-      {# Check if first block is a color change and set initial block-color to that #}
-      {% set blockColor = entry.projectBlocks[0].color %}
-    {% endif %}
-  {% endif %}
-{% endfor %}
+{% set blockWrapped = false %}
+
+{# Check if first block is a color change #}
+{% if entry.projectBlocks|length and entry.projectBlocks[0].type == 'blockColorChange' %}
+  {% set blockColor = entry.projectBlocks[0].color %}
+{% endif %}
 
 {# Only init block-color if project has any color changes #}
-{% if hasBlockColorChange %}<div class="block-color color-{{ blockColor }}"><div class="block-wrap">{% endif %}
+<div class="block-color color-{{ blockColor }}">
 
 {% for block in entry.projectBlocks.all() %}
-  {% set loopIndex = loop.index - 1 %}
-
   {% switch block.type %}
 
     {% case "blockColorChange" %}
-      {% if blockColor != block.color %}
+      {% if blockColor != block.color and loop.index != 1 %}
         {% set blockColor = block.color %}
-        </div></div>
-        <div class="block-color color-{{ block.color }}"><div class="block-wrap">
-      {% elseif loopIndex > 1 %}
-        <div class="block"><div class="block-wrap">
+        {% if blockWrapped %}</div>{% set blockWrapped = false %}{% endif %}
+        </div><!-- /.block-color -->
+        <div class="block-color color-{{ block.color }}">
       {% endif %}
 
-
     {% case "blockHeader" %}
+      {% if blockWrapped %}</div>{% set blockWrapped = false %}{% endif %}
       <div class="project-summary user-content">
         {% if block.numberHeader %}
           <h3 class="h1 number-header">{{ block.numberHeader }}</h3>
@@ -41,7 +33,7 @@
       </div>
 
     {% case "blockTypeSpecimen" %}
-      </div><!-- /.block-wrap -->
+      {% if blockWrapped %}</div>{% set blockWrapped = false %}{% endif %}
       {% set colorPairs = '' %}
       {% if block.colors | length %}
         {% set colorPairsArray = [] %}
@@ -79,64 +71,91 @@
             </div>
           {% endif %}
         </div>
-      </div>
-      {% if loopIndex + 1 < entry.projectBlocks.all()|length and entry.projectBlocks.all()[loopIndex + 1].type != "blockColorChange" %}
-      <div class="block-wrap">
-      {% endif %}
+      </div><!-- /.type-tester -->
 
     {% case "blockImages" %}
-      </div><!-- /.block-wrap -->
+      {% if blockWrapped %}</div>{% set blockWrapped = false %}{% endif %}
       <div class="fullbleed-images">
         {% if block.carousel %}
           <div class="flickity js-cursor">
             {% for image in block.images.all() %}
-              {% set treatedImage = craft.imager.transformImage(image, { mode: 'fit', width: 1800, height: 900 }) %}
-              {% set orientation = image.getWidth() > image.getHeight() ? 'landscape' : 'portrait' %}
-              <div class="slide {{ orientation }}">
-                {%- if block.imageLinkUrl %}<a href="{{ block.imageLinkUrl }}" target="_blank" rel="noopener">{% endif -%}
-                  <img src="{{ craft.app.config.general.cdnUrl }}{{ treatedImage.getUrl() }}" alt="{{ image.title }}"></div>
-                {%- if block.imageLinkUrl %}</a>{% endif -%}
+              {% set embeddedAsset = craft.embeddedAssets.get(image) %}
+              {% if embeddedAsset %}
+                {# Custom vimeo handling #}
+                {% if embeddedAsset.url matches '/vimeo\.com/' %}
+                  <div class="embedded-asset vimeo-block" data-url="{{ embeddedAsset.url }}" data-width="{{ embeddedAsset.width }}" data-height="{{ embeddedAsset.height }}">
+                    <img class="lazy" src="{{ rev('images/gray.gif') }}" data-original="{{ embeddedAsset.images[0].url }}">
+                  </div>
+                {% else %}
+                  {{ embeddedAsset.html }}
+                {% endif %}
+              {% else %}
+                {% set treatedImage = craft.imager.transformImage(image, { mode: 'fit', width: 1800, height: 900 }) %}
+                {% set orientation = image.getWidth() > image.getHeight() ? 'landscape' : 'portrait' %}
+                <div class="slide {{ orientation }}">
+                  {%- if block.imageLinkUrl %}<a href="{{ block.imageLinkUrl }}" target="_blank" rel="noopener">{% endif -%}
+                    <img src="{{ craft.app.config.general.cdnUrl }}{{ treatedImage.getUrl() }}" alt="{{ image.title }}">
+                  {%- if block.imageLinkUrl %}</a>{% endif -%}
+                </div>
+              {% endif %}
             {% endfor %}
           </div>
         {% else %}
           {% for image in block.images.all() %}
-            {%- if block.imageLinkUrl %}<a href="{{ block.imageLinkUrl }}" target="_blank" rel="noopener">{% endif -%}
-              <p><img class="lazy" src="{{ rev('images/gray.gif') }}" data-original="{{ craft.app.config.general.cdnUrl }}{{ image.getUrl() }}" alt="{{ image.title }}"></p>
-            {%- if block.imageLinkUrl %}</a>{% endif -%}
+            {% set embeddedAsset = craft.embeddedAssets.get(image) %}
+            {% if embeddedAsset %}
+              <div class="vimeo-block" data-url="{{ embeddedAsset.url }}" data-width="{{ embeddedAsset.width }}" data-height="{{ embeddedAsset.height }}">
+                <img class="lazy" src="{{ rev('images/gray.gif') }}" data-original="{{ embeddedAsset.images[0].url }}">
+              </div>
+            {% else %}
+              {%- if block.imageLinkUrl %}<a href="{{ block.imageLinkUrl }}" target="_blank" rel="noopener">{% endif -%}
+                <p><img class="lazy" src="{{ rev('images/gray.gif') }}" data-original="{{ craft.app.config.general.cdnUrl }}{{ image.getUrl() }}" alt="{{ image.title }}"></p>
+              {%- if block.imageLinkUrl %}</a>{% endif -%}
+            {% endif %}
           {% endfor %}
         {% endif %}
       </div>
-      {% if loopIndex + 1 < entry.projectBlocks.all()|length and entry.projectBlocks.all()[loopIndex + 1].type != "blockColorChange" %}
-      <div class="block-wrap">
-      {% endif %}
 
     {% case "blockHtml" %}
-      </div><!-- /.block-wrap -->
+      {% if not blockWrapped %}<div class="block-wrap">{% set blockWrapped = true %}{% endif %}
       <div class="block-html vimeo-block">{{ block.html }}</div>
-      <div class="block-wrap">
-
-    {% case "paddedVideo" %}
-      <div class="block-html vimeo-block padded-video {{ block.size }}">{{ block.html }}</div>
 
     {% case "blockText" %}
+      {% if not blockWrapped %}<div class="block-wrap">{% set blockWrapped = true %}{% endif %}
       <div class="block-text user-content {{ block.size }}">{{ block.text }}</div>
 
     {% case "blockPaddedImage" %}
+      {% if not blockWrapped %}<div class="block-wrap">{% set blockWrapped = true %}{% endif %}
       {% for image in block.image.all() %}
         {% set width = (block.size == 'halfWidth' ? 900 : 1800) %}
-        {% if block.treated %}
-          {% set treatedImage = craft.imager.transformImage(image, { width: width, effects: { modulate: [100, 0, 100], clut: 'gradient:#000000-#ffffff' } }) %}
-        {% else %}
-          {% if image.filename matches '/gif$/' %}
-            {% set treatedImage = image %}
+        {% set embeddedAsset = craft.embeddedAssets.get(image) %}
+        <div class="block-image {{ block.size }}">
+          {% if embeddedAsset %}
+            {# Custom vimeo handling #}
+            {% if embeddedAsset.url matches '/vimeo\.com/' %}
+              <div class="embedded-asset vimeo-block" data-url="{{ embeddedAsset.url }}" data-width="{{ embeddedAsset.width }}" data-height="{{ embeddedAsset.height }}">
+                <img class="lazy" src="{{ rev('images/gray.gif') }}" data-original="{{ embeddedAsset.images[0].url }}">
+              </div>
+            {% else %}
+              {{ embeddedAsset.html }}
+            {% endif %}
           {% else %}
-            {% set treatedImage = craft.imager.transformImage(image, { width: width }) %}
+
+            {% if block.treated %}
+              {% set treatedImage = craft.imager.transformImage(image, { width: width, effects: { modulate: [100, 0, 100], clut: 'gradient:#000000-#ffffff' } }) %}
+            {% else %}
+              {# Leave GIFs alone #}
+              {% if image.filename matches '/gif$/' %}
+                {% set treatedImage = image %}
+              {% else %}
+                {% set treatedImage = craft.imager.transformImage(image, { width: width }) %}
+              {% endif %}
+            {% endif %}
+
+            {%- if block.imageLinkUrl %}<a href="{{ block.imageLinkUrl }}" target="_blank" rel="noopener">{% endif -%}
+              <img class="lazy" src="{{ rev('images/gray.gif') }}" data-original="{{ craft.app.config.general.cdnUrl }}{{ treatedImage.getUrl() }}" alt="{{ image.title }}">
+            {%- if block.imageLinkUrl %}</a>{% endif -%}
           {% endif %}
-        {% endif %}
-        <div data-id="54" class="block-image {{ block.size }}{{ block.size == 'halfWidth' and block.allowZoom ? ' lightbox' : '' }}">
-          {%- if block.imageLinkUrl %}<a href="{{ block.imageLinkUrl }}" target="_blank" rel="noopener">{% endif -%}
-            <img class="lazy" src="{{ rev('images/gray.gif') }}" data-original="{{ craft.app.config.general.cdnUrl }}{{ treatedImage.getUrl() }}" alt="{{ image.title }}">
-          {%- if block.imageLinkUrl %}</a>{% endif -%}
 
           {% if block.text and loop.last %}
             <div class="block-text user-content">
@@ -147,9 +166,10 @@
       {% endfor %}
 
     {% case "blockQuote" %}
-        <div class="block-quote" style="color: {{ block.textColor }}; background-color: {{ block.backgroundColor }};">
-          <blockquote>{{ block.quote }}</blockquote>
-        </div>
+      {% if not blockWrapped %}<div class="block-wrap">{% set blockWrapped = true %}{% endif %}
+      <div class="block-quote" style="color: {{ block.textColor }}; background-color: {{ block.backgroundColor }};">
+        <blockquote>{{ block.quote }}</blockquote>
+      </div>
 
     {% default %}
       Hello?
@@ -157,4 +177,4 @@
   {% endswitch %}
 {% endfor %}
 
-{% if hasBlockColorChange %}</div></div><!-- /.block-wrap/.block-color -->{% endif %}
+</div><!-- /.block-color -->

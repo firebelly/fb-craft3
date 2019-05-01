@@ -82,13 +82,12 @@ $.firebelly.main = (function() {
       if ($this.find('iframe').length) {
         // Iframe embed
         el = $this.find('iframe')[0];
-      } else if ($this.find('div[data-id]').length) {
-        // Div embed (not used yet, future feature)
-        var div = $this.find('div[data-id]');
-        el = div[0];
-        opts.id = div.attr('data-id');
-        // opts.width = 1766;
-        // opts.height = 1260;
+      } else if ($this.attr('data-url').length) {
+        // Div from embeddedAssets
+        el = $this[0];
+        opts.url = $this.attr('data-url');
+        opts.width = $this.attr('data-width');
+        opts.height = $this.attr('data-height');
       }
       if (el) {
         players[i] = {
@@ -96,6 +95,10 @@ $.firebelly.main = (function() {
           status: 'pause'
         };
         players[i].player.ready().then(function() {
+          if ($this.attr('data-url')) {
+            // Hide image once loaded
+            $this.find('img').remove();
+          }
           // Run fitvids again in case this wasn't an embed
           $('.content').fitVids();
         });

@@ -23,13 +23,19 @@
 
   @extend %fade-links;
 
+  // 05.03.19 — Commenting out the below code because
+  // we actually want to use br's on large-screen,
+  // and I'm pretty sure this is old code solving
+  // something that is no longer  an issue
+  // @poopsplat
+  //
   // If we put any breaks in an a on purpose
   // cause it's super long, hide it at larger-screens
-  @include min-screen($breakpoint-huge) {
-    br {
-      display: none;
-    }
-  }
+  // @include min-screen($breakpoint-huge) {
+  //   br {
+  //     display: none;
+  //   }
+  // }
 
   blockquote {
     margin: ($padding * 3) auto;

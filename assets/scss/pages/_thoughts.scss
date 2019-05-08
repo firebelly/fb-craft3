@@ -37,12 +37,16 @@
     background-size: cover;
     background-position: center center;
   }
+  figcaption,
   .featured-image-caption {
     margin: 0 auto;
-    max-width: 650px;
     color: $black-fade;
     @extend %small-caps;
+    padding: $padding 0 0;
+  }
+  .featured-image-caption {
     padding: $padding 25px;
+    max-width: 650px;
   }
 
   .section-title {

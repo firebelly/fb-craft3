@@ -21,6 +21,10 @@
 
   .section-title {
     position: relative;
+    h1 {
+      // Give space for absolute-positioned h2.price
+      padding-right: 40px;
+    }
     .price {
       right: 0;
       top: 25px;

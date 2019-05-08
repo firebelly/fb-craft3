@@ -24,20 +24,11 @@
     <div class="secondary one-half -right user-content">
       <div class="secondary-item">
         <header>
-          <h1>Highlights</h1>
+          <h1>Design for Equity and Inclusion</h1>
         </header>
-        <div class="summary highlights">
-          {% if entry.highlights|length %}
-            <table>
-              <tbody>
-                {% for block in entry.highlights.all() %}
-                  <tr>
-                    <td class="date">{{ block.highlightDate|date("M y") }}</td>
-                    <td>{{ block.highlightTitle }}</td>
-                  </tr>
-                {% endfor %}
-              </tbody>
-            </table>
+        <div class="summary">
+          {% if entry.inclusionStatement|length %}
+            {{ entry.inclusionStatement }}
           {% endif %}
         </div>
       </div>

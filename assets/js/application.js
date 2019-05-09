@@ -67,18 +67,26 @@ $.firebelly.main = (function() {
     $('.vimeo-block').each(function(i) {
       var $this = $(this);
       var el;
+      var isBackgroundVideo = $this.is('.background-video');
       // Set vimeo player options
       // Note: embed options seem to overwrite these, so autoplay=0
       // must be in embed for video to stay paused until waypoint triggers play()
       var opts = {
-        autoplay: true,
-        loop: true,
-        background: true,
-        muted: true,
+        autoplay: false,
+        loop: false,
+        background: false,
+        muted: false,
         title: false,
         byline: false,
         portrait: false
       };
+      // If background video is switched on, mute video, loop, and autoplay
+      if (isBackgroundVideo) {
+        opts.autoplay = true;
+        opts.loop = true;
+        opts.muted = true;
+        opts.background = true;
+      }
       if ($this.find('iframe').length) {
         // Iframe embed
         el = $this.find('iframe')[0];
@@ -104,15 +112,18 @@ $.firebelly.main = (function() {
         });
         // Add waypoint to trigger play when video block scrolls into view
         // todo: add support for pausing when exiting viewport w/ rewind, make loop an option
-        $this.waypoint({
-          handler: function(direction) {
-            if (players[i].status !== 'play') {
-              players[i].player.play();
-              players[i].status = 'play';
-            }
-          },
-          offset: '50%'
-        });
+        // Only autoplay with waypoints if background video
+        if (isBackgroundVideo) {
+          $this.waypoint({
+            handler: function(direction) {
+              if (players[i].status !== 'play') {
+                players[i].player.play();
+                players[i].status = 'play';
+              }
+            },
+            offset: '50%'
+          });
+        }
       }
     });
 

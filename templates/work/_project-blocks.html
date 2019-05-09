@@ -82,7 +82,7 @@
               {% if embeddedAsset %}
                 {# Custom vimeo handling #}
                 {% if embeddedAsset.url matches '/vimeo\.com/' %}
-                  <div class="embedded-asset vimeo-block" data-url="{{ embeddedAsset.url }}" data-width="{{ embeddedAsset.width }}" data-height="{{ embeddedAsset.height }}">
+                  <div class="embedded-asset vimeo-block{{ block.backgroundVideo ? ' background-video' : '' }}" data-url="{{ embeddedAsset.url }}" data-width="{{ embeddedAsset.width }}" data-height="{{ embeddedAsset.height }}">
                     <img class="lazy" src="{{ rev('images/gray.gif') }}" data-original="{{ embeddedAsset.images[0].url }}">
                   </div>
                 {% else %}
@@ -103,7 +103,7 @@
           {% for image in block.images.all() %}
             {% set embeddedAsset = craft.embeddedAssets.get(image) %}
             {% if embeddedAsset %}
-              <div class="vimeo-block" data-url="{{ embeddedAsset.url }}" data-width="{{ embeddedAsset.width }}" data-height="{{ embeddedAsset.height }}">
+              <div class="vimeo-block{{ block.backgroundVideo ? ' background-video' : '' }}" data-url="{{ embeddedAsset.url }}" data-width="{{ embeddedAsset.width }}" data-height="{{ embeddedAsset.height }}">
                 <img class="lazy" src="{{ rev('images/gray.gif') }}" data-original="{{ embeddedAsset.images[0].url }}">
               </div>
             {% else %}
@@ -132,7 +132,7 @@
           {% if embeddedAsset %}
             {# Custom vimeo handling #}
             {% if embeddedAsset.url matches '/vimeo\.com/' %}
-              <div class="embedded-asset vimeo-block" data-url="{{ embeddedAsset.url }}" data-width="{{ embeddedAsset.width }}" data-height="{{ embeddedAsset.height }}">
+              <div class="embedded-asset vimeo-block{{ block.backgroundVideo ? ' background-video' : '' }}" data-url="{{ embeddedAsset.url }}" data-width="{{ embeddedAsset.width }}" data-height="{{ embeddedAsset.height }}">
                 <img class="lazy" src="{{ rev('images/gray.gif') }}" data-original="{{ embeddedAsset.images[0].url }}">
               </div>
             {% else %}

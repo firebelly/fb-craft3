@@ -16,8 +16,6 @@
   <meta name="MobileOptimized" content="320">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script src="{{ rev('js/modernizr.custom.js') }}"></script>
-  <script src="https://checkout.stripe.com/checkout.js"></script>
-  <script src="https://player.vimeo.com/api/player.js"></script>
 
   {% if mainImage is defined %}
     {% set transformedImage = craft.imager.transformImage(mainImage, { width: 1800 }) %}
@@ -105,6 +103,8 @@
       {% include "/partials/_footer" %}
     </footer>
   </div> <!-- END #wrapper -->
+  <script src="https://checkout.stripe.com/checkout.js"></script>
+  <script src="https://player.vimeo.com/api/player.js"></script>
   <script src="{{ rev('js/application.js') }}"></script>
 </body>
 </html>

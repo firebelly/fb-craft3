@@ -19,6 +19,13 @@
         <div class="block-color color-{{ block.color }}">
       {% endif %}
 
+    {% case "pageSection" %}
+      {% if block.displayTitle %}
+        <div id="{{ block.pageSection|lower|replace({' ': '-'}) }}" class="page-nav-section" data-title="{{block.pageSection}}"></div>
+      {% else %}
+        <div id="{{ block.pageSection|lower|replace({' ': '-'}) }}" class="page-nav-section"></div>
+      {% endif %}
+
     {% case "blockHeader" %}
       {% if blockWrapped %}</div>{% set blockWrapped = false %}{% endif %}
       <div class="project-summary user-content">

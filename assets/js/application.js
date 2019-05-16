@@ -25,11 +25,13 @@ $.firebelly.main = (function() {
       personClosing = false,
       numLazyLoaded = 0,
       $body,
+      $document,
       $customCursor,
       players = [];
 
   function _init() {
     $body = $(document.body);
+    $document = $(document);
 
     $('#flash').hide().css('visibility','visible').fadeIn();
 
@@ -171,6 +173,7 @@ $.firebelly.main = (function() {
     _hideHeader();
     _initFilterNav();
     _initSmoothScroll();
+    _initPageNav();
     _initCustomCursor();
     _initTypeTester();
     _removeEmptyProjectBlocks();
@@ -257,15 +260,19 @@ $.firebelly.main = (function() {
     });
   }
 
-  function _scrollBody(element, duration, delay) {
-    // var headerHeight = $('.site-header').outerHeight();
+  function _scrollBody(element, duration, delay, offset) {
+    if (typeof offset !== "undefined" && offset !== null) {
+      offset = offset;
+    } else {
+      offset = 0;
+    }
     _hideHeader();
     var headerHeight = 0;
     isAnimating = true;
     element.velocity("scroll", {
       duration: duration,
       delay: delay,
-      offset: -headerHeight,
+      offset: -offset,
       complete: function(elements) {
         isAnimating = false;
       }
@@ -334,7 +341,7 @@ $.firebelly.main = (function() {
   }
 
   function _initSmoothScroll() {
-    $('#wrapper').on('click', '.smoothscroll a', function(e){
+    $('document').on('click', '.smoothscroll a', function(e){
       e.preventDefault();
       var el = $( $(this).attr('href') );
       if (el.length) _scrollBody(el);
@@ -589,6 +596,51 @@ $.firebelly.main = (function() {
     // if on mobile, slide out nav after clicking
     if (handheld) {
       _hideSidebar();
+    }
+  }
+
+  function _initPageNav() {
+    // Is ther page-nav sections on the page?
+    if ($('.page-nav-section').length) {
+      var activeSectionIndex = 0,
+          pageNavSections = $('.page-nav-section'),
+          pageSectionTitles = $('.page-nav-title'),
+          $activeSection = $(pageNavSections[activeSectionIndex]),
+          pageNav = $body.append('<nav class="page-nav"><ul></ul></nav>'),
+          sectionPositions = [];
+
+      // Build dots nav
+      pageNavSections.each(function() {
+        var thisId = $(this).attr('id'),
+            thisTitle = $(this).attr('data-title');
+        $('.page-nav ul').append('<li><a href="#' + thisId + '"><span>' + thisTitle + '</span></a></li>');
+      });
+      $navDots = $('.page-nav li');
+
+      $(window).on('scroll', function(e) {
+        var scrollPos = $(window).scrollTop();
+
+        for( var i = 0; i < pageNavSections.length; i++ ) {
+          var $element = $(pageNavSections[i]),
+              height = $element.offset().top;
+
+          if(scrollPos > height) {
+            activeSectionIndex = i;
+            $('.page-nav li.-active').removeClass('-active');
+            $navDots.eq( activeSectionIndex ).addClass('-active');
+          } else {
+            activeSectionIndex = i;
+            $navDots.eq( activeSectionIndex ).removeClass('-active');
+          }
+        }
+      });
+
+      // Go back to top
+      $document.on('click', '.page-nav a', function(e) {
+        e.preventDefault();
+        $element = $($(this).attr('href'));
+        _scrollBody($element, 250, 0, -1);
+      });
     }
   }
 

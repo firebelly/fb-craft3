@@ -70,6 +70,7 @@ $.firebelly.main = (function() {
       var $this = $(this);
       var el;
       var isBackgroundVideo = $this.is('.background-video');
+      var isBannerVideo = $this.is('.banner-video');
       // Set vimeo player options
       // Note: embed options seem to overwrite these, so autoplay=0
       // must be in embed for video to stay paused until waypoint triggers play()
@@ -83,7 +84,7 @@ $.firebelly.main = (function() {
         portrait: false
       };
       // If background video is switched on, mute video, loop, and autoplay
-      if (isBackgroundVideo) {
+      if (isBackgroundVideo || isBannerVideo) {
         opts.autoplay = true;
         opts.loop = true;
         opts.muted = true;
@@ -125,6 +126,9 @@ $.firebelly.main = (function() {
             },
             offset: '50%'
           });
+        }
+        if (isBannerVideo) {
+          players[i].player.play();
         }
       }
     });

@@ -22,7 +22,7 @@
 
           {% if entry.vimeoHeaderVideo %}
             <div class="project-banner video" {% if mainImage %}style="background-image:url({{ craft.app.config.general.cdnUrl }}{{ transformedImage.getUrl() }});"{% endif %}>
-              <iframe src="https://player.vimeo.com/video/{{ entry.vimeoHeaderVideo|replace('/[^0-9+]/', '') }}?background=1;autoplay=1&autopause=0&loop=1&title=0&byline=0&portrait=0" width="1245" height="700" frameborder="0"></iframe>
+              <div class="vimeo-block banner-video" data-url="{{ entry.vimeoHeaderVideo }}" data-width="1245" data-height="700"></div>
             </div>
           {% elseif mainImage is defined %}
             <div class="project-banner" style="background-image:url({{ craft.app.config.general.cdnUrl }}{{ transformedImage.getUrl() }});"></div>

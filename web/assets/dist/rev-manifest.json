@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
   "css/application.css": "css/application-e61f8a723e.css",
+=======
+  "css/application.css": "css/application-55e59a1c38.css",
+>>>>>>> b4cfffefe5f96fcc732c31e8aef9dff35add8cf1
   "images/checkout-logo.png": "images/checkout-logo-27aba3e7e7.png",
   "images/favicon.png": "images/favicon-9014f63c25.png",
   "images/footer-logo-f@4x.png": "images/footer-logo-f@4x-111b217c24.png",
@@ -11,6 +15,10 @@
   "images/paypal-logo.png": "images/paypal-logo-574d4d7551.png",
   "images/right-arrow.png": "images/right-arrow-deb4d85387.png",
   "images/right-arrow@2x.png": "images/right-arrow@2x-4c3c35fe7b.png",
+<<<<<<< HEAD
   "js/application.js": "js/application-7943e50435.js",
+=======
+  "js/application.js": "js/application-7a39817de6.js",
+>>>>>>> b4cfffefe5f96fcc732c31e8aef9dff35add8cf1
   "js/modernizr.custom.js": "js/modernizr-16621b514a.custom.js"
 }

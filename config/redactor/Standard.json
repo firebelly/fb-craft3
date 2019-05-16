@@ -1,7 +1,7 @@
 {
   "formatting": ["p", "h2", "h3", "blockquote"],
   "buttons": ["formatting", "bold", "italic", "lists", "link", "image", "video", "html"],
-  "plugins": ["fullscreen", "video"],
+  "plugins": ["fullscreen", "video", "alignment"],
   "toolbarFixed": true,
   "linkNewTab": true
 }

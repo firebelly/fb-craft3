@@ -18,10 +18,16 @@
     "docs": "https://craftcms.com/docs",
     "rss": "https://craftcms.com/changelog.rss"
   },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
   "repositories": [
     {
       "type": "path",
       "url": "plugins/fbstore"
+    },
+    {
+      "type": "path",
+      "url": "plugins/redactoralignment"
     }
   ],
   "require": {
@@ -37,7 +43,8 @@
     "verbb/super-table": "2.1.18",
     "dolphiq/sitemap": "v1.0.9",
     "mmikkel/cp-field-inspect": "1.0.5",
-    "spicyweb/craft-embedded-assets": "2.0.3"
+    "spicyweb/craft-embedded-assets": "2.0.3",
+    "firebelly/redactor-alignment": "^1.0"
   },
   "autoload": {
     "psr-4": {

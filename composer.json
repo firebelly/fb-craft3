@@ -18,8 +18,6 @@
     "docs": "https://craftcms.com/docs",
     "rss": "https://craftcms.com/changelog.rss"
   },
-  "minimum-stability": "dev",
-  "prefer-stable": true,
   "repositories": [
     {
       "type": "path",

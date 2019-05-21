@@ -1,0 +1,28 @@
+/**
+ * Fbstore plugin for Craft CMS
+ *
+ * Index Field CSS
+ *
+ * @author    Firebelly Design
+ * @copyright Copyright (c) 2018 Firebelly Design
+ * @link      https://www.firebellydesign.com/
+ * @package   Fbstore
+ * @since     1.0.0
+ */
+
+table.fbstore-logs .log-date {
+    width: 15%;
+}
+table.fbstore-logs .log-summary {
+    width: 25%;
+}
+table.fbstore-logs .log-log {
+    width: 50%;
+}
+
+table.fbstore-logs td.log pre {
+    background: #eee;
+    padding: 10px;
+    max-height: 200px;
+    overflow: auto;
+}

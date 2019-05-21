@@ -149,7 +149,7 @@ class PaymentController extends Controller
 
             // Store payment in db
             $payment = new Payment();
-            $payment->log = "Customer:\n" . print_r($customer, 1) . "\n\nCart:\n" . print_r($cart, 1);
+            $payment->log = json_encode(['customer' => $customer, 'cart' => $cart], JSON_PRETTY_PRINT);
             $payment->summary = 'Order for ' . count($cart->items) . ' item(s) by ' . $customer->billing_name . ' ($' . $cart->total . ')';
             $payment->save();
 

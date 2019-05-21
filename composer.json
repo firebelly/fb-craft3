@@ -34,7 +34,7 @@
     "pelago/emogrifier": "^2.0",
     "stripe/stripe-php": "^6.10",
     "verbb/expanded-singles": "1.0.7",
-    "verbb/super-table": "2.1.19",
+    "verbb/super-table": "2.1.20",
     "dolphiq/sitemap": "v1.0.9",
     "mmikkel/cp-field-inspect": "1.0.5",
     "spicyweb/craft-embedded-assets": "2.0.3",

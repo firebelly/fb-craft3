@@ -11,6 +11,7 @@
 namespace firebelly\fbstore\services;
 
 use firebelly\fbstore\Fbstore;
+use firebelly\fbstore\records\Payment;
 
 use Craft;
 use craft\base\Component;
@@ -20,18 +21,19 @@ use craft\base\Component;
  * @package   Fbstore
  * @since     1.0.0
  */
-class Payment extends Component
+class Payments extends Component
 {
     // Public Methods
     // =========================================================================
 
-    /*
-     * @return mixed
+    /**
+     * Returns payment records for /admin/fbstore template
+     * @return [array] active records
      */
-    public function exampleService()
+    public function getPayments()
     {
-        $result = 'something';
-
-        return $result;
+        $payments = Payment::find()->orderBy('dateCreated DESC')->all();
+        return $payments;
     }
+
 }

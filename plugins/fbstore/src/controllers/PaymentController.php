@@ -11,6 +11,7 @@
 namespace firebelly\fbstore\controllers;
 
 use firebelly\fbstore\Fbstore;
+use firebelly\fbstore\records\Payment;
 
 use Craft;
 use craft\web\Controller;
@@ -145,6 +146,12 @@ class PaymentController extends Controller
                 'customer' => $stripeCustomer->id,
                 'source' => $stripeCustomer->sources->data[0]->id
             ));
+
+            // Store payment in db
+            $payment = new Payment();
+            $payment->log = "Customer:\n" . print_r($customer, 1) . "\n\nCart:\n" . print_r($cart, 1);
+            $payment->summary = 'Order for ' . count($cart->items) . ' item(s) by ' . $customer->billing_name . ' ($' . $cart->total . ')';
+            $payment->save();
 
             // Customer order email
             $emailSettings = Craft::$app->systemSettings->getSettings('email');

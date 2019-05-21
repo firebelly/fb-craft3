@@ -78,12 +78,13 @@ class Install extends Migration
             $this->createTable(
                 '{{%fbstore_payment}}',
                 [
-                    'id' => $this->primaryKey(),
+                    'id'          => $this->primaryKey(),
                     'dateCreated' => $this->dateTime()->notNull(),
                     'dateUpdated' => $this->dateTime()->notNull(),
-                    'uid' => $this->uid(),
-                    'siteId' => $this->integer()->notNull(),
-                    'some_field' => $this->string(255)->notNull()->defaultValue(''),
+                    'uid'         => $this->uid(),
+                    'siteId'      => $this->integer()->notNull(),
+                    'summary'     => $this->string(255)->notNull()->defaultValue(''),
+                    'log'         => $this->text()->notNull()->defaultValue(''),
                 ]
             );
         }
@@ -99,11 +100,10 @@ class Install extends Migration
         $this->createIndex(
             $this->db->getIndexName(
                 '{{%fbstore_payment}}',
-                'some_field',
+                'summary',
                 true
             ),
             '{{%fbstore_payment}}',
-            'some_field',
             true
         );
         // Additional commands depending on the db driver

@@ -22,10 +22,6 @@
     {
       "type": "path",
       "url": "plugins/fbstore"
-    },
-    {
-      "type": "path",
-      "url": "plugins/redactoralignment"
     }
   ],
   "require": {
@@ -42,7 +38,6 @@
     "dolphiq/sitemap": "v1.0.9",
     "mmikkel/cp-field-inspect": "1.0.5",
     "spicyweb/craft-embedded-assets": "2.0.3",
-    "firebelly/redactor-alignment": "^1.0",
     "mmikkel/retcon": "^2.0"
   },
   "autoload": {

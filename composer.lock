@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6edb8a85c6740ee8a2cf095b28728407",
+    "content-hash": "42d3b92a3b592c3ca7cbe28b5e86083a",
     "packages": [
         {
             "name": "aelvan/imager",
@@ -1311,53 +1311,6 @@
                 "craft-plugin",
                 "craftcms",
                 "fbstore"
-            ],
-            "support": {
-                "docs": "???",
-                "issues": "???"
-            }
-        },
-        {
-            "name": "firebelly/redactor-alignment",
-            "version": "1.0.0",
-            "dist": {
-                "type": "path",
-                "url": "plugins/redactoralignment",
-                "reference": "3e8cf9f8c637beb82d7d636e43b30ebf8b3e3f25"
-            },
-            "require": {
-                "craftcms/cms": "^3.0.0-RC1"
-            },
-            "type": "craft-plugin",
-            "extra": {
-                "name": "redactor-alignment",
-                "handle": "redactor-alignment",
-                "hasCpSettings": false,
-                "hasCpSection": false,
-                "changelogUrl": "???",
-                "class": "firebelly\\redactoralignment\\Redactoralignment"
-            },
-            "autoload": {
-                "psr-4": {
-                    "firebelly\\redactoralignment\\": "src/"
-                }
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Firebelly",
-                    "homepage": "https://firebellydesign.com/"
-                }
-            ],
-            "description": "Plugin to add redactor alignment plugin to redactor",
-            "keywords": [
-                "cms",
-                "craft",
-                "craft-plugin",
-                "craftcms",
-                "redactor-alignment"
             ],
             "support": {
                 "docs": "???",

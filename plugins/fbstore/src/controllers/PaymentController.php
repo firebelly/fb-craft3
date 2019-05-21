@@ -48,10 +48,10 @@ class PaymentController extends Controller
         $token = json_decode(Craft::$app->getRequest()->post('token'));
 
         // Customer billing/shipping info sent from Stripe Checkout
-        $customer  = json_decode(Craft::$app->getRequest()->post('customer'));
+        $customer = json_decode(Craft::$app->getRequest()->post('customer'));
 
         // Localstorage cart with line items and shipping info
-        $cart  = json_decode(Craft::$app->getRequest()->post('cart'));
+        $cart = json_decode(Craft::$app->getRequest()->post('cart'));
 
         // Check if token was sent
         if (empty($token->id)) {
@@ -156,6 +156,7 @@ class PaymentController extends Controller
             // Customer order email
             $emailSettings = Craft::$app->systemSettings->getSettings('email');
 
+            // Email folks
             $message = new Message();
             $message->setFrom([$emailSettings['fromEmail'] => $emailSettings['fromName']]);
             $message->setTo($customer->email);
@@ -180,11 +181,13 @@ class PaymentController extends Controller
             // Shop order email
             $message = new Message();
             $message->setFrom([$emailSettings['fromEmail'] => $emailSettings['fromName']]);
-            $message->setTo(['nate@firebellydesign.com' => 'Nate Beaty']);
+            $notificationEmails = explode(',', Fbstore::getInstance()->settings->notificationEmails);
+            $message->setTo($notificationEmails);
+            // $message->setTo(['developer@firebellydesign.com' => 'Firebelly Developer']);
             // $message->setReplyTo($customer->email); // giving dire error in gmail as phishing attempt
-            if (!Craft::$app->getConfig()->general->devMode) {
-                $message->setCc(['dawn@firebellydesign.com' => 'Dawn Hancock']);
-            }
+            // if (!Craft::$app->getConfig()->general->devMode) {
+            //     $message->setCc(['dawn@firebellydesign.com' => 'Dawn Hancock']);
+            // }
             $message->setSubject('New Firebelly order for ' . $customer->billing_name);
             $order_text = Craft::$app->getView()->renderTemplate('store/order_email_shop_text', [
                 'customer' => $customer,

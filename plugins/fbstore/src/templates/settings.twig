@@ -1,0 +1,26 @@
+{# @var craft \craft\web\twig\variables\CraftVariable #}
+{#
+/**
+ * Fbstore plugin for Craft CMS 3.x
+ *
+ * Fbstore Settings.twig
+ *
+ * @author    Firebelly Design
+ * @copyright Copyright (c) 2018 Firebelly Design
+ * @link      https://www.firebellydesign.com/
+ * @package   Fbstore
+ * @since     1.0.0
+ */
+#}
+
+{% import "_includes/forms" as forms %}
+
+<h2>FBstore settings</h2>
+
+{{ forms.textField({
+    first: true,
+    label: 'Notification Email(s)',
+    instructions: '(Separate multiple emails with commas)',
+    name: 'notificationEmails',
+    value: settings.notificationEmails
+}) }}

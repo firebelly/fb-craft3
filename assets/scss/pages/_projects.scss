@@ -21,11 +21,18 @@
   right: 0;
   bottom: 0;
   z-index: 10;
-  width: 50px;
+  width: 25px;
   color: $white;
   position: fixed;
   mix-blend-mode: exclusion;
 
+  @include min-screen($breakpoint-medium) {
+    width: 33px;
+  }
+
+  @include min-screen($breakpoint-large) {
+    width: 50px;
+  }
 
   ul {
     left: 0;

@@ -32,6 +32,9 @@ return [
         // FB specifics
         'cdnUrl' => getenv('CDN_URL'),
         'stripePublishableKey' => getenv('STRIPE_PUBLISHABLE_KEY'),
+
+        // Enable Project Config
+        'useProjectConfigFile' => true,
     ],
 
     // Dev environment settings
@@ -55,5 +58,8 @@ return [
     'production' => [
         // Base site URL
         'siteUrl' => 'https://www.firebellydesign.com/',
+        // Disable project config changes on production
+        'allowAdminChanges' => false,
+        'allowUpdates' => false,
     ],
 ];

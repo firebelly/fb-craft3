@@ -32,7 +32,7 @@
           <article>
             {% if mainImage %}
               {% set transformedImage = craft.imager.transformImage(mainImage, { width: 900, height: 600, mode: 'crop' }) %}
-              <div class="project-image lazy" style="background-image:url({{ rev('images/gray.gif') }});" data-original="{{ craft.app.config.general.cdnUrl }}{{ transformedImage.getUrl() }}"></div>
+              <div class="project-image lazy" style="background-image:url({{ rev('images/gray.gif') }});" data-bg="{{ craft.app.config.general.cdnUrl }}{{ transformedImage.getUrl() }}"></div>
             {% endif %}
             <header>
               <h1><a href="{{ entry.getUrl() }}">{{ entry.title }}</a></h1>

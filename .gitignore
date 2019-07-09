@@ -27,3 +27,7 @@ web/imager
 # Ignore unrevisioned assets
 web/assets/dist/css/application.css
 web/assets/dist/js/application.js
+
+# Webfaction-specific PHP settings
+web/php.ini
+

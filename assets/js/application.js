@@ -1,17 +1,5 @@
 // fb3-craft js
 
-//=include "../bower_components/jquery/dist/jquery.js"
-//=include "../bower_components/jquery.fitvids/jquery.fitvids.js"
-//=include "../bower_components/velocity/velocity.min.js"
-//=include "../bower_components/imagesloaded/imagesloaded.pkgd.min.js"
-//=include "../bower_components/lazysizes/lazysizes.js"
-//=include "../bower_components/waypoints/lib/jquery.waypoints.js"
-//=include "../bower_components/jquery-validation/dist/jquery.validate.js"
-//=include "../bower_components/flickity/dist/flickity.pkgd.js"
-//=include "store.js"
-
-$.firebelly = $.firebelly || {};
-
 // Lazysizes config & events
 window.lazySizesConfig = window.lazySizesConfig || {};
 // Use .lazy instead of .lazyload
@@ -29,6 +17,18 @@ document.addEventListener('lazyloaded', function(e){
   // Refresh all waypoints in case sizes have changed
   Waypoint.refreshAll();
 });
+
+//=include "../bower_components/jquery/dist/jquery.js"
+//=include "../bower_components/jquery.fitvids/jquery.fitvids.js"
+//=include "../bower_components/velocity/velocity.min.js"
+//=include "../bower_components/imagesloaded/imagesloaded.pkgd.min.js"
+//=include "../bower_components/lazysizes/lazysizes.js"
+//=include "../bower_components/waypoints/lib/jquery.waypoints.js"
+//=include "../bower_components/jquery-validation/dist/jquery.validate.js"
+//=include "../bower_components/flickity/dist/flickity.pkgd.js"
+//=include "store.js"
+
+$.firebelly = $.firebelly || {};
 
 // good design for good reason for good namespace
 $.firebelly.main = (function() {

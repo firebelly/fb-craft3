@@ -403,6 +403,7 @@
     .header-wrap {
       position: relative;
       height: calc(100vh - 66px);
+      max-height: 1200px;
       // Use flex to center align header text
       display: flex;
       align-items: center;

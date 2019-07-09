@@ -4,14 +4,31 @@
 //=include "../bower_components/jquery.fitvids/jquery.fitvids.js"
 //=include "../bower_components/velocity/velocity.min.js"
 //=include "../bower_components/imagesloaded/imagesloaded.pkgd.min.js"
-// include "../bower_components/vanilla-lazyload/dist/lazyload.min.js"
-//=include "../bower_components/jquery_lazyload/jquery.lazyload.js"
+//=include "../bower_components/lazysizes/lazysizes.js"
 //=include "../bower_components/waypoints/lib/jquery.waypoints.js"
 //=include "../bower_components/jquery-validation/dist/jquery.validate.js"
 //=include "../bower_components/flickity/dist/flickity.pkgd.js"
 //=include "store.js"
 
 $.firebelly = $.firebelly || {};
+
+// Lazysizes config & events
+window.lazySizesConfig = window.lazySizesConfig || {};
+// Use .lazy instead of .lazyload
+window.lazySizesConfig.lazyClass = 'lazy';
+// Use data-original instead of data-src
+window.lazySizesConfig.srcAttr = 'data-original';
+// Add support for background images to lazysizes
+document.addEventListener('lazybeforeunveil', function(e){
+  var bg = e.target.getAttribute('data-bg');
+  if(bg){
+    e.target.style.backgroundImage = 'url(' + bg + ')';
+  }
+});
+document.addEventListener('lazyloaded', function(e){
+  // Refresh all waypoints in case sizes have changed
+  Waypoint.refreshAll();
+});
 
 // good design for good reason for good namespace
 $.firebelly.main = (function() {
@@ -67,9 +84,6 @@ $.firebelly.main = (function() {
 
     // Vimeo videos
     _initVimeoVideos();
-
-    // lazyload images
-    _initLazyload();
 
     // Keyboard nerds rejoice
     $(document).keyup(function(e) {
@@ -234,15 +248,6 @@ $.firebelly.main = (function() {
     $('html').on('click', '.project-side-toggle', function() {
       $('#project-side').toggleClass('open');
 
-      // init lazyload images in sidebar if not already done
-      if (!$('#project-side').hasClass('lazy-loaded')) {
-        $('.lazy-side').lazyload({
-          container : $('#project-side .projects'),
-          effect : 'fadeIn',
-        });
-        $('#project-side').addClass('lazy-loaded');
-      }
-
       $('body, #page, .site-header, .site-footer').toggleClass('project-side-open');
     });
 
@@ -367,8 +372,6 @@ $.firebelly.main = (function() {
       if (window.location.hash) {
         var filter = window.location.hash.replace('#','');
         _filterProjects(filter);
-        // make sure images are shown after filtering
-        $('.lazy').trigger('appear');
       }
     }
   }
@@ -559,27 +562,6 @@ $.firebelly.main = (function() {
         if (isBannerVideo) {
           players[i].player.play();
         }
-      }
-    });
-  }
-
-  function _initLazyload() {
-    $('.lazy').attr('title','').lazyload({
-      effect : 'fadeIn',
-      threshold: 500,
-      load: function() {
-        if (numLazyLoaded==-1) return; // set to -1 after all lazy images are triggered to load
-        numLazyLoaded++;
-        $(this).addClass('lazyloaded');
-        // On single pages, load *all* images after 3 images have loaded, otherwise wait for 12
-        if ((numLazyLoaded > 3 && $('body.single').length) ||
-            numLazyLoaded > 12) {
-          $('.lazy:not(.lazyloaded)').trigger('appear');
-          numLazyLoaded = -1;
-        }
-
-        // Refresh all waypoints in case sizes have changed
-        Waypoint.refreshAll();
       }
     });
   }

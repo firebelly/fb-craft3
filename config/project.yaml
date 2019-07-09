@@ -20,8 +20,8 @@ email:
     host: smtp.webfaction.com
     port: '465'
     useAuthentication: 1
-    username: '$SMTP_USER'
-    password: '$SMTP_PASSWORD'
+    username: $SMTP_USER
+    password: $SMTP_PASSWORD
     encryptionMethod: ssl
     timeout: '30'
 fieldGroups:

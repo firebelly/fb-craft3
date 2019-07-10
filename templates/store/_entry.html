@@ -61,7 +61,7 @@
           <ul class="product-images">
             {% for image in entry.productImages.all() %}
               {% set transformedImage = craft.imager.transformImage(image, { width: 1800 }) %}
-              <li><img class="lazy" data-original="{{ craft.app.config.general.cdnUrl }}{{ transformedImage.getUrl() }}" alt="{{ image.title }}"></li>
+              <li><img class="lazyload" data-src="{{ craft.app.config.general.cdnUrl }}{{ transformedImage.getUrl() }}" alt="{{ image.title }}"></li>
             {% endfor %}
           </ul>
         </div></div>

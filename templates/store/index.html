@@ -20,7 +20,7 @@
           {% set productImage = entry.productImages[0] ?? null %}
           {% if productImage %}
             {% set transformedImage = craft.imager.transformImage(productImage, { width: 800, height: 600, mode: 'crop' }) %}
-            <div class="product-image lazy" style="background-image:url('{{ rev('images/gray.gif') }}');" data-bg="{{ craft.app.config.general.cdnUrl }}{{ transformedImage.getUrl() }}"></div>
+            <div class="product-image lazyload" data-bg="{{ craft.app.config.general.cdnUrl }}{{ transformedImage.getUrl() }}"></div>
           {% endif %}
           <header>
             <h1><a href="{{ entry.getUrl() }}">{{ entry.title }}</a></h1>

@@ -15,6 +15,6 @@
     <h3 class="date">{{ entry.postDate.format('F j, Y') }}{% if entry.manualAuthor %} &ndash; by {{ entry.manualAuthor }}{% endif %}</h3>
   </header>
   <section class="summary user-content">
-    {{ entry.body | retconLazy('img', 'lazy', 'original') }}
+    {{ entry.body | retconLazy('img', 'lazyload', 'src') }}
   </section>
 </article>

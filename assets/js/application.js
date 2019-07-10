@@ -1,11 +1,5 @@
 // fb3-craft js
 
-// Lazysizes config & events
-window.lazySizesConfig = window.lazySizesConfig || {};
-// Use .lazy instead of .lazyload
-window.lazySizesConfig.lazyClass = 'lazy';
-// Use data-original instead of data-src
-window.lazySizesConfig.srcAttr = 'data-original';
 // Add support for background images to lazysizes
 document.addEventListener('lazybeforeunveil', function(e){
   var bg = e.target.getAttribute('data-bg');
@@ -881,8 +875,8 @@ $.firebelly.main = (function() {
 
     $lightboxes.each(function() {
       var $img = $(this).find('img').clone();
-      var imgSrc = $img.attr('data-original');
-      $(this).append('<div class="lightbox-image"><img src="'+imgSrc+'"></div>');
+      var imgSrc = $img.attr('data-src');
+      $(this).append('<div class="lightbox-image"><img src="' + imgSrc + '"></div>');
     });
 
     $lightboxes.on('click', function() {

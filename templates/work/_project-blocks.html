@@ -90,7 +90,7 @@
                 {# Custom vimeo handling #}
                 {% if embeddedAsset.url matches '/vimeo\.com/' %}
                   <div class="embedded-asset vimeo-block{{ block.backgroundVideo ? ' background-video' : '' }}" data-url="{{ embeddedAsset.url }}" data-width="{{ embeddedAsset.width }}" data-height="{{ embeddedAsset.height }}">
-                    <img class="lazy" src="{{ rev('images/gray.gif') }}" data-original="{{ embeddedAsset.images[0].url }}">
+                    <img class="lazyload" data-src="{{ embeddedAsset.images[0].url }}">
                   </div>
                 {% else %}
                   {{ embeddedAsset.html }}
@@ -111,11 +111,11 @@
             {% set embeddedAsset = craft.embeddedAssets.get(image) %}
             {% if embeddedAsset %}
               <div class="vimeo-block{{ block.backgroundVideo ? ' background-video' : '' }}" data-url="{{ embeddedAsset.url }}" data-width="{{ embeddedAsset.width }}" data-height="{{ embeddedAsset.height }}">
-                <img class="lazy" src="{{ rev('images/gray.gif') }}" data-original="{{ embeddedAsset.images[0].url }}">
+                <img class="lazyload" data-src="{{ embeddedAsset.images[0].url }}">
               </div>
             {% else %}
               {%- if block.imageLinkUrl %}<a href="{{ block.imageLinkUrl }}" target="_blank" rel="noopener">{% endif -%}
-                <p><img class="lazy" src="{{ rev('images/gray.gif') }}" data-original="{{ craft.app.config.general.cdnUrl }}{{ image.getUrl() }}" alt="{{ image.title }}"></p>
+                <p><img class="lazyload" data-src="{{ craft.app.config.general.cdnUrl }}{{ image.getUrl() }}" alt="{{ image.title }}"></p>
               {%- if block.imageLinkUrl %}</a>{% endif -%}
             {% endif %}
           {% endfor %}
@@ -140,7 +140,7 @@
             {# Custom vimeo handling #}
             {% if embeddedAsset.url matches '/vimeo\.com/' %}
               <div class="embedded-asset vimeo-block{{ block.backgroundVideo ? ' background-video' : '' }}" data-url="{{ embeddedAsset.url }}" data-width="{{ embeddedAsset.width }}" data-height="{{ embeddedAsset.height }}">
-                <img class="lazy" src="{{ rev('images/gray.gif') }}" data-original="{{ embeddedAsset.images[0].url }}">
+                <img class="lazyload" data-src="{{ embeddedAsset.images[0].url }}">
               </div>
             {% else %}
               {{ embeddedAsset.html }}
@@ -159,7 +159,7 @@
             {% endif %}
 
             {%- if block.imageLinkUrl %}<a href="{{ block.imageLinkUrl }}" target="_blank" rel="noopener">{% endif -%}
-              <img class="lazy" src="{{ rev('images/gray.gif') }}" data-original="{{ craft.app.config.general.cdnUrl }}{{ treatedImage.getUrl() }}" alt="{{ image.title }}">
+              <img class="lazyload" data-src="{{ craft.app.config.general.cdnUrl }}{{ treatedImage.getUrl() }}" alt="{{ image.title }}">
             {%- if block.imageLinkUrl %}</a>{% endif -%}
           {% endif %}
 

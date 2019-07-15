@@ -52,13 +52,16 @@ return [
     'staging' => [
         // Base site URL
         'siteUrl' => 'https://craft3.firebelly.co/',
+        // Disable project config changes & updates on staging
+        'allowAdminChanges' => false,
+        'allowUpdates' => false,
     ],
 
     // Production environment settings
     'production' => [
         // Base site URL
         'siteUrl' => 'https://www.firebellydesign.com/',
-        // Disable project config changes on production
+        // Disable project config changes & updates on production
         'allowAdminChanges' => false,
         'allowUpdates' => false,
     ],

@@ -10,7 +10,7 @@ categoryGroups:
         hasUrls: true
         uriFormat: '{% if object.level == 1 %}work/industry/{slug}{% else %}{parent.uri}/{slug}{% endif %}'
         template: work/industry
-dateModified: 1562685450
+dateModified: 1563217652
 email:
   fromEmail: store@firebellydesign.com
   fromName: 'Firebelly Design'
@@ -187,8 +187,8 @@ fields:
       maxBlocks: ''
       contentTable: '{{%matrixcontent_projectblocks}}'
       localizeBlocks: false
-    contentColumnType: string
     fieldGroup: 3690a445-5c74-47c8-a37d-af19533bfdcf
+    contentColumnType: string
   36bce506-23ae-4d68-a0ba-6398a4053d03:
     name: 'Secondary Page Header Content'
     handle: secondaryPageHeaderContent
@@ -383,8 +383,8 @@ fields:
       columnType: text
       availableVolumes: ''
       availableTransforms: ''
-    contentColumnType: text
     fieldGroup: 2155774e-82f7-4a6f-9357-0429f8ef8d05
+    contentColumnType: text
   964b9acf-3ae5-4d4a-bf92-eb874414f37a:
     name: Colophon
     handle: colophon
@@ -708,6 +708,10 @@ fields:
       contentTable: '{{%matrixcontent_endeavors}}'
     fieldGroup: 9aec6670-8753-4f2e-91d5-03ff2b4f3ef6
     contentColumnType: string
+globalSets:
+  9d29a7bb-6ede-413e-afbf-05564220fe76:
+    name: Fbsettings
+    handle: fbsettings
 imageTransforms:
   d13aab8e-a0af-4784-a02f-ba9b5c5a358e:
     name: Hero
@@ -741,259 +745,10 @@ imageTransforms:
     interlace: none
 matrixBlockTypes:
   0ec5cb22-24c7-44b7-8ca3-38644e2537aa:
-    field: 2a5054ba-d822-4486-9917-cd1bcd4aba46
     name: 'Type Specimen'
     handle: blockTypeSpecimen
     sortOrder: 8
-    fields:
-      15709825-2a2f-4119-8b35-be0e61a4e5c6:
-        name: 'Font Name'
-        handle: fontName
-        instructions: 'The name of the font, as used by the CSS'
-        searchable: true
-        translationMethod: none
-        translationKeyFormat: null
-        type: craft\fields\PlainText
-        settings:
-          placeholder: ''
-          code: ''
-          multiline: ''
-          initialRows: '4'
-          charLimit: ''
-          columnType: text
-        contentColumnType: text
-        fieldGroup: null
-      262020bd-d053-4ac3-b0a0-621929b1ebe2:
-        name: 'Glyphs Line Height'
-        handle: glyphsLineHeight
-        instructions: 'The glyphs are displayed in boxes and look better when they are vertically centered, which is sometimes only possible with a line-height that is not the same as the preferred line height used in practice (and set in the preceding field). Glyphs are displayed in a 1em x 1em box. Set this line height according to how it looks best.'
-        searchable: true
-        translationMethod: none
-        translationKeyFormat: null
-        type: craft\fields\Number
-        settings:
-          defaultValue: null
-          min: '0'
-          max: null
-          decimals: '2'
-          size: null
-          prefix: ''
-          suffix: ''
-        contentColumnType: 'decimal(12,2)'
-        fieldGroup: null
-      425556aa-857f-4352-8afa-a316ca4db28c:
-        name: 'Woff Font File'
-        handle: woffFontFile
-        instructions: 'The font file in `.woff` format.'
-        searchable: true
-        translationMethod: site
-        translationKeyFormat: null
-        type: craft\fields\Assets
-        settings:
-          useSingleFolder: '1'
-          defaultUploadLocationSource: 'volume:d0e9262d-3cc0-46bc-aa1c-76d99cb9f385'
-          defaultUploadLocationSubpath: ''
-          singleUploadLocationSource: 'volume:d0e9262d-3cc0-46bc-aa1c-76d99cb9f385'
-          singleUploadLocationSubpath: '{owner.slug}'
-          restrictFiles: ''
-          allowedKinds: null
-          sources: '*'
-          source: null
-          targetSiteId: null
-          viewMode: list
-          limit: '1'
-          selectionLabel: 'Add the font file'
-          localizeRelations: false
-        contentColumnType: string
-        fieldGroup: null
-      9e84b734-dead-440b-9493-1484a4d52443:
-        name: Colors
-        handle: colors
-        instructions: 'Optional color pairs to offer the type to be viewed in.'
-        searchable: true
-        translationMethod: none
-        translationKeyFormat: null
-        type: craft\fields\Table
-        settings:
-          addRowLabel: 'Add a color combo'
-          maxRows: ''
-          minRows: ''
-          columns:
-            col1:
-              heading: 'Text Color'
-              handle: textColor
-              width: ''
-              type: singleline
-            col2:
-              heading: 'Background Color'
-              handle: backgroundColor
-              width: ''
-              type: singleline
-          defaults:
-            -
-              col1: ''
-              col2: ''
-          columnType: text
-        contentColumnType: text
-        fieldGroup: null
-      bf77081d-5d7e-4358-9657-29c87a2e7ce8:
-        name: 'Max Font Size'
-        handle: maxFontSize
-        instructions: 'The maximum font size, in `px`, that the font should be able to be viewed at'
-        searchable: true
-        translationMethod: none
-        translationKeyFormat: null
-        type: craft\fields\Number
-        settings:
-          defaultValue: null
-          min: '0'
-          max: null
-          decimals: 0
-          size: null
-          prefix: ''
-          suffix: ''
-        contentColumnType: integer(10)
-        fieldGroup: null
-      dbeed756-76d7-4789-8639-0cb135337463:
-        name: 'SVG Font File'
-        handle: svgFontFile
-        instructions: 'The font file in `.svg` format. This file is necessary to construct the glyph chart.'
-        searchable: true
-        translationMethod: site
-        translationKeyFormat: null
-        type: craft\fields\Assets
-        settings:
-          useSingleFolder: '1'
-          defaultUploadLocationSource: 'volume:d0e9262d-3cc0-46bc-aa1c-76d99cb9f385'
-          defaultUploadLocationSubpath: ''
-          singleUploadLocationSource: 'volume:d0e9262d-3cc0-46bc-aa1c-76d99cb9f385'
-          singleUploadLocationSubpath: '{owner.slug}'
-          restrictFiles: ''
-          allowedKinds: null
-          sources: '*'
-          source: null
-          targetSiteId: null
-          viewMode: list
-          limit: '1'
-          selectionLabel: 'Add the font file'
-          localizeRelations: false
-        contentColumnType: string
-        fieldGroup: null
-      ec6a6f2f-5940-454e-ac20-1e4037d38edb:
-        name: 'Type Line Height'
-        handle: lineHeight
-        instructions: 'Preferred, unit-less line-height used for the type tester. Ex: ''1.5'''
-        searchable: true
-        translationMethod: none
-        translationKeyFormat: null
-        type: craft\fields\Number
-        settings:
-          defaultValue: null
-          min: '0'
-          max: null
-          decimals: '2'
-          size: null
-          prefix: ''
-          suffix: ''
-        contentColumnType: 'decimal(12,2)'
-        fieldGroup: null
-      ef5949af-61d8-4731-af57-caf826e81f9e:
-        name: 'Initial View'
-        handle: initialView
-        instructions: 'Should the initial view be of the type tester or the glyphs chart?'
-        searchable: true
-        translationMethod: none
-        translationKeyFormat: null
-        type: craft\fields\Dropdown
-        settings:
-          options:
-            -
-              label: 'Type Tester'
-              value: typeTester
-              default: '1'
-            -
-              label: 'Glyphs Chart'
-              value: glyphsChart
-              default: ''
-        contentColumnType: string
-        fieldGroup: null
-      f0f7a48c-a100-4cc4-8121-85b51e24f6cf:
-        name: 'Sample Text'
-        handle: sampleText
-        instructions: 'The sample text displayed in the type tester'
-        searchable: true
-        translationMethod: none
-        translationKeyFormat: null
-        type: craft\fields\PlainText
-        settings:
-          placeholder: 'Start typing here...'
-          code: ''
-          multiline: ''
-          initialRows: '4'
-          charLimit: ''
-          columnType: text
-        contentColumnType: text
-        fieldGroup: null
-      f1943093-4558-4d96-b8d4-35f2683a05b3:
-        name: 'Min Font Size'
-        handle: minFontSize
-        instructions: 'The minimum font size, in `px`, that the font should be able to be viewed at'
-        searchable: true
-        translationMethod: none
-        translationKeyFormat: null
-        type: craft\fields\Number
-        settings:
-          defaultValue: null
-          min: '0'
-          max: null
-          decimals: 0
-          size: null
-          prefix: ''
-          suffix: ''
-        contentColumnType: integer(10)
-        fieldGroup: null
-      fc184f35-a89a-41f9-a649-eab67481394c:
-        name: 'Initial Alignment'
-        handle: initialAlignment
-        instructions: 'What the text-alignment will be when the type specimen first loads. Defaults to ''left''.'
-        searchable: true
-        translationMethod: none
-        translationKeyFormat: null
-        type: craft\fields\Dropdown
-        settings:
-          options:
-            -
-              label: Left
-              value: left
-              default: '1'
-            -
-              label: Center
-              value: center
-              default: ''
-            -
-              label: Right
-              value: right
-              default: ''
-        contentColumnType: string
-        fieldGroup: null
-      ff44638b-7c0f-42ae-b7e7-52142b522825:
-        name: 'Starting Font Size'
-        handle: startingFontSize
-        instructions: 'The size, in `px`, the font is initially displayed in. This is also the size that the glyph chart is displayed in.'
-        searchable: true
-        translationMethod: none
-        translationKeyFormat: null
-        type: craft\fields\Number
-        settings:
-          defaultValue: null
-          min: '0'
-          max: null
-          decimals: 0
-          size: null
-          prefix: ''
-          suffix: ''
-        contentColumnType: integer(10)
-        fieldGroup: null
+    field: 2a5054ba-d822-4486-9917-cd1bcd4aba46
     fieldLayouts:
       3627c896-e2e5-4a5f-9482-5b1336a38507:
         tabs:
@@ -1037,11 +792,270 @@ matrixBlockTypes:
               ff44638b-7c0f-42ae-b7e7-52142b522825:
                 required: true
                 sortOrder: 3
+    fields:
+      15709825-2a2f-4119-8b35-be0e61a4e5c6:
+        name: 'Font Name'
+        handle: fontName
+        instructions: 'The name of the font, as used by the CSS'
+        searchable: true
+        translationMethod: none
+        translationKeyFormat: null
+        type: craft\fields\PlainText
+        settings:
+          placeholder: ''
+          code: ''
+          multiline: ''
+          initialRows: '4'
+          charLimit: ''
+          columnType: text
+        fieldGroup: null
+        contentColumnType: text
+      262020bd-d053-4ac3-b0a0-621929b1ebe2:
+        name: 'Glyphs Line Height'
+        handle: glyphsLineHeight
+        instructions: 'The glyphs are displayed in boxes and look better when they are vertically centered, which is sometimes only possible with a line-height that is not the same as the preferred line height used in practice (and set in the preceding field). Glyphs are displayed in a 1em x 1em box. Set this line height according to how it looks best.'
+        searchable: true
+        translationMethod: none
+        translationKeyFormat: null
+        type: craft\fields\Number
+        settings:
+          defaultValue: null
+          min: '0'
+          max: null
+          decimals: '2'
+          size: null
+          prefix: ''
+          suffix: ''
+        fieldGroup: null
+        contentColumnType: 'decimal(12,2)'
+      425556aa-857f-4352-8afa-a316ca4db28c:
+        name: 'Woff Font File'
+        handle: woffFontFile
+        instructions: 'The font file in `.woff` format.'
+        searchable: true
+        translationMethod: site
+        translationKeyFormat: null
+        type: craft\fields\Assets
+        settings:
+          useSingleFolder: '1'
+          defaultUploadLocationSource: 'volume:d0e9262d-3cc0-46bc-aa1c-76d99cb9f385'
+          defaultUploadLocationSubpath: ''
+          singleUploadLocationSource: 'volume:d0e9262d-3cc0-46bc-aa1c-76d99cb9f385'
+          singleUploadLocationSubpath: '{owner.slug}'
+          restrictFiles: ''
+          allowedKinds: null
+          sources: '*'
+          source: null
+          targetSiteId: null
+          viewMode: list
+          limit: '1'
+          selectionLabel: 'Add the font file'
+          localizeRelations: false
+        fieldGroup: null
+        contentColumnType: string
+      9e84b734-dead-440b-9493-1484a4d52443:
+        name: Colors
+        handle: colors
+        instructions: 'Optional color pairs to offer the type to be viewed in.'
+        searchable: true
+        translationMethod: none
+        translationKeyFormat: null
+        type: craft\fields\Table
+        settings:
+          addRowLabel: 'Add a color combo'
+          maxRows: ''
+          minRows: ''
+          columns:
+            col1:
+              heading: 'Text Color'
+              handle: textColor
+              width: ''
+              type: singleline
+            col2:
+              heading: 'Background Color'
+              handle: backgroundColor
+              width: ''
+              type: singleline
+          defaults:
+            -
+              col1: ''
+              col2: ''
+          columnType: text
+        fieldGroup: null
+        contentColumnType: text
+      bf77081d-5d7e-4358-9657-29c87a2e7ce8:
+        name: 'Max Font Size'
+        handle: maxFontSize
+        instructions: 'The maximum font size, in `px`, that the font should be able to be viewed at'
+        searchable: true
+        translationMethod: none
+        translationKeyFormat: null
+        type: craft\fields\Number
+        settings:
+          defaultValue: null
+          min: '0'
+          max: null
+          decimals: 0
+          size: null
+          prefix: ''
+          suffix: ''
+        fieldGroup: null
+        contentColumnType: integer(10)
+      dbeed756-76d7-4789-8639-0cb135337463:
+        name: 'SVG Font File'
+        handle: svgFontFile
+        instructions: 'The font file in `.svg` format. This file is necessary to construct the glyph chart.'
+        searchable: true
+        translationMethod: site
+        translationKeyFormat: null
+        type: craft\fields\Assets
+        settings:
+          useSingleFolder: '1'
+          defaultUploadLocationSource: 'volume:d0e9262d-3cc0-46bc-aa1c-76d99cb9f385'
+          defaultUploadLocationSubpath: ''
+          singleUploadLocationSource: 'volume:d0e9262d-3cc0-46bc-aa1c-76d99cb9f385'
+          singleUploadLocationSubpath: '{owner.slug}'
+          restrictFiles: ''
+          allowedKinds: null
+          sources: '*'
+          source: null
+          targetSiteId: null
+          viewMode: list
+          limit: '1'
+          selectionLabel: 'Add the font file'
+          localizeRelations: false
+        fieldGroup: null
+        contentColumnType: string
+      ec6a6f2f-5940-454e-ac20-1e4037d38edb:
+        name: 'Type Line Height'
+        handle: lineHeight
+        instructions: 'Preferred, unit-less line-height used for the type tester. Ex: ''1.5'''
+        searchable: true
+        translationMethod: none
+        translationKeyFormat: null
+        type: craft\fields\Number
+        settings:
+          defaultValue: null
+          min: '0'
+          max: null
+          decimals: '2'
+          size: null
+          prefix: ''
+          suffix: ''
+        fieldGroup: null
+        contentColumnType: 'decimal(12,2)'
+      ef5949af-61d8-4731-af57-caf826e81f9e:
+        name: 'Initial View'
+        handle: initialView
+        instructions: 'Should the initial view be of the type tester or the glyphs chart?'
+        searchable: true
+        translationMethod: none
+        translationKeyFormat: null
+        type: craft\fields\Dropdown
+        settings:
+          options:
+            -
+              label: 'Type Tester'
+              value: typeTester
+              default: '1'
+            -
+              label: 'Glyphs Chart'
+              value: glyphsChart
+              default: ''
+        fieldGroup: null
+        contentColumnType: string
+      f0f7a48c-a100-4cc4-8121-85b51e24f6cf:
+        name: 'Sample Text'
+        handle: sampleText
+        instructions: 'The sample text displayed in the type tester'
+        searchable: true
+        translationMethod: none
+        translationKeyFormat: null
+        type: craft\fields\PlainText
+        settings:
+          placeholder: 'Start typing here...'
+          code: ''
+          multiline: ''
+          initialRows: '4'
+          charLimit: ''
+          columnType: text
+        fieldGroup: null
+        contentColumnType: text
+      f1943093-4558-4d96-b8d4-35f2683a05b3:
+        name: 'Min Font Size'
+        handle: minFontSize
+        instructions: 'The minimum font size, in `px`, that the font should be able to be viewed at'
+        searchable: true
+        translationMethod: none
+        translationKeyFormat: null
+        type: craft\fields\Number
+        settings:
+          defaultValue: null
+          min: '0'
+          max: null
+          decimals: 0
+          size: null
+          prefix: ''
+          suffix: ''
+        fieldGroup: null
+        contentColumnType: integer(10)
+      fc184f35-a89a-41f9-a649-eab67481394c:
+        name: 'Initial Alignment'
+        handle: initialAlignment
+        instructions: 'What the text-alignment will be when the type specimen first loads. Defaults to ''left''.'
+        searchable: true
+        translationMethod: none
+        translationKeyFormat: null
+        type: craft\fields\Dropdown
+        settings:
+          options:
+            -
+              label: Left
+              value: left
+              default: '1'
+            -
+              label: Center
+              value: center
+              default: ''
+            -
+              label: Right
+              value: right
+              default: ''
+        fieldGroup: null
+        contentColumnType: string
+      ff44638b-7c0f-42ae-b7e7-52142b522825:
+        name: 'Starting Font Size'
+        handle: startingFontSize
+        instructions: 'The size, in `px`, the font is initially displayed in. This is also the size that the glyph chart is displayed in.'
+        searchable: true
+        translationMethod: none
+        translationKeyFormat: null
+        type: craft\fields\Number
+        settings:
+          defaultValue: null
+          min: '0'
+          max: null
+          decimals: 0
+          size: null
+          prefix: ''
+          suffix: ''
+        fieldGroup: null
+        contentColumnType: integer(10)
   12b97587-2d5e-4ef9-97a2-30dcf2edae76:
-    field: 2a5054ba-d822-4486-9917-cd1bcd4aba46
     name: 'Color Change'
     handle: blockColorChange
     sortOrder: 5
+    field: 2a5054ba-d822-4486-9917-cd1bcd4aba46
+    fieldLayouts:
+      171342bd-5d91-4763-8123-c26c8a112e9e:
+        tabs:
+          -
+            name: Content
+            sortOrder: 1
+            fields:
+              6821fcdd-6f2b-4b86-8d3f-351a426bc175:
+                required: false
+                sortOrder: 1
     fields:
       6821fcdd-6f2b-4b86-8d3f-351a426bc175:
         name: 'Color Change'
@@ -1065,65 +1079,13 @@ matrixBlockTypes:
               label: Black
               value: black
               default: ''
-        contentColumnType: string
         fieldGroup: null
-    fieldLayouts:
-      171342bd-5d91-4763-8123-c26c8a112e9e:
-        tabs:
-          -
-            name: Content
-            sortOrder: 1
-            fields:
-              6821fcdd-6f2b-4b86-8d3f-351a426bc175:
-                required: false
-                sortOrder: 1
+        contentColumnType: string
   201186b3-d443-4b19-b4b6-ed5d01071c82:
-    field: 2a5054ba-d822-4486-9917-cd1bcd4aba46
     name: Quote
     handle: blockQuote
     sortOrder: 7
-    fields:
-      1601483c-947b-4094-9090-15ffacd94774:
-        name: Quote
-        handle: quote
-        instructions: ''
-        searchable: true
-        translationMethod: none
-        translationKeyFormat: null
-        type: craft\fields\PlainText
-        settings:
-          placeholder: ''
-          code: ''
-          multiline: ''
-          initialRows: '4'
-          charLimit: ''
-          columnType: text
-        contentColumnType: text
-        fieldGroup: null
-      23549bfb-faf5-4cfb-8403-62ac3f8b93e9:
-        name: 'Background Color'
-        handle: backgroundColor
-        instructions: ''
-        searchable: true
-        translationMethod: none
-        translationKeyFormat: null
-        type: craft\fields\Color
-        settings:
-          defaultColor: '#ffffff'
-        contentColumnType: string(7)
-        fieldGroup: null
-      5f7db67a-0c0e-41cb-b556-292250022322:
-        name: 'Text Color'
-        handle: textColor
-        instructions: ''
-        searchable: true
-        translationMethod: none
-        translationKeyFormat: null
-        type: craft\fields\Color
-        settings:
-          defaultColor: '#231f20'
-        contentColumnType: string(7)
-        fieldGroup: null
+    field: 2a5054ba-d822-4486-9917-cd1bcd4aba46
     fieldLayouts:
       d54a2400-eb9e-4d66-91ca-5da12b714e0e:
         tabs:
@@ -1140,6 +1102,48 @@ matrixBlockTypes:
               5f7db67a-0c0e-41cb-b556-292250022322:
                 required: false
                 sortOrder: 2
+    fields:
+      1601483c-947b-4094-9090-15ffacd94774:
+        name: Quote
+        handle: quote
+        instructions: ''
+        searchable: true
+        translationMethod: none
+        translationKeyFormat: null
+        type: craft\fields\PlainText
+        settings:
+          placeholder: ''
+          code: ''
+          multiline: ''
+          initialRows: '4'
+          charLimit: ''
+          columnType: text
+        fieldGroup: null
+        contentColumnType: text
+      23549bfb-faf5-4cfb-8403-62ac3f8b93e9:
+        name: 'Background Color'
+        handle: backgroundColor
+        instructions: ''
+        searchable: true
+        translationMethod: none
+        translationKeyFormat: null
+        type: craft\fields\Color
+        settings:
+          defaultColor: '#ffffff'
+        fieldGroup: null
+        contentColumnType: string(7)
+      5f7db67a-0c0e-41cb-b556-292250022322:
+        name: 'Text Color'
+        handle: textColor
+        instructions: ''
+        searchable: true
+        translationMethod: none
+        translationKeyFormat: null
+        type: craft\fields\Color
+        settings:
+          defaultColor: '#231f20'
+        fieldGroup: null
+        contentColumnType: string(7)
   21a449c5-00d7-4691-897b-ea4ff6b08c48:
     name: 'Past Position'
     handle: pastPosition
@@ -1196,10 +1200,26 @@ matrixBlockTypes:
         fieldGroup: null
         contentColumnType: text
   3622f58f-dd2a-4562-bf4f-882a617fb936:
-    field: 2a5054ba-d822-4486-9917-cd1bcd4aba46
     name: Header
     handle: blockHeader
     sortOrder: 1
+    field: 2a5054ba-d822-4486-9917-cd1bcd4aba46
+    fieldLayouts:
+      b0643ed0-fc96-4679-934e-4a50f1faacff:
+        tabs:
+          -
+            name: Content
+            sortOrder: 1
+            fields:
+              83c669be-4817-49be-8816-1a16e844d2ac:
+                required: false
+                sortOrder: 2
+              b34b99fe-6b4d-4fc4-a32f-b86545d51cd8:
+                required: false
+                sortOrder: 3
+              d37f633a-9bce-4ab8-860d-f463a95922a9:
+                required: false
+                sortOrder: 1
     fields:
       83c669be-4817-49be-8816-1a16e844d2ac:
         name: 'Block Title'
@@ -1216,8 +1236,8 @@ matrixBlockTypes:
           initialRows: '4'
           charLimit: ''
           columnType: text
-        contentColumnType: text
         fieldGroup: null
+        contentColumnType: text
       b34b99fe-6b4d-4fc4-a32f-b86545d51cd8:
         name: 'Block Description'
         handle: blockDescription
@@ -1237,8 +1257,8 @@ matrixBlockTypes:
           columnType: text
           availableVolumes: '*'
           availableTransforms: '*'
-        contentColumnType: text
         fieldGroup: null
+        contentColumnType: text
       d37f633a-9bce-4ab8-860d-f463a95922a9:
         name: 'Number Header'
         handle: numberHeader
@@ -1254,29 +1274,32 @@ matrixBlockTypes:
           initialRows: '4'
           charLimit: ''
           columnType: text
-        contentColumnType: text
         fieldGroup: null
+        contentColumnType: text
+  52a585d5-bc30-4730-b030-de173e198e88:
+    name: 'Full Bleed Images / Videos'
+    handle: blockImages
+    sortOrder: 2
+    field: 2a5054ba-d822-4486-9917-cd1bcd4aba46
     fieldLayouts:
-      b0643ed0-fc96-4679-934e-4a50f1faacff:
+      215b2ab2-a016-498b-aba3-72eb85b00a87:
         tabs:
           -
             name: Content
             sortOrder: 1
             fields:
-              83c669be-4817-49be-8816-1a16e844d2ac:
-                required: false
-                sortOrder: 2
-              b34b99fe-6b4d-4fc4-a32f-b86545d51cd8:
-                required: false
-                sortOrder: 3
-              d37f633a-9bce-4ab8-860d-f463a95922a9:
+              8137e76e-6940-452e-a1fe-97ae1c9d6a3a:
                 required: false
                 sortOrder: 1
-  52a585d5-bc30-4730-b030-de173e198e88:
-    field: 2a5054ba-d822-4486-9917-cd1bcd4aba46
-    name: 'Full Bleed Images / Videos'
-    handle: blockImages
-    sortOrder: 2
+              948b851d-e6e2-4b0f-b7c6-ac6500d54404:
+                required: false
+                sortOrder: 3
+              ccd7f012-43f3-49bb-b2bc-9a64ca1a3259:
+                required: false
+                sortOrder: 4
+              d77142c4-10ec-458c-a97c-7eb9f9759b79:
+                required: false
+                sortOrder: 2
     fields:
       8137e76e-6940-452e-a1fe-97ae1c9d6a3a:
         name: Images/Videos
@@ -1303,8 +1326,8 @@ matrixBlockTypes:
           limit: ''
           selectionLabel: ''
           localizeRelations: false
-        contentColumnType: string
         fieldGroup: null
+        contentColumnType: string
       948b851d-e6e2-4b0f-b7c6-ac6500d54404:
         name: URL
         handle: imageLinkUrl
@@ -1316,8 +1339,8 @@ matrixBlockTypes:
         settings:
           placeholder: ''
           maxLength: '255'
-        contentColumnType: string(255)
         fieldGroup: null
+        contentColumnType: string(255)
       ccd7f012-43f3-49bb-b2bc-9a64ca1a3259:
         name: 'Background Video'
         handle: backgroundVideo
@@ -1328,8 +1351,8 @@ matrixBlockTypes:
         type: craft\fields\Lightswitch
         settings:
           default: ''
-        contentColumnType: boolean
         fieldGroup: null
+        contentColumnType: boolean
       d77142c4-10ec-458c-a97c-7eb9f9759b79:
         name: Carousel
         handle: carousel
@@ -1340,32 +1363,26 @@ matrixBlockTypes:
         type: craft\fields\Lightswitch
         settings:
           default: ''
-        contentColumnType: boolean
         fieldGroup: null
+        contentColumnType: boolean
+  6d9064a9-2296-4f99-bfff-28179a9c0dce:
+    name: Text
+    handle: blockText
+    sortOrder: 4
+    field: 2a5054ba-d822-4486-9917-cd1bcd4aba46
     fieldLayouts:
-      215b2ab2-a016-498b-aba3-72eb85b00a87:
+      e6db734f-06ed-4040-82c9-a5dd9e5e62b0:
         tabs:
           -
             name: Content
             sortOrder: 1
             fields:
-              8137e76e-6940-452e-a1fe-97ae1c9d6a3a:
-                required: false
-                sortOrder: 1
-              948b851d-e6e2-4b0f-b7c6-ac6500d54404:
-                required: false
-                sortOrder: 3
-              ccd7f012-43f3-49bb-b2bc-9a64ca1a3259:
-                required: false
-                sortOrder: 4
-              d77142c4-10ec-458c-a97c-7eb9f9759b79:
+              3d3a5ff3-1708-458b-8057-2299251ff6d8:
                 required: false
                 sortOrder: 2
-  6d9064a9-2296-4f99-bfff-28179a9c0dce:
-    field: 2a5054ba-d822-4486-9917-cd1bcd4aba46
-    name: Text
-    handle: blockText
-    sortOrder: 4
+              f7476e23-f767-471e-81da-baa2a3f8ff79:
+                required: false
+                sortOrder: 1
     fields:
       3d3a5ff3-1708-458b-8057-2299251ff6d8:
         name: Size
@@ -1385,8 +1402,8 @@ matrixBlockTypes:
               label: 'Full Width'
               value: fullWidth
               default: ''
-        contentColumnType: string
         fieldGroup: null
+        contentColumnType: string
       f7476e23-f767-471e-81da-baa2a3f8ff79:
         name: Text
         handle: text
@@ -1406,21 +1423,8 @@ matrixBlockTypes:
           columnType: text
           availableVolumes: '*'
           availableTransforms: '*'
-        contentColumnType: text
         fieldGroup: null
-    fieldLayouts:
-      e6db734f-06ed-4040-82c9-a5dd9e5e62b0:
-        tabs:
-          -
-            name: Content
-            sortOrder: 1
-            fields:
-              3d3a5ff3-1708-458b-8057-2299251ff6d8:
-                required: false
-                sortOrder: 2
-              f7476e23-f767-471e-81da-baa2a3f8ff79:
-                required: false
-                sortOrder: 1
+        contentColumnType: text
   89ee45d2-8ac7-4eca-a89b-6790da441f98:
     name: Endeavor
     handle: endeavor
@@ -1634,10 +1638,35 @@ matrixBlockTypes:
         fieldGroup: null
         contentColumnType: text
   ce15a666-1d0d-4208-9577-a17c1187b7f2:
-    field: 2a5054ba-d822-4486-9917-cd1bcd4aba46
     name: 'Padded Image / Video'
     handle: blockPaddedImage
     sortOrder: 3
+    field: 2a5054ba-d822-4486-9917-cd1bcd4aba46
+    fieldLayouts:
+      d8881eda-9871-4ed4-a9d3-d2dbc4c86167:
+        tabs:
+          -
+            name: Content
+            sortOrder: 1
+            fields:
+              52791cbe-7784-410d-bb2c-db8942a1f072:
+                required: false
+                sortOrder: 1
+              7f5535e1-62db-41db-8d49-8d37c639cbbe:
+                required: false
+                sortOrder: 3
+              a190e4db-d599-4548-bbe9-5c42d38b00fc:
+                required: false
+                sortOrder: 2
+              ce3981a8-a6b3-4c34-96f1-74b6b405619a:
+                required: false
+                sortOrder: 5
+              d15ceb3c-431d-4c08-bf03-2ff32be5c401:
+                required: false
+                sortOrder: 6
+              f31d83c1-8c67-4ae7-9c46-ee85539b9184:
+                required: false
+                sortOrder: 4
     fields:
       52791cbe-7784-410d-bb2c-db8942a1f072:
         name: Images/Videos
@@ -1664,8 +1693,8 @@ matrixBlockTypes:
           limit: ''
           selectionLabel: ''
           localizeRelations: false
-        contentColumnType: string
         fieldGroup: null
+        contentColumnType: string
       7f5535e1-62db-41db-8d49-8d37c639cbbe:
         name: Treated
         handle: treated
@@ -1676,8 +1705,8 @@ matrixBlockTypes:
         type: craft\fields\Lightswitch
         settings:
           default: ''
-        contentColumnType: boolean
         fieldGroup: null
+        contentColumnType: boolean
       a190e4db-d599-4548-bbe9-5c42d38b00fc:
         name: Size
         handle: size
@@ -1696,8 +1725,8 @@ matrixBlockTypes:
               label: 'Full Width'
               value: fullWidth
               default: ''
-        contentColumnType: string
         fieldGroup: null
+        contentColumnType: string
       ce3981a8-a6b3-4c34-96f1-74b6b405619a:
         name: Text
         handle: text
@@ -1717,8 +1746,8 @@ matrixBlockTypes:
           columnType: text
           availableVolumes: ''
           availableTransforms: ''
-        contentColumnType: text
         fieldGroup: null
+        contentColumnType: text
       d15ceb3c-431d-4c08-bf03-2ff32be5c401:
         name: 'Background Video'
         handle: backgroundVideo
@@ -1729,8 +1758,8 @@ matrixBlockTypes:
         type: craft\fields\Lightswitch
         settings:
           default: ''
-        contentColumnType: boolean
         fieldGroup: null
+        contentColumnType: boolean
       f31d83c1-8c67-4ae7-9c46-ee85539b9184:
         name: URL
         handle: imageLinkUrl
@@ -1742,33 +1771,8 @@ matrixBlockTypes:
         settings:
           placeholder: ''
           maxLength: '255'
-        contentColumnType: string(255)
         fieldGroup: null
-    fieldLayouts:
-      d8881eda-9871-4ed4-a9d3-d2dbc4c86167:
-        tabs:
-          -
-            name: Content
-            sortOrder: 1
-            fields:
-              52791cbe-7784-410d-bb2c-db8942a1f072:
-                required: false
-                sortOrder: 1
-              7f5535e1-62db-41db-8d49-8d37c639cbbe:
-                required: false
-                sortOrder: 3
-              a190e4db-d599-4548-bbe9-5c42d38b00fc:
-                required: false
-                sortOrder: 2
-              ce3981a8-a6b3-4c34-96f1-74b6b405619a:
-                required: false
-                sortOrder: 5
-              d15ceb3c-431d-4c08-bf03-2ff32be5c401:
-                required: false
-                sortOrder: 6
-              f31d83c1-8c67-4ae7-9c46-ee85539b9184:
-                required: false
-                sortOrder: 4
+        contentColumnType: string(255)
   cf03b594-7ac1-4637-ad23-9ff57745cc34:
     name: Person
     handle: person
@@ -2129,10 +2133,20 @@ matrixBlockTypes:
         fieldGroup: null
         contentColumnType: string
   fa20f500-9928-4240-bec7-357b2b27dde5:
-    field: 2a5054ba-d822-4486-9917-cd1bcd4aba46
     name: 'Full Bleed Video'
     handle: blockHtml
     sortOrder: 6
+    field: 2a5054ba-d822-4486-9917-cd1bcd4aba46
+    fieldLayouts:
+      9b8a09f0-7d99-4616-9045-d081c4220ea2:
+        tabs:
+          -
+            name: Content
+            sortOrder: 1
+            fields:
+              e4baee51-ae56-49d3-9c7e-6ad49fdc53b8:
+                required: false
+                sortOrder: 1
     fields:
       e4baee51-ae56-49d3-9c7e-6ad49fdc53b8:
         name: 'Embed Code'
@@ -2153,18 +2167,8 @@ matrixBlockTypes:
           columnType: text
           availableVolumes: '*'
           availableTransforms: '*'
-        contentColumnType: text
         fieldGroup: null
-    fieldLayouts:
-      9b8a09f0-7d99-4616-9045-d081c4220ea2:
-        tabs:
-          -
-            name: Content
-            sortOrder: 1
-            fields:
-              e4baee51-ae56-49d3-9c7e-6ad49fdc53b8:
-                required: false
-                sortOrder: 1
+        contentColumnType: text
 plugins:
   import:
     settings: null
@@ -2266,6 +2270,8 @@ plugins:
     schemaVersion: 1.0.0
     settings:
       notificationEmails: 'developer@firebellydesign.com,emily@firebellydesign.com'
+  redactor-alignment:
+    schemaVersion: 1.0.0
 routes:
   1cdbb0b9-5e9e-4114-b636-6224ad91e535:
     uriParts:
@@ -2758,7 +2764,6 @@ siteGroups:
     name: 'Firebelly Design (en-US)'
 sites:
   8e487d70-7966-4e1f-a6dd-bfbbb1dd9100:
-    siteGroup: c463481d-0af6-4e5d-a111-11ff274be379
     name: 'Firebelly Design'
     handle: en_us
     language: en-US
@@ -2766,6 +2771,7 @@ sites:
     baseUrl: '@web'
     sortOrder: 1
     primary: true
+    siteGroup: c463481d-0af6-4e5d-a111-11ff274be379
 superTableBlockTypes:
   0c6faa48-c276-45ee-bd33-bc76a2d308ce:
     field: 1be90cd6-60d9-4569-8886-8015cb6fe8ff
@@ -2883,12 +2889,6 @@ tagGroups:
   d4b18616-df80-4087-b64c-b941f7c6b109:
     name: Default
     handle: default
-users:
-  requireEmailVerification: true
-  allowPublicRegistration: false
-  defaultGroup: null
-  photoVolumeUid: e30f69e6-e736-4051-b925-6ffcb52b18d1
-  photoSubpath: ''
 volumes:
   36408e8f-dddf-4161-a5bf-1b85cd665761:
     name: Thoughts

@@ -10,7 +10,7 @@ categoryGroups:
         hasUrls: true
         uriFormat: '{% if object.level == 1 %}work/industry/{slug}{% else %}{parent.uri}/{slug}{% endif %}'
         template: work/industry
-dateModified: 1563217652
+dateModified: 1563218645
 email:
   fromEmail: store@firebellydesign.com
   fromName: 'Firebelly Design'
@@ -2245,7 +2245,7 @@ plugins:
     settings: null
     licenseKey: null
     enabled: '1'
-    schemaVersion: 2.0.12
+    schemaVersion: 2.2.0
   sitemap:
     settings: null
     licenseKey: null
@@ -2289,7 +2289,6 @@ sections:
     handle: privacyPolicy
     type: single
     enableVersioning: true
-    propagateEntries: true
     entryTypes:
       a23a170e-9e2c-4d8d-be5e-bcec74e581a7:
         name: 'Privacy Policy'
@@ -2314,12 +2313,12 @@ sections:
         hasUrls: true
         uriFormat: privacy-policy
         template: page
+    propagationMethod: all
   3edd1745-f5dd-4f0a-a78e-a3db2cbe0002:
     name: Store
     handle: store
     type: structure
     enableVersioning: true
-    propagateEntries: true
     structure:
       uid: f933ff7a-facf-47da-ac50-8dd696337e48
       maxLevels: null
@@ -2378,12 +2377,12 @@ sections:
         hasUrls: true
         uriFormat: '{% if object.level == 1 %}store/{slug}{% else %}{parent.uri}/{slug}{% endif %}'
         template: store/_entry
+    propagationMethod: all
   4b622926-f41b-4a90-af05-e9b6802d5276:
     name: People
     handle: people
     type: single
     enableVersioning: true
-    propagateEntries: true
     entryTypes:
       ee4de29f-9db6-468d-8814-92442aa00639:
         name: Person
@@ -2424,12 +2423,12 @@ sections:
         hasUrls: true
         uriFormat: people
         template: people
+    propagationMethod: all
   53bb7143-5489-4408-8bed-d0ae79b93aa2:
     name: Careers
     handle: careers
     type: single
     enableVersioning: true
-    propagateEntries: true
     entryTypes:
       0e7f7793-b4bc-4a24-95b2-2df6492f87ef:
         name: Careers
@@ -2463,12 +2462,12 @@ sections:
         hasUrls: true
         uriFormat: careers
         template: careers
+    propagationMethod: all
   79378e35-b6c3-46b5-9d56-9d7d600747d0:
     name: Endeavors
     handle: endeavors
     type: single
     enableVersioning: true
-    propagateEntries: true
     entryTypes:
       2bc126bb-68d0-4c65-886b-50973855d3a2:
         name: Endeavors
@@ -2506,12 +2505,12 @@ sections:
         hasUrls: true
         uriFormat: endeavors
         template: endeavors
+    propagationMethod: all
   8c753ecf-69cb-40e2-8cd0-94effdca10ab:
     name: Thoughts
     handle: thoughts
     type: channel
     enableVersioning: true
-    propagateEntries: true
     entryTypes:
       60bdf3c1-d078-4a43-afa3-881edf395407:
         name: 'Thought Post'
@@ -2562,12 +2561,12 @@ sections:
         hasUrls: true
         uriFormat: 'thoughts/{slug}'
         template: thoughts/_entry
+    propagationMethod: all
   a622d82a-9cfa-44de-b537-5a453e294cc7:
     name: Work
     handle: work
     type: structure
     enableVersioning: true
-    propagateEntries: true
     structure:
       uid: 5daaae73-b639-4c0c-8985-9d6cec55df31
       maxLevels: 1
@@ -2643,12 +2642,12 @@ sections:
         hasUrls: true
         uriFormat: 'work/{slug}'
         template: work/_entry
+    propagationMethod: all
   afb05d74-c6fa-4a94-9662-b965d04c0cda:
     name: Process
     handle: process
     type: single
     enableVersioning: true
-    propagateEntries: true
     entryTypes:
       8846c49f-36df-4baa-a0bb-3b16ade179fb:
         name: Process
@@ -2686,12 +2685,12 @@ sections:
         hasUrls: true
         uriFormat: process
         template: process
+    propagationMethod: all
   cd633440-efa8-44c2-af6d-c74c19378f79:
     name: Homepage
     handle: homepage
     type: single
     enableVersioning: true
-    propagateEntries: true
     entryTypes:
       41560ee1-2bc4-4349-b204-f9fbf3febd22:
         name: Homepage
@@ -2716,12 +2715,12 @@ sections:
         hasUrls: true
         uriFormat: __home__
         template: index
+    propagationMethod: all
   fd90a446-f550-4ea1-8999-37c311add94d:
     name: About
     handle: about
     type: single
     enableVersioning: true
-    propagateEntries: true
     entryTypes:
       c66f1aca-2e43-4922-b734-965220705d0e:
         name: About
@@ -2759,6 +2758,7 @@ sections:
         hasUrls: true
         uriFormat: about
         template: about
+    propagationMethod: all
 siteGroups:
   c463481d-0af6-4e5d-a111-11ff274be379:
     name: 'Firebelly Design (en-US)'
@@ -2881,7 +2881,7 @@ system:
   live: true
   name: 'Firebelly Design'
   timeZone: America/Chicago
-  schemaVersion: 3.1.28
+  schemaVersion: 3.2.15
 tagGroups:
   23af138f-e299-4c1f-bf04-9c6c14430637:
     name: Services

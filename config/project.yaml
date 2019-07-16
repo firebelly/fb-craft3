@@ -10,7 +10,7 @@ categoryGroups:
         hasUrls: true
         uriFormat: '{% if object.level == 1 %}work/industry/{slug}{% else %}{parent.uri}/{slug}{% endif %}'
         template: work/industry
-dateModified: 1563223915
+dateModified: 1563313798
 email:
   fromEmail: store@firebellydesign.com
   fromName: 'Firebelly Design'
@@ -109,18 +109,18 @@ fields:
     settings:
       minRows: ''
       maxRows: ''
-      localizeBlocks: false
+      contentTable: '{{%stc_extradetails}}'
+      propagationMethod: all
       staticField: ''
       columns:
         80:
           width: ''
         81:
           width: ''
-      contentTable: '{{%stc_extradetails}}'
       fieldLayout: row
       selectionLabel: 'Add Extra Details block'
-    fieldGroup: 3690a445-5c74-47c8-a37d-af19533bfdcf
     contentColumnType: string
+    fieldGroup: 3690a445-5c74-47c8-a37d-af19533bfdcf
   1be90cd6-60d9-4569-8886-8015cb6fe8ff:
     name: 'Header Options'
     handle: headerOptions
@@ -2813,25 +2813,12 @@ superTableBlockTypes:
         contentColumnType: boolean
   5cb85ec1-60f9-450b-a8b0-8a7c312b03ad:
     field: 1aa39e81-b095-4d9a-9fb5-68e65b990311
-    fieldLayouts:
-      36b39017-b1c0-4ae6-9c4a-e284d7761845:
-        tabs:
-          -
-            name: Content
-            sortOrder: '1'
-            fields:
-              4c73b619-7e3e-4af8-b8f3-393a4f6b3dd3:
-                required: '0'
-                sortOrder: '1'
-              f368c9bc-907e-4802-8e7a-7f42e35d643b:
-                required: '0'
-                sortOrder: '2'
     fields:
       4c73b619-7e3e-4af8-b8f3-393a4f6b3dd3:
         name: Header
         handle: header
         instructions: 'e.g. Awards or Press & Recognition'
-        searchable: '1'
+        searchable: true
         translationMethod: none
         translationKeyFormat: null
         type: craft\fields\PlainText
@@ -2842,13 +2829,13 @@ superTableBlockTypes:
           initialRows: '4'
           charLimit: ''
           columnType: string
-        fieldGroup: null
         contentColumnType: string
+        fieldGroup: null
       f368c9bc-907e-4802-8e7a-7f42e35d643b:
         name: Items
         handle: items
         instructions: ''
-        searchable: '1'
+        searchable: true
         translationMethod: none
         translationKeyFormat: null
         type: craft\fields\Table
@@ -2866,14 +2853,27 @@ superTableBlockTypes:
               heading: 'URL (optional)'
               handle: url
               width: ''
-              type: singleline
+              type: url
           defaults:
-            row1:
+            -
               col1: ''
               col2: ''
           columnType: text
-        fieldGroup: null
         contentColumnType: text
+        fieldGroup: null
+    fieldLayouts:
+      36b39017-b1c0-4ae6-9c4a-e284d7761845:
+        tabs:
+          -
+            name: Content
+            sortOrder: 1
+            fields:
+              4c73b619-7e3e-4af8-b8f3-393a4f6b3dd3:
+                required: false
+                sortOrder: 1
+              f368c9bc-907e-4802-8e7a-7f42e35d643b:
+                required: false
+                sortOrder: 2
 system:
   edition: solo
   live: true

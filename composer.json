@@ -25,7 +25,7 @@
     }
   ],
   "require": {
-    "craftcms/cms": "3.2.2",
+    "craftcms/cms": "3.2.3",
     "vlucas/phpdotenv": "^2.4.0",
     "clubstudioltd/craft-asset-rev": "6.0.2",
     "craftcms/redactor": "2.3.3.2",

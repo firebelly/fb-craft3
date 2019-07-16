@@ -6,7 +6,7 @@
 
 {% set bodyClass = 'single' %}
 {% if entry.mainImage|length %}
-{% set mainImage = entry.mainImage.one() %}
+  {% set mainImage = entry.mainImage.one() %}
 {% endif %}
 
 {% block content %}
@@ -21,7 +21,7 @@
           {% endif %}
 
           {% if entry.vimeoHeaderVideo %}
-            <div class="project-banner video" {% if mainImage %}style="background-image:url({{ craft.app.config.general.cdnUrl }}{{ transformedImage.getUrl() }});"{% endif %}>
+            <div class="project-banner video" {% if mainImage is defined %}style="background-image:url({{ craft.app.config.general.cdnUrl }}{{ transformedImage.getUrl() }});"{% endif %}>
               <iframe src="https://player.vimeo.com/video/{{ entry.vimeoHeaderVideo|replace('/[^0-9+]/', '') }}?background=1;autoplay=1&autopause=0&loop=1&title=0&byline=0&portrait=0" width="1245" height="700" frameborder="0"></iframe>
             </div>
           {% elseif mainImage is defined %}

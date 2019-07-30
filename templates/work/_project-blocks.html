@@ -3,20 +3,54 @@
 
 {# Check if first block is a color change #}
 {% if entry.projectBlocks|length and entry.projectBlocks[0].type == 'blockColorChange' %}
-  {% set blockColor = entry.projectBlocks[0].color %}
+  {% if entry.projectBlocks[0].color == 'custom' %}
+    {% set blockColor = entry.projectBlocks[0].customBackgroundColor %}
+    {% set blockClass = 'custom' %}
+    {% set customBackgroundColor = entry.projectBlocks[0].customBackgroundColor %}
+    {% if entry.projectBlocks[0].textColor == 'custom' %}
+      {% set customTextColor = 'color:' ~ entry.projectBlocks[0].customTextColor ~ ';' %}
+      {% set textClass = '' %}
+    {% else %}
+      {% set customTextColor = '' %}
+      {% set textClass = ' text-' ~ entry.projectBlocks[0].textColor %}
+    {% endif %}
+    {% set customStyles = ' style=background-color:' ~ customBackgroundColor ~ ';' ~ customTextColor %}
+  {% else %}
+    {% set blockColor = entry.projectBlocks[0].color %}
+    {% set blockClass = blockColor %}
+    {% set customStyles = '' %}
+    {% set textClass = '' %}
+  {% endif %}
 {% endif %}
 
-<div class="block-color color-{{ blockColor }}">
+<div class="block-color color-{{ blockClass }}{{ textClass }}"{{ customStyles }}>
 
 {% for block in entry.projectBlocks.all() %}
   {% switch block.type %}
 
     {% case "blockColorChange" %}
-      {% if blockColor != block.color and loop.index != 1 %}
-        {% set blockColor = block.color %}
+      {% if blockColor != block.color and blockColor != block.customBackgroundColor and loop.index != 1 %}
+        {% if block.color == 'custom' %}
+          {% set blockColor = block.customBackgroundColor %}
+          {% set blockClass = 'custom' %}
+          {% set customBackgroundColor = block.customBackgroundColor %}
+          {% if block.textColor == 'custom' %}
+            {% set customTextColor = 'color:' ~ block.customTextColor ~ ';' %}
+            {% set textClass = '' %}
+          {% else %}
+            {% set customTextColor = '' %}
+            {% set textClass = ' text-' ~ block.textColor %}
+          {% endif %}
+          {% set customStyles = ' style=background-color:' ~ customBackgroundColor ~ ';' ~ customTextColor %}
+        {% else %}
+          {% set blockColor = block.color %}
+          {% set blockClass = blockColor %}
+          {% set customStyles = '' %}
+          {% set textClass = '' %}
+        {% endif %}
         {% if blockWrapped %}</div>{% set blockWrapped = false %}{% endif %}
         </div><!-- /.block-color -->
-        <div class="block-color color-{{ block.color }}">
+        <div class="block-color color-{{ blockClass }}{{ textClass }}"{{ customStyles }}>
       {% endif %}
 
     {% case "pageSection" %}
@@ -25,6 +59,10 @@
       {% else %}
         <div id="{{ block.pageSection|lower|replace({' ': '-'}) }}" class="page-nav-section"></div>
       {% endif %}
+
+    {% case "spacer" %}
+      <div class="block-spacer {{ block.size }}"></div>
+
 
     {% case "blockHeader" %}
       {% if blockWrapped %}</div>{% set blockWrapped = false %}{% endif %}

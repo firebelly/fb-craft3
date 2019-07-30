@@ -587,6 +587,31 @@
   }
 }
 
+// Block spacer
+.block-spacer {
+  padding: #{$padding * 2} 0;
+
+  &.-medium {
+    padding: #{$padding * 3} 0;
+  }
+
+  &.-large {
+    padding: #{$padding * 4} 0;
+  }
+
+  @include min-screen($breakpoint-medium) {
+    padding: #{$padding * 3} 0;
+
+    &.-medium {
+      padding: #{$padding * 6} 0;
+    }
+
+    &.-large {
+      padding: #{$padding * 8} 0;
+    }
+  }
+}
+
 // Full width/half width areas
 .block-text,
 .block-image {

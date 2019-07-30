@@ -10,7 +10,7 @@ categoryGroups:
         hasUrls: true
         uriFormat: '{% if object.level == 1 %}work/industry/{slug}{% else %}{parent.uri}/{slug}{% endif %}'
         template: work/industry
-dateModified: 1564501888
+dateModified: 1564518575
 email:
   fromEmail: store@firebellydesign.com
   fromName: 'Firebelly Design'
@@ -1051,17 +1051,58 @@ matrixBlockTypes:
     handle: blockColorChange
     sortOrder: 5
     fields:
-      6821fcdd-6f2b-4b86-8d3f-351a426bc175:
-        name: 'Color Change'
-        handle: color
-        instructions: 'Will change block background color until another Color Change block is encountered'
-        searchable: true
+      5ff6fcc8-a978-4064-90c6-f095e27e0536:
+        name: 'Custom Background Color'
+        handle: customBackgroundColor
+        instructions: 'Use a custom color instead of the predefined colors. If set, please select a custom text color in the next field. Setting this field will overwrite the color set in the first field.'
+        searchable: false
+        translationMethod: none
+        translationKeyFormat: null
+        type: craft\fields\Color
+        settings:
+          defaultColor: '#ffffff'
+        contentColumnType: string(7)
+        fieldGroup: null
+      6680e6bf-a506-458f-9816-c2bb00398a79:
+        name: 'Text Color Change'
+        handle: textColor
+        instructions: 'Choose between the predefined white or black text color for custom background colors, or leave as "custom" and choose a custom text color in the next field.'
+        searchable: false
         translationMethod: none
         translationKeyFormat: null
         type: craft\fields\Dropdown
         settings:
           optgroups: true
           options:
+            -
+              label: Custom
+              value: custom
+              default: '1'
+            -
+              label: White
+              value: white
+              default: ''
+            -
+              label: Black
+              value: black
+              default: ''
+        contentColumnType: string
+        fieldGroup: null
+      6821fcdd-6f2b-4b86-8d3f-351a426bc175:
+        name: 'Color Change'
+        handle: color
+        instructions: 'Will change block background color until another Color Change block is encountered'
+        searchable: false
+        translationMethod: none
+        translationKeyFormat: null
+        type: craft\fields\Dropdown
+        settings:
+          optgroups: true
+          options:
+            -
+              label: Custom
+              value: custom
+              default: '1'
             -
               label: White
               value: white
@@ -1076,6 +1117,18 @@ matrixBlockTypes:
               default: ''
         contentColumnType: string
         fieldGroup: null
+      82ae774c-be86-4f81-960b-b33b2a617beb:
+        name: 'Custom Text Color'
+        handle: customTextColor
+        instructions: 'Custom Text color to be used with a custom background color.'
+        searchable: false
+        translationMethod: none
+        translationKeyFormat: null
+        type: craft\fields\Color
+        settings:
+          defaultColor: '#231f20'
+        contentColumnType: string(7)
+        fieldGroup: null
     fieldLayouts:
       171342bd-5d91-4763-8123-c26c8a112e9e:
         tabs:
@@ -1083,9 +1136,18 @@ matrixBlockTypes:
             name: Content
             sortOrder: 1
             fields:
+              5ff6fcc8-a978-4064-90c6-f095e27e0536:
+                required: false
+                sortOrder: 2
+              6680e6bf-a506-458f-9816-c2bb00398a79:
+                required: false
+                sortOrder: 3
               6821fcdd-6f2b-4b86-8d3f-351a426bc175:
                 required: false
                 sortOrder: 1
+              82ae774c-be86-4f81-960b-b33b2a617beb:
+                required: false
+                sortOrder: 4
   201186b3-d443-4b19-b4b6-ed5d01071c82:
     field: 2a5054ba-d822-4486-9917-cd1bcd4aba46
     name: Quote
@@ -1577,6 +1639,47 @@ matrixBlockTypes:
                 sortOrder: 2
               cd8352b6-52d7-4ef4-9157-153c0e82604c:
                 required: true
+                sortOrder: 1
+  951c9caa-38f7-46df-88e9-01764ca0f07d:
+    field: 2a5054ba-d822-4486-9917-cd1bcd4aba46
+    name: Spacer
+    handle: spacer
+    sortOrder: 10
+    fields:
+      cdf809ec-f742-48c0-aabd-858937fafc3c:
+        name: Size
+        handle: size
+        instructions: 'Size of Spacer'
+        searchable: true
+        translationMethod: none
+        translationKeyFormat: null
+        type: craft\fields\Dropdown
+        settings:
+          optgroups: true
+          options:
+            -
+              label: Small
+              value: '-small'
+              default: '1'
+            -
+              label: Medium
+              value: '-medium'
+              default: ''
+            -
+              label: Large
+              value: '-large'
+              default: ''
+        contentColumnType: string
+        fieldGroup: null
+    fieldLayouts:
+      5e5928d4-ba89-4c6a-9c89-26d8cee206f9:
+        tabs:
+          -
+            name: Content
+            sortOrder: 1
+            fields:
+              cdf809ec-f742-48c0-aabd-858937fafc3c:
+                required: false
                 sortOrder: 1
   b34a241a-7516-4e2a-91a4-d765b5df8200:
     name: 'Page Header Content'

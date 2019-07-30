@@ -589,6 +589,7 @@
 
 // Block spacer
 .block-spacer {
+  flex-basis: 100%;
   padding: #{$padding * 2} 0;
 
   &.-medium {

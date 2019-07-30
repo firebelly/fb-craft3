@@ -60,10 +60,16 @@
           transition: transform .2s ease-out;
         }
         span {
-          left: 0;
+          left: 25px;
           position: absolute;
           white-space: nowrap;
           transform: translateX(100%);
+          @include min-screen($breakpoint-medium) {
+            left: 33px;
+          }
+          @include min-screen($breakpoint-large) {
+            left: 50px;
+          }
         }
 
         &:hover {

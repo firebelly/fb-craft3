@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>{{ siteName }}</title>
+        <link>{{ siteUrl }}</link>
+        <atom:link href="{{ craft.app.request.absoluteUrl }}" rel="self" type="application/rss+xml" />
+        <description>{% if seoDescription is defined %}{{ seoDescription }}{% endif %}</description>
+        <language>en-us</language>
+        <pubDate>{{ now|rss }}</pubDate>
+        <lastBuildDate>{{ now|rss }}</lastBuildDate>
+
+        {% for entry in craft.entries.section('thoughts').limit(10) %}
+            {% set headerImage = entry.headerImage[0] ?? null %}
+            {% if headerImage %}
+                {% set transformedImage = craft.imager.transformImage(headerImage, { width: 1800 }) %}
+            {% endif %}
+            <item>
+                <title>{{ entry.title }}</title>
+                <link>{{ entry.url }}</link>
+                <pubDate>{{ entry.postDate|rss }}</pubDate>
+                <author>{{ entry.author }}</author>
+                <guid>{{ entry.url }}</guid>
+                <description><![CDATA[
+                    {% if headerImage %}
+                        <img src="{{ transformedImage.getUrl() }}" title="{{ entry.headerImageCaption }}">
+                    {% endif %}
+                    {{ entry.body }}
+                ]]></description>
+            </item>
+        {% endfor %}
+    </channel>
+</rss>

@@ -189,23 +189,25 @@ body.-cursor-active {
   }
 }
 .cursor {
-  position: fixed;
   top: 0;
   left: 0;
+  width: 100px;
+  height: 100px;
   z-index: 1000;
-  pointer-events: none;
   display: none;
-  width: 51px;
-  height: 51px;
-  margin-left: -25px;
-  margin-top: -25px;
+  position: fixed;
+  margin-top: -50px;
+  margin-left: -50px;
+  pointer-events: none;
 
   &.previous {
     mix-blend-mode: difference;
     background-image: url('/assets/dist/images/left-arrow.svg');
+    background-size: 100px 100px;
   }
   &.next {
     mix-blend-mode: difference;
     background-image: url('/assets/dist/images/right-arrow.svg');
+    background-size: 100px 100px;
   }
 }

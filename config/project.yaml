@@ -10,7 +10,7 @@ categoryGroups:
         hasUrls: true
         uriFormat: '{% if object.level == 1 %}work/industry/{slug}{% else %}{parent.uri}/{slug}{% endif %}'
         template: work/industry
-dateModified: 1564518575
+dateModified: 1564586027
 email:
   fromEmail: store@firebellydesign.com
   fromName: 'Firebelly Design'
@@ -2406,11 +2406,6 @@ plugins:
     licenseKey: null
     enabled: '1'
     schemaVersion: 2.2.0
-  sitemap:
-    settings: null
-    licenseKey: null
-    enabled: '1'
-    schemaVersion: 1.0.2
   cp-field-inspect:
     settings: null
     licenseKey: null
@@ -3039,7 +3034,7 @@ system:
   live: true
   name: 'Firebelly Design'
   timeZone: America/Chicago
-  schemaVersion: 3.2.15
+  schemaVersion: 3.2.16
 tagGroups:
   23af138f-e299-4c1f-bf04-9c6c14430637:
     name: Services

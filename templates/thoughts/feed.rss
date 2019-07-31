@@ -9,7 +9,7 @@
         <pubDate>{{ now|rss }}</pubDate>
         <lastBuildDate>{{ now|rss }}</lastBuildDate>
 
-        {% for entry in craft.entries.section('thoughts').limit(10) %}
+        {% for entry in craft.entries.section('thoughts').limit(10).all() %}
             {% set headerImage = entry.headerImage[0] ?? null %}
             {% if headerImage %}
                 {% set transformedImage = craft.imager.transformImage(headerImage, { width: 1800 }) %}

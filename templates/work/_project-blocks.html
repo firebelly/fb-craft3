@@ -201,10 +201,7 @@
 
             {%- if block.browserFrame.browserFrameActive %}
               <div class="browser-frame">
-                <div class="browserbar"></div>
-                <div class="browserdotleft"></div>
-                <div class="browserdotmiddle"></div>
-                <div class="browserdotright"></div>
+                <div class="browserdots"></div>
                 <div class="site{% if block.browserFrame.browserFrameScroll %} scroll{% endif %}"{% if block.browserFrame.browserFrameScroll %} style="padding-bottom:{{ block.browserFrame.scrollHeight }}%;"{% endif %}>
                   {%- if block.browserFrame.browserFrameScroll %}<div class="scroll-content">{% endif -%}
             {% endif -%}

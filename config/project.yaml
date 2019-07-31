@@ -10,7 +10,7 @@ categoryGroups:
         hasUrls: true
         uriFormat: '{% if object.level == 1 %}work/industry/{slug}{% else %}{parent.uri}/{slug}{% endif %}'
         template: work/industry
-dateModified: 1564586027
+dateModified: 1564599576
 email:
   fromEmail: store@firebellydesign.com
   fromName: 'Firebelly Design'
@@ -1895,6 +1895,31 @@ matrixBlockTypes:
           default: ''
         contentColumnType: boolean
         fieldGroup: null
+      daa3251f-e2b0-4219-bc04-d6642a932856:
+        name: 'Browser Frame'
+        handle: browserFrame
+        instructions: 'Include browser frame around image? Used for website screenshots/designs'
+        searchable: false
+        translationMethod: site
+        translationKeyFormat: null
+        type: verbb\supertable\fields\SuperTableField
+        settings:
+          minRows: ''
+          maxRows: ''
+          contentTable: '{{%stc_15_browserframe}}'
+          propagationMethod: all
+          staticField: '1'
+          columns:
+            116:
+              width: ''
+            117:
+              width: ''
+            115:
+              width: ''
+          fieldLayout: table
+          selectionLabel: ''
+        contentColumnType: string
+        fieldGroup: null
       f31d83c1-8c67-4ae7-9c46-ee85539b9184:
         name: URL
         handle: imageLinkUrl
@@ -1926,13 +1951,16 @@ matrixBlockTypes:
                 sortOrder: 2
               ce3981a8-a6b3-4c34-96f1-74b6b405619a:
                 required: false
-                sortOrder: 5
+                sortOrder: 6
               d15ceb3c-431d-4c08-bf03-2ff32be5c401:
                 required: false
-                sortOrder: 6
-              f31d83c1-8c67-4ae7-9c46-ee85539b9184:
+                sortOrder: 7
+              daa3251f-e2b0-4219-bc04-d6642a932856:
                 required: false
                 sortOrder: 4
+              f31d83c1-8c67-4ae7-9c46-ee85539b9184:
+                required: false
+                sortOrder: 5
   cf03b594-7ac1-4637-ad23-9ff57745cc34:
     name: Person
     handle: person
@@ -2926,6 +2954,67 @@ sites:
     primary: true
     siteGroup: c463481d-0af6-4e5d-a111-11ff274be379
 superTableBlockTypes:
+  0279c7fd-1f44-46a6-b694-8860f3cc8e80:
+    field: daa3251f-e2b0-4219-bc04-d6642a932856
+    fields:
+      3fff67ff-48e5-40bb-944b-80041c037145:
+        name: 'Scrolling Frame Height'
+        handle: scrollHeight
+        instructions: 'Set a frame height in percentage, which is a percentage based on the width of the frame. Default value is 75%.'
+        searchable: false
+        translationMethod: none
+        translationKeyFormat: null
+        type: craft\fields\Number
+        settings:
+          defaultValue: '75'
+          min: '50'
+          max: null
+          decimals: 0
+          size: null
+          prefix: ''
+          suffix: '%'
+        contentColumnType: integer(10)
+        fieldGroup: null
+      53651a69-8231-4239-a2e2-e23b1a841189:
+        name: 'Add Browser Frame?'
+        handle: browserFrameActive
+        instructions: ''
+        searchable: false
+        translationMethod: none
+        translationKeyFormat: null
+        type: craft\fields\Lightswitch
+        settings:
+          default: ''
+        contentColumnType: boolean
+        fieldGroup: null
+      6cfeb752-b0e2-42c2-9d50-6fc5a21cc5c0:
+        name: 'Frame Scrolling?'
+        handle: browserFrameScroll
+        instructions: 'Check this if you would like to force the frame to a certain height, allowing a user to scrolling to see the rest of the screenshot/image.'
+        searchable: false
+        translationMethod: none
+        translationKeyFormat: null
+        type: craft\fields\Lightswitch
+        settings:
+          default: ''
+        contentColumnType: boolean
+        fieldGroup: null
+    fieldLayouts:
+      6a9e374c-6f79-4789-9484-5edee867f4b3:
+        tabs:
+          -
+            name: Content
+            sortOrder: 1
+            fields:
+              3fff67ff-48e5-40bb-944b-80041c037145:
+                required: false
+                sortOrder: 3
+              53651a69-8231-4239-a2e2-e23b1a841189:
+                required: false
+                sortOrder: 1
+              6cfeb752-b0e2-42c2-9d50-6fc5a21cc5c0:
+                required: false
+                sortOrder: 2
   0c6faa48-c276-45ee-bd33-bc76a2d308ce:
     field: 1be90cd6-60d9-4569-8886-8015cb6fe8ff
     fieldLayouts:

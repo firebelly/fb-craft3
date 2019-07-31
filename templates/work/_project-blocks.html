@@ -199,9 +199,23 @@
               {% endif %}
             {% endif %}
 
+            {%- if block.browserFrame.browserFrameActive %}
+              <div class="browser-frame">
+                <div class="browserbar"></div>
+                <div class="browserdotleft"></div>
+                <div class="browserdotmiddle"></div>
+                <div class="browserdotright"></div>
+                <div class="site{% if block.browserFrame.browserFrameScroll %} scroll{% endif %}"{% if block.browserFrame.browserFrameScroll %} style="padding-bottom:{{ block.browserFrame.scrollHeight }}%;"{% endif %}>
+                  {%- if block.browserFrame.browserFrameScroll %}<div class="scroll-content">{% endif -%}
+            {% endif -%}
             {%- if block.imageLinkUrl %}<a href="{{ block.imageLinkUrl }}" target="_blank" rel="noopener">{% endif -%}
               <img class="lazyload" data-src="{{ craft.app.config.general.cdnUrl }}{{ treatedImage.getUrl() }}" alt="{{ image.title }}">
             {%- if block.imageLinkUrl %}</a>{% endif -%}
+            {%- if block.browserFrame.browserFrameActive %}
+                  {%- if block.browserFrame.browserFrameScroll %}</div>{% endif -%}
+                </div><!-- .site -->
+              </div><!-- .browser-frame -->
+            {% endif -%}
           {% endif %}
 
           {% if block.text and loop.last %}

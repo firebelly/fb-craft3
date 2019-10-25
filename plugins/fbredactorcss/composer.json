@@ -1,0 +1,40 @@
+{
+    "name": "firebelly/fb-redactor-css",
+    "description": "Custom styles for redactor fields",
+    "type": "craft-plugin",
+    "version": "1.0.1",
+    "keywords": [
+        "craft",
+        "cms",
+        "craftcms",
+        "craft-plugin",
+        "fb redactor css"
+    ],
+    "support": {
+        "docs": "???",
+        "issues": "???"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Firebelly",
+            "homepage": "https://firebellydesign.com"
+        }
+    ],
+    "require": {
+        "craftcms/cms": "^3.0.0-RC1"
+    },
+    "autoload": {
+        "psr-4": {
+          "firebelly\\fbredactorcss\\": "src/"
+        }
+    },
+    "extra": {
+        "name": "FB Redactor CSS",
+        "handle": "fb-redactor-css",
+        "hasCpSettings": false,
+        "hasCpSection": false,
+        "changelogUrl": "???",
+        "class": "firebelly\\fbredactorcss\\FbRedactorCss"
+    }
+}

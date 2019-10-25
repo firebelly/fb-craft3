@@ -124,7 +124,7 @@
       {% if blockWrapped %}</div>{% set blockWrapped = false %}{% endif %}
       <div class="fullbleed-images">
         {% if block.carousel %}
-          <div class="flickity js-cursor">
+          <div class="flickity js-cursor{{ block.displayCaptionsInCarousel ? ' with-captions' : '' }}">
             {% for image in block.images.all() %}
               {% set embeddedAsset = craft.embeddedAssets.get(image) %}
               {% if embeddedAsset %}
@@ -139,9 +139,23 @@
               {% else %}
                 {% set treatedImage = craft.imager.transformImage(image, { mode: 'fit', width: 1800, height: 900 }) %}
                 {% set orientation = image.getWidth() > image.getHeight() ? 'landscape' : 'portrait' %}
-                <div class="slide {{ orientation }}">
+                <div class="slide {{ orientation }}{{ image.captionLabel or image.caption ? ' with-caption' : '' }}">
                   {%- if block.imageLinkUrl %}<a href="{{ block.imageLinkUrl }}" target="_blank" rel="noopener">{% endif -%}
                     <img src="{{ craft.app.config.general.cdnUrl }}{{ treatedImage.getUrl() }}" alt="{{ image.title }}">
+                    {% if block.displayCaptionsInCarousel %}
+                      {% if image.captionLabel or image.caption %}
+                        <div class="image-text">
+                          <div class="-inner">
+                            {% if image.captionLabel %}
+                              <h5 class="caption-label">{{ image.captionLabel }}</h5>
+                            {% endif %}
+                            {% if image.caption %}
+                              <p class="caption">{{ image.caption }}</p>
+                            {% endif %}
+                          </div>
+                        </div>
+                      {% endif %}
+                    {% endif %}
                   {%- if block.imageLinkUrl %}</a>{% endif -%}
                 </div>
               {% endif %}
@@ -161,6 +175,30 @@
             {% endif %}
           {% endfor %}
         {% endif %}
+      </div>
+
+    {% case "blockImagesWithText" %}
+      {% if blockWrapped %}</div>{% set blockWrapped = false %}{% endif %}
+      <div class="fullbleed-images">
+        <div class="flickity js-cursor with-captions">
+          {% for image in block.images.all() %}
+            {% set treatedImage = craft.imager.transformImage(image, { mode: 'fit', width: 1800, height: 900 }) %}
+            <figure class="slide {{ image.captionLabel or image.caption ? ' with-caption' : '' }}" style="background-image:url('{{ craft.app.config.general.cdnUrl }}{{ treatedImage.getUrl() }}');">
+              {% if image.captionLabel or image.caption %}
+                <figcaption class="image-text">
+                  <div class="-inner">
+                    {% if image.captionLabel %}
+                      <h5 class="caption-label">{{ image.captionLabel }}</h5>
+                    {% endif %}
+                    {% if image.caption %}
+                      <p class="caption">{{ image.caption }}</p>
+                    {% endif %}
+                  </div>
+                </figcaption>
+              {% endif %}
+            </figure>
+          {% endfor %}
+        </div>
       </div>
 
     {% case "blockHtml" %}

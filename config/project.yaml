@@ -10,7 +10,7 @@ categoryGroups:
         hasUrls: true
         uriFormat: '{% if object.level == 1 %}work/industry/{slug}{% else %}{parent.uri}/{slug}{% endif %}'
         template: work/industry
-dateModified: 1564599576
+dateModified: 1571954457
 email:
   fromEmail: store@firebellydesign.com
   fromName: 'Firebelly Design'
@@ -43,6 +43,8 @@ fieldGroups:
     name: Default
   ac105b17-6ee3-4505-b227-76456561e443:
     name: Store
+  d2d1260a-da85-41ec-8e8a-c16e376cf34f:
+    name: Assets
 fields:
   0110a99c-d7cc-4c08-95b3-26a97e538cbe:
     name: 'Rollover Subtitle'
@@ -364,6 +366,23 @@ fields:
       localizeRelations: false
     fieldGroup: 3690a445-5c74-47c8-a37d-af19533bfdcf
     contentColumnType: string
+  92519b8f-b52c-4b39-9bc7-a7df62593778:
+    name: 'Caption Label'
+    handle: captionLabel
+    instructions: 'An optional label displayed above image captions.'
+    searchable: true
+    translationMethod: none
+    translationKeyFormat: null
+    type: craft\fields\PlainText
+    settings:
+      placeholder: ''
+      code: ''
+      multiline: ''
+      initialRows: '4'
+      charLimit: '100'
+      columnType: text
+    contentColumnType: text
+    fieldGroup: d2d1260a-da85-41ec-8e8a-c16e376cf34f
   93e68e0b-500c-4465-aab3-792ecf196ba8:
     name: 'Inclusion Statement'
     handle: inclusionStatement
@@ -491,6 +510,23 @@ fields:
       columnType: text
     fieldGroup: 9aec6670-8753-4f2e-91d5-03ff2b4f3ef6
     contentColumnType: text
+  ac9c369c-9a19-4d6f-9050-70c68705b2b9:
+    name: Caption
+    handle: caption
+    instructions: 'Optional image caption'
+    searchable: true
+    translationMethod: none
+    translationKeyFormat: null
+    type: craft\fields\PlainText
+    settings:
+      placeholder: ''
+      code: ''
+      multiline: ''
+      initialRows: '4'
+      charLimit: '360'
+      columnType: text
+    contentColumnType: text
+    fieldGroup: d2d1260a-da85-41ec-8e8a-c16e376cf34f
   b473b74b-efff-4a86-acaf-df0e00fb0cea:
     name: 'Stripe Product ID'
     handle: stripeProductId
@@ -748,7 +784,7 @@ matrixBlockTypes:
     field: 2a5054ba-d822-4486-9917-cd1bcd4aba46
     name: 'Type Specimen'
     handle: blockTypeSpecimen
-    sortOrder: 8
+    sortOrder: 9
     fields:
       15709825-2a2f-4119-8b35-be0e61a4e5c6:
         name: 'Font Name'
@@ -1049,7 +1085,7 @@ matrixBlockTypes:
     field: 2a5054ba-d822-4486-9917-cd1bcd4aba46
     name: 'Color Change'
     handle: blockColorChange
-    sortOrder: 5
+    sortOrder: 6
     fields:
       5ff6fcc8-a978-4064-90c6-f095e27e0536:
         name: 'Custom Background Color'
@@ -1152,7 +1188,7 @@ matrixBlockTypes:
     field: 2a5054ba-d822-4486-9917-cd1bcd4aba46
     name: Quote
     handle: blockQuote
-    sortOrder: 7
+    sortOrder: 8
     fields:
       1601483c-947b-4094-9090-15ffacd94774:
         name: Quote
@@ -1349,6 +1385,18 @@ matrixBlockTypes:
     handle: blockImages
     sortOrder: 2
     fields:
+      3cee45bd-a259-43e9-aa9f-31c1947352f5:
+        name: 'Display Captions in Carousel?'
+        handle: displayCaptionsInCarousel
+        instructions: 'Option to show captions over images in a carousel'
+        searchable: true
+        translationMethod: none
+        translationKeyFormat: null
+        type: craft\fields\Lightswitch
+        settings:
+          default: ''
+        contentColumnType: boolean
+        fieldGroup: null
       8137e76e-6940-452e-a1fe-97ae1c9d6a3a:
         name: Images/Videos
         handle: images
@@ -1406,7 +1454,7 @@ matrixBlockTypes:
         name: Carousel
         handle: carousel
         instructions: 'Shows multiple images as full-width carousel'
-        searchable: true
+        searchable: false
         translationMethod: none
         translationKeyFormat: null
         type: craft\fields\Lightswitch
@@ -1421,15 +1469,18 @@ matrixBlockTypes:
             name: Content
             sortOrder: 1
             fields:
+              3cee45bd-a259-43e9-aa9f-31c1947352f5:
+                required: false
+                sortOrder: 3
               8137e76e-6940-452e-a1fe-97ae1c9d6a3a:
                 required: false
                 sortOrder: 1
               948b851d-e6e2-4b0f-b7c6-ac6500d54404:
                 required: false
-                sortOrder: 3
+                sortOrder: 4
               ccd7f012-43f3-49bb-b2bc-9a64ca1a3259:
                 required: false
-                sortOrder: 4
+                sortOrder: 5
               d77142c4-10ec-458c-a97c-7eb9f9759b79:
                 required: false
                 sortOrder: 2
@@ -1437,7 +1488,7 @@ matrixBlockTypes:
     field: 2a5054ba-d822-4486-9917-cd1bcd4aba46
     name: Text
     handle: blockText
-    sortOrder: 4
+    sortOrder: 5
     fields:
       3d3a5ff3-1708-458b-8057-2299251ff6d8:
         name: Size
@@ -1596,7 +1647,7 @@ matrixBlockTypes:
     field: 2a5054ba-d822-4486-9917-cd1bcd4aba46
     name: 'Page Section'
     handle: pageSection
-    sortOrder: 9
+    sortOrder: 10
     fields:
       a44f3366-5afa-4f7a-a2d8-147eff058c95:
         name: 'Display Title'
@@ -1644,7 +1695,7 @@ matrixBlockTypes:
     field: 2a5054ba-d822-4486-9917-cd1bcd4aba46
     name: Spacer
     handle: spacer
-    sortOrder: 10
+    sortOrder: 11
     fields:
       cdf809ec-f742-48c0-aabd-858937fafc3c:
         name: Size
@@ -2200,6 +2251,49 @@ matrixBlockTypes:
           showTime: 0
         fieldGroup: null
         contentColumnType: datetime
+  f092c7f0-c9f7-4bc4-8370-f295319958f3:
+    field: 2a5054ba-d822-4486-9917-cd1bcd4aba46
+    name: 'Images With Text'
+    handle: blockImagesWithText
+    sortOrder: 4
+    fields:
+      6503233e-250c-4de4-8ef5-eac4ef554f66:
+        name: Images
+        handle: images
+        instructions: 'Select one image, or multiple images, to be displayed in a full-width carousel. Double click on each image to edit its caption label and caption text, which will be displayed over the image. Images will be display at a forced aspect ratio of 1 x ~1.6 for small screen, and 1 x ~.5 on large screen.'
+        searchable: true
+        translationMethod: site
+        translationKeyFormat: null
+        type: craft\fields\Assets
+        settings:
+          useSingleFolder: '1'
+          defaultUploadLocationSource: 'volume:d0e9262d-3cc0-46bc-aa1c-76d99cb9f385'
+          defaultUploadLocationSubpath: ''
+          singleUploadLocationSource: 'volume:d0e9262d-3cc0-46bc-aa1c-76d99cb9f385'
+          singleUploadLocationSubpath: '{owner.slug}'
+          restrictFiles: '1'
+          allowedKinds:
+            - image
+          sources: '*'
+          source: null
+          targetSiteId: null
+          viewMode: large
+          limit: ''
+          selectionLabel: ''
+          localizeRelations: false
+          validateRelatedElements: ''
+        contentColumnType: string
+        fieldGroup: null
+    fieldLayouts:
+      920ea4e3-45b9-4331-a54c-e69325c6ea2b:
+        tabs:
+          -
+            name: Content
+            sortOrder: 1
+            fields:
+              6503233e-250c-4de4-8ef5-eac4ef554f66:
+                required: false
+                sortOrder: 1
   f5a2db3c-0e4c-4b44-b933-a05090df42a5:
     name: 'Page Section'
     handle: pageSection
@@ -2324,7 +2418,7 @@ matrixBlockTypes:
     field: 2a5054ba-d822-4486-9917-cd1bcd4aba46
     name: 'Full Bleed Video'
     handle: blockHtml
-    sortOrder: 6
+    sortOrder: 7
     fields:
       e4baee51-ae56-49d3-9c7e-6ad49fdc53b8:
         name: 'Embed Code'
@@ -2453,6 +2547,10 @@ plugins:
     schemaVersion: 1.0.0
     settings:
       notificationEmails: 'developer@firebellydesign.com,emily@firebellydesign.com'
+  fb-redactor-css:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
 routes:
   1cdbb0b9-5e9e-4114-b636-6224ad91e535:
     uriParts:
@@ -3123,7 +3221,7 @@ system:
   live: true
   name: 'Firebelly Design'
   timeZone: America/Chicago
-  schemaVersion: 3.2.16
+  schemaVersion: 3.3.3
 tagGroups:
   23af138f-e299-4c1f-bf04-9c6c14430637:
     name: Services
@@ -3177,11 +3275,20 @@ volumes:
     handle: work
     type: craft\volumes\Local
     hasUrls: true
-    url: null
+    url: /uploads/work/
     settings:
       path: uploads/work/
-      url: /uploads/work/
     sortOrder: 1
+    fieldLayouts:
+      c2668c15-3d1c-4afc-af59-7c39de4da785:
+        tabs:
+          -
+            name: Content
+            sortOrder: 1
+            fields:
+              ac9c369c-9a19-4d6f-9050-70c68705b2b9:
+                required: false
+                sortOrder: 1
   e30f69e6-e736-4051-b925-6ffcb52b18d1:
     name: 'User Photos'
     handle: userPhotos

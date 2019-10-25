@@ -1,5 +1,47 @@
 {
-  "formatting": ["p", "h2", "h3", "blockquote"],
+  "formatting": ["p", "blockquote"],
+  "formattingAdd": {
+    "p2": {
+      "title": "Paragraph Large",
+      "api": "module.block.format",
+      "args": {
+        "tag": "p",
+        "class": "p2"
+      }
+    },
+    "heading-large": {
+      "title": "Heading Large",
+      "api": "module.block.format",
+      "args": {
+        "tag": "h2",
+        "class": "heading-large"
+      }
+    },
+    "heading-medium": {
+      "title": "Heading Medium",
+      "api": "module.block.format",
+      "args": {
+        "tag": "h3",
+        "class": "heading-medium"
+      }
+    },
+    "heading-small": {
+      "title": "Heading Small",
+      "api": "module.block.format",
+      "args": {
+        "tag": "h3",
+        "class": "heading-small"
+      }
+    },
+    "heading-smallcaps": {
+      "title": "Heading Smallcaps",
+      "api": "module.block.format",
+      "args": {
+        "tag": "h3",
+        "class": "heading-smallcaps"
+      }
+    }
+  },
   "buttons": ["formatting", "bold", "italic", "lists", "link", "image", "video", "html"],
   "plugins": ["fullscreen", "video", "alignment"],
   "toolbarFixed": true,

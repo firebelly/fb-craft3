@@ -351,6 +351,79 @@
         }
       }
 
+      // With Captions
+      &.with-captions {
+        figure.slide {
+          height: 0;
+          width: 80%;
+          margin-top: 0;
+          margin-left: 0;
+          margin-bottom: 0;
+          overflow: hidden;
+          padding-bottom: 128%;
+          background-size: cover;
+          background-position: center center;
+
+          @include min-screen($breakpoint-medium) {
+            padding-bottom: 56.94%;
+          }
+        }
+        .image-text {
+          top: 0;
+          left: 0;
+          bottom: 0;
+          z-index: 1;
+          width: 100%;
+          display: flex;
+          position: absolute;
+          align-items: flex-end;
+          &::before {
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            content: '';
+            position: absolute;
+            background-color: rgba($black,.5);
+          }
+
+          > .-inner {
+            position: relative;
+            padding: 25px;
+
+            @include min-screen($breakpoint-medium) {
+              padding: #{$padding * 6};
+            }
+
+            @include min-screen($breakpoint-large) {
+              width: 50%;
+              padding-right: 0;
+            }
+          }
+
+          .caption-label,
+          .caption {
+            color: $white;
+          }
+
+          .caption-label {
+            @extend %small-caps;
+            font-weight: 700;
+            margin-bottom: 13px;
+          }
+
+          .caption {
+            font-size: 16px;
+            line-height: 24px;
+
+            @include min-screen($breakpoint-medium) {
+              font-size: 24px;
+              line-height: 32px;
+            }
+          }
+        }
+      }
+
       // Desktop styles
       @include min-screen($breakpoint-medium) {
         .flickity-prev-next-button {
@@ -678,7 +751,8 @@
 
   &.user-content {
     h2,
-    h3 {
+    h3,
+    h3.heading-small {
       font: bold 16px/1 $font-body, sans-serif;
       letter-spacing: 0;
       text-transform: none;
@@ -686,10 +760,25 @@
       text-align: left;
       font-weight: bold;
     }
-    h2 {
+    h2,
+    h2.heading-large {
       color: inherit;
       font: 36px/1 $font-display, sans-serif;
       margin: 0 0 .6em;
+    }
+    h3.heading-medium {
+      color: inherit;
+      font: 30px/32px $font-display, sans-serif;
+      margin: 0 0 .6em;
+    }
+    h3.heading-smallcaps {
+      @extend %small-caps;
+      font-weight: 700;
+    }
+
+    p.p2 {
+      font-size: 24px;
+      line-height: 32px;
     }
   }
 }

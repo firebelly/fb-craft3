@@ -774,6 +774,14 @@
     h3.heading-smallcaps {
       @extend %small-caps;
       font-weight: 700;
+      margin-bottom: 0;
+      + p {
+        margin-top: 24px;
+
+        &.p2 {
+          margin-top: 16px;
+        }
+      }
     }
 
     p.p2 {

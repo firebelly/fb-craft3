@@ -360,12 +360,16 @@
           margin-left: 0;
           margin-bottom: 0;
           overflow: hidden;
-          padding-bottom: 128%;
+          padding-bottom: 120%;
           background-size: cover;
           background-position: center center;
 
           @include min-screen($breakpoint-medium) {
-            padding-bottom: 56.94%;
+            padding-bottom: 60%;
+          }
+
+          @include min-screen(1000px) {
+            padding-bottom: 45%;
           }
         }
         .image-text {

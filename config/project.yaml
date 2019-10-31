@@ -10,7 +10,7 @@ categoryGroups:
         hasUrls: true
         uriFormat: '{% if object.level == 1 %}work/industry/{slug}{% else %}{parent.uri}/{slug}{% endif %}'
         template: work/industry
-dateModified: 1572367817
+dateModified: 1572535610
 email:
   fromEmail: store@firebellydesign.com
   fromName: 'Firebelly Design'
@@ -1385,18 +1385,6 @@ matrixBlockTypes:
     handle: blockImages
     sortOrder: 2
     fields:
-      3cee45bd-a259-43e9-aa9f-31c1947352f5:
-        name: 'Display Captions in Carousel?'
-        handle: displayCaptionsInCarousel
-        instructions: 'Option to show captions over images in a carousel'
-        searchable: true
-        translationMethod: none
-        translationKeyFormat: null
-        type: craft\fields\Lightswitch
-        settings:
-          default: ''
-        contentColumnType: boolean
-        fieldGroup: null
       8137e76e-6940-452e-a1fe-97ae1c9d6a3a:
         name: Images/Videos
         handle: images
@@ -1469,18 +1457,15 @@ matrixBlockTypes:
             name: Content
             sortOrder: 1
             fields:
-              3cee45bd-a259-43e9-aa9f-31c1947352f5:
-                required: false
-                sortOrder: 3
               8137e76e-6940-452e-a1fe-97ae1c9d6a3a:
                 required: false
                 sortOrder: 1
               948b851d-e6e2-4b0f-b7c6-ac6500d54404:
                 required: false
-                sortOrder: 4
+                sortOrder: 3
               ccd7f012-43f3-49bb-b2bc-9a64ca1a3259:
                 required: false
-                sortOrder: 5
+                sortOrder: 4
               d77142c4-10ec-458c-a97c-7eb9f9759b79:
                 required: false
                 sortOrder: 2

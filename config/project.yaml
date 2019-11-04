@@ -10,7 +10,7 @@ categoryGroups:
         hasUrls: true
         uriFormat: '{% if object.level == 1 %}work/industry/{slug}{% else %}{parent.uri}/{slug}{% endif %}'
         template: work/industry
-dateModified: 1572535610
+dateModified: 1572541637
 email:
   fromEmail: store@firebellydesign.com
   fromName: 'Firebelly Design'
@@ -379,7 +379,7 @@ fields:
       code: ''
       multiline: ''
       initialRows: '4'
-      charLimit: '100'
+      charLimit: '80'
       columnType: text
     contentColumnType: text
     fieldGroup: d2d1260a-da85-41ec-8e8a-c16e376cf34f
@@ -784,7 +784,7 @@ matrixBlockTypes:
     field: 2a5054ba-d822-4486-9917-cd1bcd4aba46
     name: 'Type Specimen'
     handle: blockTypeSpecimen
-    sortOrder: 8
+    sortOrder: 9
     fields:
       15709825-2a2f-4119-8b35-be0e61a4e5c6:
         name: 'Font Name'
@@ -1085,7 +1085,7 @@ matrixBlockTypes:
     field: 2a5054ba-d822-4486-9917-cd1bcd4aba46
     name: 'Color Change'
     handle: blockColorChange
-    sortOrder: 5
+    sortOrder: 6
     fields:
       5ff6fcc8-a978-4064-90c6-f095e27e0536:
         name: 'Custom Background Color'
@@ -1188,7 +1188,7 @@ matrixBlockTypes:
     field: 2a5054ba-d822-4486-9917-cd1bcd4aba46
     name: Quote
     handle: blockQuote
-    sortOrder: 7
+    sortOrder: 8
     fields:
       1601483c-947b-4094-9090-15ffacd94774:
         name: Quote
@@ -1469,11 +1469,54 @@ matrixBlockTypes:
               d77142c4-10ec-458c-a97c-7eb9f9759b79:
                 required: false
                 sortOrder: 2
+  57bcce42-9809-4e5a-8910-4c6f7580d0a7:
+    field: 2a5054ba-d822-4486-9917-cd1bcd4aba46
+    name: 'Images With Text'
+    handle: blockImagesWithText
+    sortOrder: 3
+    fields:
+      0943643d-bfdf-4b25-8911-ed4a49b73aa8:
+        name: Images
+        handle: images
+        instructions: 'Select one image, or multiple images, to be displayed in a full-width carousel. Double click on each image to edit its caption label and caption text, which will be displayed over the image. Images will be display at a forced aspect ratio of 1:~1.6 for small screen, and 16:9 on large screen'
+        searchable: false
+        translationMethod: site
+        translationKeyFormat: null
+        type: craft\fields\Assets
+        settings:
+          useSingleFolder: '1'
+          defaultUploadLocationSource: 'volume:d0e9262d-3cc0-46bc-aa1c-76d99cb9f385'
+          defaultUploadLocationSubpath: ''
+          singleUploadLocationSource: 'volume:d0e9262d-3cc0-46bc-aa1c-76d99cb9f385'
+          singleUploadLocationSubpath: '{owner.slug}'
+          restrictFiles: '1'
+          allowedKinds:
+            - image
+          sources: '*'
+          source: null
+          targetSiteId: null
+          viewMode: large
+          limit: ''
+          selectionLabel: 'Add an image'
+          localizeRelations: false
+          validateRelatedElements: ''
+        contentColumnType: string
+        fieldGroup: null
+    fieldLayouts:
+      6d997742-be7d-456b-b546-3a90fc995178:
+        tabs:
+          -
+            name: Content
+            sortOrder: 1
+            fields:
+              0943643d-bfdf-4b25-8911-ed4a49b73aa8:
+                required: false
+                sortOrder: 1
   6d9064a9-2296-4f99-bfff-28179a9c0dce:
     field: 2a5054ba-d822-4486-9917-cd1bcd4aba46
     name: Text
     handle: blockText
-    sortOrder: 4
+    sortOrder: 5
     fields:
       3d3a5ff3-1708-458b-8057-2299251ff6d8:
         name: Size
@@ -1632,7 +1675,7 @@ matrixBlockTypes:
     field: 2a5054ba-d822-4486-9917-cd1bcd4aba46
     name: 'Page Section'
     handle: pageSection
-    sortOrder: 9
+    sortOrder: 10
     fields:
       a44f3366-5afa-4f7a-a2d8-147eff058c95:
         name: 'Display Title'
@@ -1680,7 +1723,7 @@ matrixBlockTypes:
     field: 2a5054ba-d822-4486-9917-cd1bcd4aba46
     name: Spacer
     handle: spacer
-    sortOrder: 10
+    sortOrder: 11
     fields:
       cdf809ec-f742-48c0-aabd-858937fafc3c:
         name: Size
@@ -1835,7 +1878,7 @@ matrixBlockTypes:
     field: 2a5054ba-d822-4486-9917-cd1bcd4aba46
     name: 'Padded Image / Video'
     handle: blockPaddedImage
-    sortOrder: 3
+    sortOrder: 4
     fields:
       52791cbe-7784-410d-bb2c-db8942a1f072:
         name: Images/Videos
@@ -2360,7 +2403,7 @@ matrixBlockTypes:
     field: 2a5054ba-d822-4486-9917-cd1bcd4aba46
     name: 'Full Bleed Video'
     handle: blockHtml
-    sortOrder: 6
+    sortOrder: 7
     fields:
       e4baee51-ae56-49d3-9c7e-6ad49fdc53b8:
         name: 'Embed Code'

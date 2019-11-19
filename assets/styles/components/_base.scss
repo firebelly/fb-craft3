@@ -1,0 +1,98 @@
+/*
+
+    _/_/_/_/  _/_/_/
+   _/        _/    _/
+  _/_/_/    _/_/_/
+ _/        _/    _/
+_/        _/_/_/
+
+*/
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  color: color('black');
+  box-sizing: border-box;
+  padding-top: $header-sm; // making room for the fixed header
+  background: color('white');
+  font: 16px/18px $font-sans, serif;
+
+  @include media-nav {
+    padding-top: $header-md;
+
+    &::after {
+      top: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 10;
+      content: '';
+      position: fixed;
+      width: $padding-lg;
+      background-color: color('white');
+    }
+  }
+}
+
+.site-main {
+  background-color: color('offwhite');
+  border-left: 5px solid color('white');
+  border-right: 5px solid color('white');
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  &:visited {
+    color: inherit;
+  }
+}
+
+img {
+  height: auto;
+  max-width: 100%;
+}
+
+::selection {
+  color: color('white');
+  background: color('black');
+}
+
+// Site Container
+.container {
+  padding: 0 $padding-sm;
+  @include media-md {
+    padding: 0 #{$padding-lg * 2};
+  }
+}
+
+// Supers
+sup {
+  font-size: .35em;
+}
+
+.edit-bug {
+  margin-top: 20px;
+}
+
+// Hide edit link for now
+.edit-link {
+  position: absolute;
+  top: 25px;
+  left: 20px;
+  transition: 0.2s opacity;
+  opacity: 0;
+  a {
+    transition: 0.2s color;
+    color: rgba(35,31,32,.5);
+    &:hover {
+      color: rgba(35,31,32,1);
+    }
+  }
+}
+.site-header:hover {
+  .edit-link {
+    opacity: 1;
+  }
+}

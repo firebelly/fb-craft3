@@ -1,0 +1,72 @@
+// Homepage
+
+body.homepage {
+  .header {
+    padding: $padding-md 0;
+    h2 {
+      @include h1-sans;
+      margin: 0;
+
+      .motto {
+        @include type-caption;
+        display: block;
+        position: relative;
+
+        @include media-md {
+          top: 26px;
+          left: -20px;
+          vertical-align: top;
+          line-height: inherit;
+          display: inline-block;
+        }
+      }
+    }
+  }
+
+  // Eager to Leearn Button
+  .learn-section {
+    a {
+      @include p1;
+      display: flex;
+      line-height: 1;
+      align-items: center;
+      color: color('offwhite');
+      justify-content: space-between;
+      background-color: color('red');
+      padding: 50px #{$padding-lg * 2} 50px 25px;
+
+      svg {
+        width: 54px;
+        height: 23px;
+        fill: color('offwhite');
+      }
+    }
+  }
+}
+
+#work-page.index {
+  // Hide Project grid icon on homepage
+  .project-side-toggle {
+    display: none;
+  }
+  // ..and move standard menu-toggle button over
+  .menu-toggle {
+    right: 25px;
+  }
+
+  // Sidebar pushes main content over on homepage
+  @include media-md {
+    .site-header {
+      &.sidebar-open {
+        padding-right: 325px;
+      }
+    }
+
+    #page {
+      transition: margin .4s $cubic-ease1;
+      &.sidebar-open {
+        margin-right: 300px;
+      }
+    }
+  }
+}

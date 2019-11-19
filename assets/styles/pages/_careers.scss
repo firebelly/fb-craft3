@@ -1,0 +1,72 @@
+// Careers Page
+
+#careers-page,
+#careers-new-page {
+
+  article {
+    background: $gray;
+    padding-bottom: ($padding * 6);
+    @include media-md {
+      padding-bottom: ($padding * 12);
+    }
+
+    .section-title {
+      padding-bottom: 71px;
+
+      h1 {
+        margin-bottom: 0;
+      }
+    }
+
+    .article-divider {
+      width: 100%;
+      height: 1px;
+      border: none;
+      margin: 0 auto;
+      max-width: 650px;
+      background: $black-fade;
+    }
+
+    .featured-image {
+      height: 400px;
+      max-height: 50vh;
+      background-size: cover;
+      background-position: center center;
+    }
+    .featured-image-caption {
+      margin: 0 auto;
+      max-width: 650px;
+      color: $black-fade;
+      @extend %small-caps;
+      padding: $padding 25px;
+    }
+
+    .inner-wrapper {
+      margin: 0 auto;
+      max-width: 650px;
+      padding-left: 25px;
+      padding-right: 25px;
+    }
+
+    .summary {
+      h1, h2, h3, h4, h5, h6 {
+        margin: 2em auto;
+        max-width: 650px;
+        text-align: center;
+      }
+
+      p {
+        margin: $padding-md auto 0;
+      }
+    }
+  }
+
+  .past-positions {
+    margin-top: 96px;
+  }
+
+  .position {
+    margin: 96px 0;
+  }
+
+}

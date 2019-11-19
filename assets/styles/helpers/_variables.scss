@@ -1,0 +1,32 @@
+// Variables
+
+// Colors
+$colors: (
+  'white': #fff,
+  'offwhite': #f2f2f0,
+  'black': #232323,
+  'gray': #acaba8,
+  'gray-light': #e5e5e3,
+  'gray-dark': #757575,
+  'red': #ff3d00
+);
+
+@function color($color-name) {
+  @return map-get($colors, $color-name);
+}
+
+// Header Height
+$header-sm: 64px;
+$header-md: 96px;
+
+// Padding increment
+$padding-sm: 17px;
+$padding-md: 35px;
+$padding-lg: 72px;
+
+// Breakpoints
+$breakpoint-sm: 480px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 1200px;
+$breakpoint-nav: 1100px;
+$breakpoint-xl: 1400px;

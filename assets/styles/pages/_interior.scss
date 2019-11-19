@@ -1,0 +1,188 @@
+// Interior Pages
+
+// when clicking on Contact, focus that area
+body.focus-contact {
+  #page {
+    opacity: .1;
+  }
+}
+#page {
+  transition: opacity .5s;
+}
+
+// General Page components
+body.page.single {
+  .child-pages {
+    .page {
+      padding: ($padding * 6) 25px;
+
+      &:nth-of-type(odd) {
+        background: rgba(255,255,255,.6);
+      }
+
+      @include media-md {
+        padding: ($padding * 12) 25px;
+      }
+
+      @include max-screen(1000px) {
+        .one-half {
+          width: 100%;
+          float: none;
+        }
+
+        .intro {
+          padding-left: 0;
+        }
+      }
+
+      .secondary {
+        .secondary-item {
+          h3 {
+            margin-top: 33px;
+            &:first-of-type {
+              margin-top: 0;
+            }
+          }
+          li {
+            list-style: none;
+          }
+        }
+      }
+    }
+
+    aside {
+      color: $black-fade;
+      @extend %small-caps;
+
+      h1, h2, h3 {
+        color: $black;
+        text-transform: none;
+        letter-spacing: 0;
+      }
+
+      strong {
+        color: $black;
+      }
+
+      @include media-md {
+        .-left {
+          padding-right: 25px;
+        }
+      }
+    }
+  }
+}
+
+#store-page.single,
+body.page.single {
+  .interior {
+    &:not(.no-padding) {
+      padding: ($padding * 6) 25px;
+      @include media-md {
+        padding: ($padding * 12) 25px ($padding * 12) 25px;
+      }
+    }
+
+    .section-title {
+      padding: 0;
+      text-align: left;
+      position: relative;
+      @include min-screen(1000px) {
+        .section-number {
+          right: 100%;
+          text-align: center;
+          position: absolute;
+          width: #{$padding * 12};
+          padding: 0 #{$padding * 2};
+        }
+      }
+    }
+
+    .intro {
+      margin-bottom: ($padding * 3);
+      @include media-md {
+        padding-right: $padding * 12;
+        padding-left: (($padding * 12) - 25);
+      }
+
+      .-inner {
+        max-width: 400px;
+      }
+      p {
+        line-height: 1.375em;
+        letter-spacing: .025em;
+        margin-top: $padding-md;
+        &:first-of-type {
+          margin-top: 0;
+        }
+      }
+    }
+
+    .secondary {
+      .secondary-item {
+        margin-top: ($padding * 3);
+        h1, h2, h3 {
+          color: $black;
+          margin: 0 0 .6em;
+          @extend %title;
+          @extend %smooth;
+          position: relative;
+          padding-bottom: .5em;
+          &:after {
+            left: 0;
+            bottom: 0;
+            content: '';
+            height: 1px;
+            width: .25em;
+            position: absolute;
+            background: $black-fade;
+          }
+        }
+        p {
+          @extend %small-caps;
+          margin: 0;
+        }
+
+        ul {
+          li {
+            color: $black-fade;
+            @extend %small-caps;
+          }
+        }
+
+        table {
+          text-align: left;
+          td {
+            color: $black-fade;
+            vertical-align: top;
+            @extend %small-caps;
+            padding: 0 $padding-md 0 0;
+          }
+        }
+
+        @include media-md {
+          &.-first {
+            margin-top: 0;
+          }
+        }
+
+        @include media-lg {
+          &:first-of-type {
+            margin-top: 0;
+          }
+        }
+      }
+
+      @include media-md {
+        padding-top: 19px;
+      }
+
+      @include max-screen($breakpoint-large) {
+        .one-half {
+          width: 100%;
+          float: none;
+        }
+      }
+    }
+  }
+}

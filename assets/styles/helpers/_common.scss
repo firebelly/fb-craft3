@@ -1,0 +1,35 @@
+// Common styles
+
+%clearfix {
+  &:after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+}
+
+%fade-links {
+  a {
+    color: color('black');
+    text-decoration: underline;
+    transition: color .2s ease-out;
+    @include linkHover(color('gray'));
+  }
+}
+
+%working {
+  content: '';
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  width: 30px;
+  height: 30px;
+  margin: 0 0 0 -15px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,.1);
+  border-top-color: rgba(255,255,255,1);
+  animation: spinner 2s linear infinite;
+}
+@keyframes spinner {
+  100% {transform: rotate(360deg);}
+}

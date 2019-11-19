@@ -1,0 +1,35 @@
+// Endeavors
+
+.single.page.endeavors {
+  #page {
+    background: $blue;
+
+    .user-content a {
+      @include linkHover($blue);
+    }
+  }
+
+  .content {
+    > .intro {
+      width: 100%;
+      float: none;
+      margin-bottom: 0;
+      text-align: center;
+      padding: ($padding * 6) 25px;
+      .-inner {
+        margin: 0 auto;
+      }
+      .section-title {
+        text-align: center;
+      }
+      .summary p {
+        color: $black-fade;
+        @extend %small-caps;
+      }
+
+      @include media-md {
+        padding: ($padding * 12);
+      }
+    }
+  }
+}

@@ -5,9 +5,13 @@
 .DS_Store
 
 # Build
+# from yarn/webpack assets
+.cache-loader
+dist
 node_modules
-*.js.map
-*.css.map
+npm-debug.log
+yarn-error.log
+resources/assets/config-local.json
 
 # Letsencrypt
 .well-known

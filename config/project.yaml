@@ -10,7 +10,7 @@ categoryGroups:
         hasUrls: true
         uriFormat: '{% if object.level == 1 %}work/industry/{slug}{% else %}{parent.uri}/{slug}{% endif %}'
         template: work/industry
-dateModified: 1572541637
+dateModified: 1573079970
 email:
   fromEmail: store@firebellydesign.com
   fromName: 'Firebelly Design'
@@ -35,6 +35,8 @@ fieldGroups:
     name: Careers
   6437dede-d24a-41aa-b80e-ca2691b7f29b:
     name: Thoughts
+  8371a28a-a15c-40e8-a56a-142abd851d9b:
+    name: Homepage
   885301bf-3f92-4266-818e-0c53786afc3a:
     name: Page
   9ace857e-959b-4a74-b0e0-42873080c846:
@@ -335,6 +337,21 @@ fields:
       columnType: string
     fieldGroup: 9ace857e-959b-4a74-b0e0-42873080c846
     contentColumnType: string
+  7cb4f34a-43b1-44c2-8e70-f39f1320768c:
+    name: 'Call to Action'
+    handle: callToAction
+    instructions: 'Optional call to action that appears before the footer.'
+    searchable: true
+    translationMethod: site
+    translationKeyFormat: null
+    type: craft\fields\Matrix
+    settings:
+      minBlocks: ''
+      maxBlocks: ''
+      contentTable: '{{%matrixcontent_calltoaction}}'
+      propagationMethod: all
+    contentColumnType: string
+    fieldGroup: 8371a28a-a15c-40e8-a56a-142abd851d9b
   8dd0581c-6902-4a9c-8ddd-e11ce7656351:
     name: 'SEO Description'
     handle: seoDescription
@@ -625,6 +642,23 @@ fields:
       columnType: text
     fieldGroup: 3690a445-5c74-47c8-a37d-af19533bfdcf
     contentColumnType: text
+  d5391ce7-37cf-4fdc-807e-6cbacbdbe2a9:
+    name: 'Header Description'
+    handle: headerDescription
+    instructions: ''
+    searchable: true
+    translationMethod: none
+    translationKeyFormat: null
+    type: craft\fields\PlainText
+    settings:
+      placeholder: ''
+      code: ''
+      multiline: ''
+      initialRows: '4'
+      charLimit: ''
+      columnType: text
+    contentColumnType: text
+    fieldGroup: 8371a28a-a15c-40e8-a56a-142abd851d9b
   e08eb433-6275-40bd-ac89-ef297669541e:
     name: 'Main Image'
     handle: mainImage
@@ -1874,6 +1908,61 @@ matrixBlockTypes:
           columnType: text
         fieldGroup: null
         contentColumnType: text
+  ca5a7423-d29f-485d-98ed-d53b5985ed59:
+    field: 7cb4f34a-43b1-44c2-8e70-f39f1320768c
+    name: CTA
+    handle: cta
+    sortOrder: 1
+    fields:
+      17f29205-67c4-4c34-9052-2af3132a6632:
+        name: 'Linked Entry'
+        handle: linkedEntry
+        instructions: 'Choose an entry'
+        searchable: true
+        translationMethod: site
+        translationKeyFormat: null
+        type: craft\fields\Entries
+        settings:
+          sources: '*'
+          source: null
+          targetSiteId: null
+          viewMode: null
+          limit: '1'
+          selectionLabel: ''
+          localizeRelations: false
+          validateRelatedElements: ''
+        contentColumnType: string
+        fieldGroup: null
+      43549ab3-c1ca-498f-bf7d-fe27a2f68272:
+        name: Text
+        handle: text
+        instructions: 'Short CTA text.'
+        searchable: false
+        translationMethod: none
+        translationKeyFormat: null
+        type: craft\fields\PlainText
+        settings:
+          placeholder: ''
+          code: ''
+          multiline: ''
+          initialRows: '4'
+          charLimit: ''
+          columnType: text
+        contentColumnType: text
+        fieldGroup: null
+    fieldLayouts:
+      2fe4151a-9660-46ec-9494-f974a04565f5:
+        tabs:
+          -
+            name: Content
+            sortOrder: 1
+            fields:
+              17f29205-67c4-4c34-9052-2af3132a6632:
+                required: false
+                sortOrder: 2
+              43549ab3-c1ca-498f-bf7d-fe27a2f68272:
+                required: true
+                sortOrder: 1
   ce15a666-1d0d-4208-9577-a17c1187b7f2:
     field: 2a5054ba-d822-4486-9917-cd1bcd4aba46
     name: 'Padded Image / Video'
@@ -2536,6 +2625,10 @@ plugins:
     edition: standard
     enabled: true
     schemaVersion: 1.0.0
+  smith:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
 routes:
   1cdbb0b9-5e9e-4114-b636-6224ad91e535:
     uriParts:
@@ -2962,7 +3055,7 @@ sections:
         handle: homepage
         hasTitleField: true
         titleLabel: Title
-        titleFormat: null
+        titleFormat: ''
         sortOrder: 1
         fieldLayouts:
           9fbe79cb-296b-4b76-98b8-fe55e06fc1a1:
@@ -2971,8 +3064,11 @@ sections:
                 name: Content
                 sortOrder: 1
                 fields:
-                  b5b5edb5-b62f-41c2-a7ed-89e2b72e1c58:
-                    required: true
+                  7cb4f34a-43b1-44c2-8e70-f39f1320768c:
+                    required: false
+                    sortOrder: 2
+                  d5391ce7-37cf-4fdc-807e-6cbacbdbe2a9:
+                    required: false
                     sortOrder: 1
     siteSettings:
       8e487d70-7966-4e1f-a6dd-bfbbb1dd9100:

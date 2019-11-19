@@ -1,0 +1,78 @@
+// Header
+
+.site-header {
+  top: 0;
+  left: 0;
+  z-index: 20;
+  width: 100%;
+  position: fixed;
+  height: $header-sm;
+  background-color: color('white');
+  transition: padding .4s $cubic-ease1, top .3s ease-out, background .2s ease-out;
+  @include media-nav {
+    height: $header-md;
+  }
+
+  &.nav-down {
+
+  }
+  &.nav-up {
+
+  }
+}
+
+$logo-sm-w: 32px;
+$logo-lg-w: 49px;
+
+#logo {
+  top: 16px;
+  margin: 0;
+  z-index: 2;
+  left: $padding-sm;
+  position: absolute;
+  a {
+    display: inline-block;
+  }
+
+  .logo-svg {
+    display: flex;
+    align-items: center;
+  }
+
+  #logo-f {
+    width: $logo-sm-w;
+    height: $logo-sm-w;
+  }
+
+  #logo-wordmark {
+    width: 88px;
+    height: 20px;
+    margin-left: 13px;
+  }
+
+  @include media-nav {
+    top: 32px;
+    left: $padding-lg - ($logo-lg-w / 2);
+
+    .logo-svg {
+      display: block;
+    }
+
+    svg {
+      display: block;
+    }
+
+    #logo-f {
+      width: $logo-lg-w;
+      height: $logo-lg-w;
+    }
+
+    #logo-wordmark {
+      width: 80px;
+      height: 19px;
+      margin: 47px 0 0 11px;
+      transform: rotate(90deg);
+      transform-origin: bottom left;
+    }
+  }
+}

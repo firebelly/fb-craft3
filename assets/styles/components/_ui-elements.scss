@@ -1,0 +1,117 @@
+// UI Elements
+
+// Button Styles
+.button,
+a.button {
+  @include p1;
+  @include button(color('black'), color('white'));
+  height: 64px;
+  line-height: 64px;
+  position: relative;
+  border-radius: 48px;
+  display: inline-block;
+  padding: 0 105px 0 36px;
+
+  &::after {
+    top: 50%;
+    right: 36px;
+    content: '';
+    width: 54px;
+    height: 23px;
+    position: absolute;
+    transform: translateY(-50%);
+    background-image: url('../images/arrow-white.svg');
+  }
+
+  &:hover::after {
+    background-image: url('../images/arrow-black.svg');
+  }
+
+  // Large Variation
+  &.-large {
+    height: 96px;
+    line-height: 96px;
+    padding-right: 168px;
+  }
+
+  // Hollow Variation
+  &.hollow {
+    @include buttonHollow(color('black'), color('white'));
+    &::after {
+      background-image: url('../images/arrow-black.svg');
+    }
+    &:hover::after {
+      background-image: url('../images/arrow-white.svg');
+    }
+
+    &.-red {
+      @include buttonHollow(color('red'), color('black'));
+      &::after {
+        background-image: url('../images/arrow-red.svg');
+      }
+      &:hover::after {
+        background-image: url('../images/arrow-black.svg');
+      }
+    }
+    &.-white {
+      @include buttonHollow(color('white'), color('black'));
+
+      &::after {
+        background-image: url('../images/arrow-white.svg');
+      }
+      &:hover::after {
+        background-image: url('../images/arrow-black.svg');
+      }
+    }
+  }
+
+  // Color Variations
+  &.-red {
+    @include button(color('red'), color('black'));
+    &::after {
+      background-image: url('../images/arrow-black.svg');
+    }
+    &:hover::after {
+      background-image: url('../images/arrow-red.svg');
+    }
+  }
+  &.-white {
+    @include button(color('white'), color('black'));
+    &::after {
+      background-image: url('../images/arrow-black.svg');
+    }
+    &:hover::after {
+      background-image: url('../images/arrow-white.svg');
+    }
+  }
+}
+
+body.-cursor-active {
+  // cursor: none;
+  .cursor {
+    display: block;
+  }
+}
+.cursor {
+  top: 0;
+  left: 0;
+  width: 100px;
+  height: 100px;
+  z-index: 1000;
+  display: none;
+  position: fixed;
+  margin-top: -50px;
+  margin-left: -50px;
+  pointer-events: none;
+
+  &.previous {
+    mix-blend-mode: difference;
+    background-image: url('/assets/dist/images/left-arrow.svg');
+    background-size: 100px 100px;
+  }
+  &.next {
+    mix-blend-mode: difference;
+    background-image: url('/assets/dist/images/right-arrow.svg');
+    background-size: 100px 100px;
+  }
+}

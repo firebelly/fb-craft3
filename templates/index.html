@@ -1,1 +1,33 @@
-{% redirect '/work' %}
+{% extends (craft.app.request.isAjax and not craft.app.request.isLivePreview) ? "_ajax-layout" : "_layout" %}
+
+{% set bodyClass = 'homepage' %}
+{% set bodyId = 'homepage' %}
+{% set seoTitle = "Firebelly Design | Branding | Strategy | Graphic Design | Chicago" %}
+{% set seoDescription = "Firebelly Design is a socially conscious boutique design studio based in Chicago. We specialize in branding, strategy and Good Design for Good Reason™." %}
+
+{% block content %}
+
+  <div class="header">
+    <div class="container">
+      <h2>
+        {% if entry.headerDescription %}
+          {{ entry.headerDescription }}
+        {% else %}
+          Firebelly is a socially conscious creative studio specializing in design, strategy & impact consulting.
+        {% endif %}
+        <span class="motto">Good Design For Good Reason.™</span>
+      </h2>
+    </div>
+  </div>
+
+  {% if entry.callToAction|length %}
+    <div class="learn-section background-white">
+      <div class="grid align-right">
+        <div class="col-md-1-2">
+          <a href="{{ entry.callToAction.first().url() }}">{{ entry.callToAction.first().text }} <svg class="icon icon-arrow" aria-hidden="true" role="presentation"><use xlink:href="#icon-arrow"/></svg></a>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+
+{% endblock content %}

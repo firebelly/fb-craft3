@@ -1,0 +1,90 @@
+// Utilities
+
+// Hide visually, but keep accessible by screen readers
+// http://a11yproject.com/posts/how-to-hide-content/
+.visually-hidden {
+    position: absolute !important;
+    clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+    clip: rect(1px, 1px, 1px, 1px);
+    padding:0 !important;
+    border:0 !important;
+    height: 1px !important;
+    width: 1px !important;
+    overflow: hidden;
+}
+body:hover .visually-hidden a, body:hover .visually-hidden input, body:hover .visually-hidden button { display: none !important; }
+// Hide visually and for screen readers
+// http://a11yproject.com/posts/how-to-hide-content/
+.hidden {
+  display: none;
+  visibility: hidden;
+}
+
+// Disable-scrolling
+.no-scroll {
+  position: fixed;
+  overflow: hidden;
+}
+
+// Clearfix
+.clearfix,
+.cf {
+  @include clearfix;
+}
+
+// Semantic List
+.semantic-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+// Button reset
+.button-reset {
+  border: none;
+  appearance: none;
+  background: none;
+
+  &:hover,
+  &:focus {
+    outline: none;
+  }
+}
+
+// Input reset
+.input-reset {
+  padding: 0;
+  border: none;
+  appearance: none;
+  background: none;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+// Text alignment
+.align-left {
+  text-align: left;
+}
+.align-center {
+  text-align: center;
+}
+.align-right {
+  text-align: right;
+}
+
+// CSS Columns
+.columns-2 {
+  @include media-md {
+    columns: 2;
+  }
+}
+.columns-3 {
+  @include media-md {
+    columns: 2;
+  }
+  @include media-lg {
+    columns: 3;
+  }
+}

@@ -1,0 +1,43 @@
+// Process
+
+.single.page.process {
+  .content {
+    > .intro {
+      width: 100%;
+      float: none;
+      margin-bottom: 0;
+      text-align: center;
+      padding: ($padding * 6) 25px;
+      .-inner {
+        margin: 0 auto;
+      }
+      .section-title {
+        text-align: center;
+      }
+      .summary p {
+        color: $black-fade;
+        @extend %small-caps;
+      }
+
+      @include media-md {
+        padding: ($padding * 12);
+      }
+    }
+  }
+
+  .interior {
+    padding: 0;
+  }
+  #page {
+    background: $peach;
+
+    .user-content a {
+      @include linkHover($peach);
+    }
+  }
+  .secondary.user-content {
+    ul, li {
+      list-style: none;
+    }
+  }
+}

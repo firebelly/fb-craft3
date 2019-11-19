@@ -1,0 +1,143 @@
+// Footer
+
+.site-footer {
+  color: color('white');
+  padding: $padding-lg 0;
+  background-color: color('black');
+
+  @include media-md {
+    padding: 156px 0;
+  }
+
+  .label {
+    &-large {
+      @include h1-sans;
+    }
+    &-small {
+      @include type-caption;
+    }
+  }
+
+  .-top {
+    @include media-md {
+      align-items: flex-end;
+      padding-bottom: 156px;
+    }
+  }
+
+  .-bottom {
+    border-top: 1px solid color('white');
+    border-bottom: 1px solid color('white');
+
+    .label-small {
+      margin-bottom: $padding-md;
+    }
+
+    @include media-md {
+      padding: 15px 0 64px;
+
+      > div {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+    }
+  }
+
+  .contact-section {
+    @include media-md {
+      display: flex;
+      justify-content: space-between;
+      > div {
+        padding-right: 110px;
+      }
+    }
+
+    p {
+      @include p2;
+    }
+  }
+
+  .address {
+    @include p2;
+  }
+
+  .social-links {
+    li {
+      @include p2;
+      a {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+.outer-frame {
+  height: 95px;
+  padding: 30px 0 0;
+  background-color: color('white');
+}
+
+// Footer next/prev buttons
+.footer-pagination {
+  @extend %clearfix;
+  padding: 0 25px;
+
+  ul {
+    @extend %clearfix;
+    margin: $padding-lg 0 0 0;
+
+    &:after {
+      content: ' ';
+      display: block;
+      border-bottom: 1px solid #C2C3C5;
+      width: 80%;
+    }
+
+    @include media-md {
+      margin: $padding-lg 0 -30px 0;
+    }
+  }
+
+  li {
+    padding-bottom: 10px;
+    a {
+      font: 24px/1.375em $font-serif;
+    }
+  }
+
+  @include media-md {
+    ul {
+      width: 50%;
+      float: right;
+    }
+    a {
+      transition: margin .2s $cubic-ease2;
+    }
+    li.prev a {
+      margin-left: -24px;
+      &:hover {
+        margin-left: -30px;
+      }
+    }
+    li.next a:hover {
+      margin-left: 6px;
+    }
+
+  }
+
+  @include min-screen(1050px) {
+    li {
+      width: 50%;
+      float: left;
+    }
+  }
+
+  @include max-screen($breakpoint-lg) {
+    .one-half {
+      width: 100%;
+      float: none;
+    }
+  }
+
+}

@@ -1,0 +1,40 @@
+// About
+
+body.about {
+  #page {
+    background: $purple;
+
+    .user-content a {
+      @include linkHover($purple);
+    }
+
+    // Highlights table
+    .highlights {
+      .date {
+        color: $black;
+        white-space: nowrap;
+      }
+    }
+
+    // Secondary Content
+    .secondary {
+      max-width: 400px;
+      @include media-md {
+        max-width: none;
+        padding-right: (($padding * 12) - 25);
+      }
+      .secondary-item {
+        p {
+          font-size: 16px;
+          text-transform: none;
+          line-height: 1.375em;
+          letter-spacing: .025em;
+
+          + p {
+            margin-top: 1em;
+          }
+        }
+      }
+    }
+  }
+}

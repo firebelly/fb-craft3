@@ -1,0 +1,339 @@
+// About
+
+#people-page {
+  #page {
+    background: $yellow;
+
+    .user-content a {
+      @include linkHover($yellow);
+    }
+    .person .links a {
+      @include linkHover($yellow, screen);
+    }
+  }
+
+  .interior {
+    padding: 0;
+  }
+
+  .content {
+    > .intro {
+      width: 100%;
+      margin-bottom: 0;
+      padding: ($padding * 6) 25px;
+
+      .summary p {
+        color: $black;
+        max-width: 500px;
+        padding-right: #{$padding * 6};
+      }
+
+      .filters {
+        display: none;
+        h3 {
+          @extend %title;
+          @extend %smooth;
+          position: relative;
+          margin: 19px 0 .6em;
+          padding-bottom: .5em;
+          &:after {
+            left: 0;
+            bottom: 0;
+            content: '';
+            height: 1px;
+            width: .25em;
+            position: absolute;
+            background: $black;
+          }
+        }
+
+        li {
+          @extend %small-caps;
+        }
+      }
+
+      @include media-md {
+        padding: ($padding * 12);
+
+        .filters {
+          display: block;
+        }
+      }
+    }
+  }
+
+  .people-list {
+    padding: 0 0 #{$padding * 6};
+    @include media-md {
+      padding: 0 0 #{$padding * 12};
+    }
+  }
+
+  .person {
+    margin: 0;
+    position: relative;
+    transition: margin .2s ease-out;
+
+    .toggle-container {
+      opacity: 1;
+      padding: 0 25px;
+      position: relative;
+      display: inline-block;
+      transition: opacity .2s ease-out .3s;
+      &:hover {
+        z-index: 2;
+      }
+    }
+    .person-toggle {
+      z-index: 1;
+      border: none;
+      cursor: pointer;
+      text-align: left;
+      appearance: none;
+      background: none;
+      position: relative;
+      &:focus {
+        outline: none;
+      }
+      span {
+        display: inline-block;
+      }
+      .name {
+        @extend %title;
+        font-size: 32px;
+        position: relative;
+        margin-right: #{$padding * 2};
+        &::after {
+          left: 0;
+          bottom: 2px;
+          content: '';
+          height: 2px;
+          width: 100%;
+          position: absolute;
+          background: $black;
+        }
+      }
+      .tagline {
+        display: block;
+        @extend %small-caps;
+      }
+      .duplicate-title {
+        left: 44px;
+        width: 100%;
+        display: none;
+        color: $yellow;
+        overflow: hidden;
+        text-indent: -22px;
+        position: absolute;
+        .name::after {
+          background: $yellow;
+        }
+        .tagline {
+          text-indent: 0;
+        }
+      }
+
+      @include media-md {
+        &:hover {
+          .duplicate-title {
+            display: inline-block;
+          }
+
+          & + .hover-image {
+            opacity: 1;
+          }
+        }
+
+        .tagline {
+          display: inline-block;
+        }
+      }
+    }
+    .hover-image {
+      opacity: 0;
+      height: auto;
+      width: 600px;
+      display: none;
+      max-width: 600px;
+      position: absolute;
+      pointer-events: none;
+      left: #{$padding * 16};
+      @include media-md {
+        display: block;
+      }
+    }
+
+    // Close Button
+    .person-close {
+      top: 25px;
+      left: 25px;
+      display: none;
+      transition: none;
+      position: absolute;
+      .tcon-menu__lines {
+        &::before,
+        &::after {
+          background-color: $yellow;
+        }
+      }
+    }
+
+    .person-body {
+      opacity: 0;
+      display: none;
+      position: relative;
+      background: $white;
+      transition: opacity .5s ease-out;
+
+      .bio {
+        padding: ($padding * 3) 25px;
+        .pronoun {
+          display: block;
+        }
+      }
+
+      h1 {
+        line-height: 1;
+        font-size: 36px;
+        margin-bottom: 11px;
+      }
+      h2 {
+        color: $black;
+        margin-bottom: $padding-md;
+      }
+      .links {
+        color: $yellow;
+        background: $black;
+        padding: ($padding * 4) 25px;
+        h3 {
+          @extend %title;
+          @extend %smooth;
+          margin: 0 0 .6em;
+          position: relative;
+          padding-bottom: .5em;
+          &:after {
+            left: 0;
+            bottom: 0;
+            content: '';
+            height: 1px;
+            width: .25em;
+            position: absolute;
+            background: $yellow;
+          }
+        }
+        p, a {
+          color: $yellow;
+          @extend %small-caps;
+        }
+        a {
+          opacity: .75;
+          &:hover, &:focus, &:active {
+            opacity: 1;
+          }
+        }
+      }
+      p {
+        margin-top: $padding;
+        line-height: 1.375em;
+        &:first-of-type {
+          margin-top: 0;
+        }
+      }
+      .-right {
+        img {
+          display: none;
+        }
+      }
+      // Hide this on small screen as to avoid downloading the full-size image until needed
+      .desktop-portrait {
+        height: 0;
+        width: 100%;
+        padding-bottom: 66.66%;
+        background-size: cover;
+        background-position: top center;
+        @include max-screen($breakpoint-medium - 1) {
+          display: none;
+          background-image: none;
+        }
+        @include media-md {
+          display: block;
+        }
+      }
+
+    }
+    &.active {
+      margin: 0 0 50px;
+      .toggle-container {
+        opacity: 0;
+        pointer-events: none;
+        transition: opactiy .2s ease-out;
+      }
+      .person-close {
+        display: block;
+      }
+      .person-body {
+        opacity: 1;
+      }
+    }
+
+    @include media-md {
+      .toggle-container {
+        padding: 0 #{$padding * 12};
+        .name {
+          font: 48px/1.145833333em $font-display;
+          letter-spacing: -.01em;
+        }
+      }
+
+      .person-close {
+        top: #{$padding * 12};
+        left: #{$padding * 6};
+        transform: translate(-50%, 10px);
+        .tcon-menu__lines {
+          &::before,
+          &::after {
+            background-color: $black;
+          }
+        }
+      }
+
+      .person-body {
+        .mobile-portrait {
+          display: none;
+        }
+        .inner {
+          display: flex;
+        }
+        .-left,
+        .-right {
+          max-width: 50%;
+          flex-basis: 50%;
+        }
+        .-right {
+          background: $black;
+          img {
+            display: block;
+          }
+        }
+        .bio,
+        .links {
+          padding: ($padding * 12);
+        }
+        h1 {
+          font: 48px/1.145833333em $font-display;
+          letter-spacing: -.01em;
+        }
+        h2 {
+          margin-bottom: ($padding * 4);
+        }
+
+      }
+    }
+    @include media-lg {
+      .portrait {
+        height: auto;
+        max-height: none;
+      }
+    }
+  }
+}

@@ -1,0 +1,857 @@
+// Projects
+
+.filter-header {
+  @extend %small-caps;
+  @extend %fade-links;
+  display: none;
+  padding: $padding * 2;
+  display: none;
+  a,button {
+    display: inline-block;
+    margin-left: 4px;
+  }
+  &.active {
+    display: block;
+  }
+}
+
+// Case Study Page Navigation
+.page-nav {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  width: 25px;
+  color: $white;
+  position: fixed;
+  mix-blend-mode: exclusion;
+
+  @include media-md {
+    width: 33px;
+  }
+
+  @include media-lg {
+    width: 50px;
+  }
+
+  ul {
+    left: 0;
+    top: 50%;
+    width: 100%;
+    position: absolute;
+
+    li {
+      margin: 10px 0;
+      a {
+        width: 100%;
+        height: 20px;
+        display: block;
+        position: relative;
+        &::after {
+          top: 50%;
+          left: 50%;
+          content: '';
+          width: 12px;
+          height: 12px;
+          border-radius: 50%;
+          position: absolute;
+          background-color: $white;
+          transform: translate(-50%, -50%);
+          transition: transform .2s ease-out;
+        }
+        span {
+          left: 25px;
+          position: absolute;
+          white-space: nowrap;
+          transform: translateX(100%);
+          @include media-md {
+            left: 33px;
+          }
+          @include media-lg {
+            left: 50px;
+          }
+        }
+
+        &:hover {
+          span {
+            left: 0;
+            transform: translateX(-100%);
+          }
+        }
+      }
+
+      &.-active {
+        a {
+          &::after {
+            transform: translate(-50%, -50%) scale(1.3333);
+          }
+        }
+      }
+    }
+  }
+}
+
+#work-page.single {
+  .portfolio {
+    padding-top: 46px;
+    @include media-sm {
+      padding-top: 132px;
+    }
+  }
+
+  .project-banner {
+    height: 400px; // Fallback for viewport units
+    height: 50vh;
+    overflow: hidden;
+    max-height: 400px;
+    position: relative;
+    background-size: cover;
+    background-position: center center;
+
+    @include media-md {
+      height: 800px; // Fallback for viewport units
+      height: 70vh;
+      max-height: 800px;
+    }
+
+    &.video {
+      height: auto;
+      max-height: none;
+
+      @include media-md {
+        height: auto;
+        max-height: 800px;
+        max-height: 75vh;
+      }
+    }
+
+    video {
+      height: auto;
+      min-width: 100%;
+      max-width: 100%;
+      position: relative;
+    }
+  }
+
+
+  .section-title {
+    text-align: center;
+    padding: ($padding * 6) 0 0;
+    h1 {
+      font-size: 36px;
+      margin-bottom: $padding;
+    }
+    h4 {
+      color: $black-fade;
+      @extend %small-caps;
+    }
+
+    @include media-sm {
+      h1 {
+        font-size: 48px;
+        max-width: 600px;
+      }
+    }
+  }
+
+  .project-meta {
+    padding: 0 $mobile-padding;
+    max-width: 600px;
+    text-align: center;
+    margin: ($padding * 5) auto 0;
+    > div {
+      @extend %clearfix;
+    }
+    @extend %fade-links;
+    h3 {
+      @extend %small-caps;
+    }
+    ul {
+      li {
+        display: inline;
+        @extend %small-caps;
+      }
+    }
+
+    .services {
+      margin-top: $padding-md;
+    }
+
+    @include media-md {
+      padding: 0;
+      text-align: left;
+      h3 {
+        float: left;
+        width: 90px;
+      }
+      ul {
+        margin-left: 90px;
+      }
+      .services {
+        margin-top: 0;
+      }
+    }
+  }
+
+  .block-quote {
+    padding: ($padding * 6) $mobile-padding;
+
+    @include media-md {
+      padding-top: ($padding * 12);
+      padding-bottom: ($padding * 12);
+    }
+
+    blockquote {
+      margin: auto;
+      max-width: 800px;
+      text-align: center;
+      font: 36px/#{(41/36)} $font-display;
+      @include media-sm {
+        font-size: 48px;
+        line-height: (55/48);
+      }
+    }
+  }
+
+  // A hacky fix for the unwanted borders created around fit-vid'ed video blocks due to iframes and subpixel rounding
+  // Tried hard, but couldn't find a better way.  May god have mercy on my soul.
+  .block-html {
+    @extend %clearfix;
+    overflow: hidden;
+    clear: left;
+    width: 100%;
+    .video-container,
+    // Fluid video wrapper added by vimeo
+    .fluid-width-video-wrapper {
+      margin: -1px;
+    }
+
+    // Removing margins on figure, which videos are placed in now
+    figure {
+      margin: 0;
+    }
+  }
+
+  .summary,
+  .project-summary {
+    width: 100%;
+    &.user-content {
+      padding-left: $mobile-padding;
+      padding-right: $mobile-padding;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      margin: 0 auto;
+      max-width: 600px;
+      text-align: center;
+    }
+    > p {
+      font-size: 16px;
+      max-width: 600px;
+      line-height: 1.375em;
+      margin: $padding-md auto 0;
+      &:first-of-type {
+        margin-top: 0;
+      }
+    }
+  }
+
+  // The project summary
+  .intro {
+    padding: ($padding * 6) 0;
+
+    @include media-md {
+      padding-bottom: ($padding * 9);
+    }
+  }
+
+  .summary {
+    blockquote {
+      margin: ($padding * 6) auto;
+    }
+  }
+
+  // Centered paragraphs
+  .fb-centered-paragraph {
+    font-size: 16px;
+    max-width: 600px;
+    line-height: 1.375em;
+    margin: $padding-md;
+
+    @include media-sm {
+      margin: ($padding * 6);
+    }
+
+    @include media-md {
+      margin: ($padding * 12) auto;
+    }
+  }
+
+  .project-summary {
+    padding: ($padding * 6) $mobile-padding;
+
+    h3.number-header {
+      margin-bottom: 11px;
+    }
+
+    h2 {
+      margin-bottom: ($padding * 6);
+    }
+
+    @include media-sm {
+      padding: ($padding * 6) 100px;
+    }
+
+    @include media-md {
+      padding: ($padding * 12);
+    }
+  }
+
+  // Full width images (old style)
+  .fullbleed-images {
+    margin: 0;
+    img {
+      width: 100%;
+      display: block;
+      max-width: none;
+    }
+
+    // Carousels
+    .flickity {
+      position: relative;
+      .flickity-prev-next-button {
+        top: 0;
+        bottom: 0;
+        width: 50%;
+        height: 100%;
+        display: none;
+        transform: none;
+        background: none;
+        border-radius: 0;
+        cursor: none!important;
+        svg {
+          display: none;
+        }
+      }
+      .slide {
+        margin-right: 25px;
+        &.landscape {
+          width: 80%;
+          img {
+            width: 100%;
+            height: auto;
+          }
+        }
+        &.portrait {
+          img {
+            width: auto;
+            height: 100%;
+            max-height: 400px;
+          }
+        }
+      }
+
+      // With Captions
+      &.with-captions {
+        figure.slide {
+          height: 0;
+          width: 80%;
+          margin-top: 0;
+          margin-left: 0;
+          margin-bottom: 0;
+          overflow: hidden;
+          padding-bottom: 120%;
+          background-size: cover;
+          background-position: center center;
+
+          @include media-md {
+            padding-bottom: 60%;
+          }
+
+          @include min-screen(1000px) {
+            padding-bottom: 45%;
+          }
+        }
+        .image-text {
+          top: 0;
+          left: 0;
+          bottom: 0;
+          z-index: 1;
+          width: 100%;
+          display: flex;
+          position: absolute;
+          align-items: flex-end;
+          &::before {
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            content: '';
+            position: absolute;
+            background-color: rgba($black,.5);
+          }
+
+          > .-inner {
+            position: relative;
+            padding: 25px;
+
+            @include media-md {
+              padding: #{$padding * 6};
+            }
+
+            @include media-lg {
+              width: 50%;
+              padding-right: 0;
+            }
+          }
+
+          .caption-label,
+          .caption {
+            color: $white;
+          }
+
+          .caption-label {
+            @extend %small-caps;
+            font-weight: 700;
+            margin-bottom: 13px;
+          }
+
+          .caption {
+            font-size: 16px;
+            line-height: 24px;
+
+            @include media-md {
+              font-size: 24px;
+              line-height: 32px;
+            }
+          }
+        }
+      }
+
+      // Desktop styles
+      @include media-md {
+        .flickity-prev-next-button {
+          display: block;
+        }
+        .slide {
+          margin-right: #{$padding * 6};
+          &.portrait {
+            img {
+              max-height: 700px;
+            }
+          }
+        }
+      }
+      @include min-screen(1600px) {
+        .slide.portrait {
+          img {
+            max-height: 900px;
+          }
+        }
+      }
+    }
+  }
+
+  // Full page header style
+  header.full-page-header {
+    .section-title {
+      // Much larger type that overlays header image
+      h1 {
+        font-size: 60px;
+        line-height: 1;
+        color: $white;
+      }
+      h4 {
+        color: $white;
+        font: 18px/1 $font-body, sans-serif;
+        letter-spacing: 0;
+        text-transform: none;
+      }
+
+      @include media-sm {
+        h1 {
+          font-size: 80px;
+        }
+      }
+      @include media-md {
+        h1 {
+          font-size: 120px;
+        }
+        h4 {
+          font: 20px/1 $font-body, sans-serif;
+        }
+      }
+    }
+
+    .header-wrap {
+      position: relative;
+      height: calc(100vh - 66px);
+      max-height: 1200px;
+      // Use flex to center align header text
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      // Expand project-banner image to full viewport
+      .project-banner {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        // Override attributes of standard header image
+        height: auto;
+        width: auto;
+        max-height: none;
+        background-color: rgba(0,0,0,.2);
+        // Video banners
+        &.video {
+          background-size: cover;
+          iframe {
+            left: 50%;
+            width: 100vw;
+            height: 56.25vw;
+            min-height: 100vh;
+            min-width: 177.77vh;
+            transform: translateX(-50%);
+          }
+        }
+      }
+    }
+  }
+
+  // Two-column, alt header style
+  .intro.two-column {
+    background: $black-dark;
+    color: $white;
+    @extend %smooth;
+    .intro-wrap {
+      @extend %clearfix;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    // Override 1-column mobile styles
+    .services {
+      margin-top: 0;
+    }
+
+    .summary,
+    .project-meta {
+      max-width: none;
+      ul li,
+      h3 {
+        color: $white;
+        font: 16px/1 $font-body, sans-serif;
+        letter-spacing: 0;
+        text-transform: none;
+        margin: 0 0 4px;
+        text-align: left;
+      }
+      h3 {
+        float: none;
+        width: auto;
+        font-weight: bold;
+      }
+      ul {
+        margin: 0 0 #{$padding * 2} 0;
+        li {
+          display: block;
+          color: rgba(255,255,255,0.65);
+        }
+      }
+    }
+    .summary {
+      > p {
+        margin: 0 0 2em;
+      }
+    }
+
+    .summary.user-content a,
+    .project-meta a {
+      transition: none;
+      color: rgba(255,255,255,0.65);
+      @include linkHover($white, screen);
+    }
+
+    // Small screen styles
+    @include max-screen($breakpoint-medium) {
+      .summary {
+        position: relative;
+        padding-bottom: #{$padding * 3};
+        &::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: $mobile-padding;
+          right: $mobile-padding;
+          border-bottom: 1px solid $white;
+        }
+      }
+    }
+
+    // Desktop styles
+    @include media-md {
+      padding-top: #{$padding * 9};
+      .summary {
+        position: relative;
+        width: 50%;
+        float: left;
+        padding: 0 #{$padding * 6};
+        &::after {
+          content: '';
+          position: absolute;
+          left: auto;
+          right: 0;
+          top: 20px;
+          bottom: 40px;
+          border-right: 1px solid $white;
+        }
+      }
+      .project-meta {
+        width: 50%;
+        float: left;
+        // Arbitrary "move project-meta over a column" spacing
+        padding: 0 #{$padding * 6} 0 16%;
+        margin: 0;
+        .extra-info,
+        .one-half {
+          float: none;
+          width: auto;
+        }
+      }
+    }
+  }
+}
+
+.block-color {
+  &.color-white {
+    background: $white;
+  }
+  &.color-gray {
+    background: $casestudy-gray;
+    .user-content a {
+      @include linkHover($casestudy-gray);
+    }
+  }
+  &.color-black {
+    background: $black-dark;
+    .user-content {
+      &,
+      h2,
+      h3 {
+        @extend %smooth;
+        color: $white;
+      }
+      a {
+        color: rgba($white,.65);
+        @include linkHover($white, screen);
+      }
+    }
+  }
+  .block-wrap {
+    padding: $mobile-padding;
+    @include media-md {
+      padding: 0;
+    }
+    @include media-lg {
+      padding: #{$padding * 6} 0;
+    }
+
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
+// Block spacer
+.block-spacer {
+  flex-basis: 100%;
+  padding: #{$padding * 2} 0;
+
+  &.-medium {
+    padding: #{$padding * 3} 0;
+  }
+
+  &.-large {
+    padding: #{$padding * 4} 0;
+  }
+
+  @include media-md {
+    padding: #{$padding * 3} 0;
+
+    &.-medium {
+      padding: #{$padding * 6} 0;
+    }
+
+    &.-large {
+      padding: #{$padding * 8} 0;
+    }
+  }
+}
+
+// Full width/half width areas
+.block-text,
+.block-image {
+  padding: #{$padding * 1} 0;
+  flex: 0 1 100%;
+
+  @include media-md {
+    &.halfWidth {
+      clear: none;
+      flex: 0 1 50%;
+    }
+  }
+}
+
+.block-image {
+  img {
+    display: block;
+  }
+
+  .block-text {
+    padding-left: 0;
+    padding-top: #{$padding * 2};
+  }
+
+  @include media-md {
+    padding: #{$padding * 3};
+
+    .block-text {
+      padding-top: #{$padding * 6};
+      padding-left: #{$padding * 3};
+    }
+
+    &.lightbox {
+      .lightbox-image {
+        width: 0;
+        height: 0;
+        opacity: 0;
+        overflow: hidden;
+        background-color: rgba($black,.75);
+
+        img {
+          width: 100%;
+        }
+
+        &.-active {
+          top: 0;
+          left: 0;
+          opacity: 1;
+          width: 100%;
+          z-index: 10;
+          height: 100%;
+          position: fixed;
+          text-align: center;
+        }
+      }
+    }
+  }
+}
+.block-text {
+  @include media-md {
+    padding: #{$padding * 6};
+  }
+
+  &.user-content {
+    h2,
+    h3,
+    h3.heading-small {
+      font: bold 16px/1 $font-body, sans-serif;
+      letter-spacing: 0;
+      text-transform: none;
+      margin: 0 0 4px;
+      text-align: left;
+      font-weight: bold;
+    }
+    h2,
+    h2.heading-large {
+      color: inherit;
+      font: 36px/1 $font-display, sans-serif;
+      margin: 0 0 .6em;
+    }
+    h3.heading-medium {
+      color: inherit;
+      font: 30px/32px $font-display, sans-serif;
+      margin: 0 0 .6em;
+    }
+    h3.heading-smallcaps {
+      @extend %small-caps;
+      font-weight: 700;
+      margin-bottom: 0;
+      + p {
+        margin-top: 24px;
+
+        &.p2 {
+          margin-top: 16px;
+        }
+      }
+    }
+
+    p.p2 {
+      font-size: 24px;
+      line-height: 32px;
+    }
+  }
+}
+
+// Browser Frame
+// optionally used on image blocks
+.browser-frame {
+  padding-top: 30px;
+  position: relative;
+  border-radius: 5px;
+  background: rgba(0,0,0,.2);
+  box-shadow: 0px 5px 20px 5px rgba(0,0,0,.2);
+
+  .browserdots {
+    top: 10px;
+    left: 10px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    position: absolute;
+    background-color: rgba(0,0,0,.2);
+    &::before,
+    &::after {
+      top: 0;
+      content: '';
+      width: 10px;
+      height: 10px;
+      position: absolute;
+      border-radius: 50%;
+      background-color: rgba(0,0,0,.2);
+    }
+    &::before {
+      left: 15px;
+    }
+    &::after {
+      left: 30px;
+    }
+  }
+
+  .site {
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
+
+  .scroll {
+    height: 0;
+    overflow: scroll;
+    position: relative;
+    padding-bottom: 75%;
+  }
+
+  .scroll-content {
+    top: 0;
+    width: 100%;
+    position: absolute;
+  }
+
+  img {
+    width: 100%;
+    display: block;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
+}

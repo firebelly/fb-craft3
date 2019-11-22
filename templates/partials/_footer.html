@@ -3,54 +3,62 @@
 
     <div class="-top grid">
       <div class="col-md-1-2">
-        <p class="label-large">Something in mind?</p>
+        <p class="label-large">Have a project in mind?</p>
       </div>
       <div class="col-md-1-2">
-        <a href="#" class="button -large hollow -white">Let's get to work.</a>
+        <a href="#" class="button hollow -white">We'd love to talk.</a>
       </div>
     </div>
 
     <div class="-bottom grid">
       <div class="col-md-1-2">
-        <p class="label-small">Let's make it social</p>
-        <p class="label-large">Follow us.</p>
+        <p class="label-small">Newsletter Signup</p>
+
+        <div id="signup" class="newsletter-section">
+          {% include "/partials/_newsletter_form" %}
+        </div>
       </div>
 
       <div class="col-md-1-2">
         <div class="contact-section">
           <div>
-            <h6 class="label-small">Chicago</h6>
+            <h6 class="label-small">Location</h6>
             <div class="address">
-              <a href="https://goo.gl/maps/im4YsDbLnFH2">
-                <span class="street-address">1402 N Western Ave</span><br>
-                <span class="city">Chicago</span>
-                <span class="region">Illinois</span>
-                <span class="postal-code">60622</span>
-              </a>
+              <span class="street-address">1402 N Western Ave</span><br>
+              <span class="city">Chicago</span>
+              <span class="region">Illinois</span>
+              <span class="postal-code">60622</span>
             </div>
 
             <p class="tel">
               <span class="telephone">+1 773 489 3200</span>
             </p>
 
-            <p class="email">
-              <a href="mailto:info@firebellydesign.com">info@firebellydesign.com</a>
+            <p class="map-link">
+              <a href="https://goo.gl/maps/im4YsDbLnFH2" target="_blank">View Map</a>
             </p>
           </div>
 
           <div>
             <h6 class="label-small">Follow</h6>
             <ul class="social-links">
-              <li><a href="https://www.instagram.com/firebellydesign/">Instagram</a></li>
-              <li><a href="https://www.facebook.com/firebellydesign">facebook</a></li>
-              <li><a href="https://www.behance.net/firebelly">Behance</a></li>
+              <li><a href="https://instagram.com/firebellydesign/">Instagram</a></li>
+              <li><a href="https://facebook.com/firebellydesign">Facebook</a></li>
+              <li><a href="https://twitter.com/firebellydesign">Twitter</a></li>
+              <li><a href="https://www.linkedin.com/company/firebelly-design/">LinkedIn</a></li>
+              <li><a href="https://behance.net/firebelly">Behance</a></li>
             </ul>
           </div>
+
+          <nav class="footer-nav">
+            <h6 class="label-small">Etc</h6>
+            <ul>
+              <li><a href="/careers">Careers</a></li>
+              <li><a href="/legal">Legal</a></li>
+            </ul>
+          </nav>
         </div>
 
-        <div id="signup" class="newsletter-section">
-          {% include "/partials/_newsletter_form" %}
-        </div>
       </div>
     </div>
 

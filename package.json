@@ -41,6 +41,7 @@
     "flickity-imagesloaded": "^2.0.0",
     "jquery": "^3.4",
     "js-dom-router": "^1.0",
+    "p5": "^0.10.2",
     "popper.js": "^1.15",
     "velocity-animate": "^1.5.2"
   }

@@ -6,12 +6,12 @@ import Router from './util/Router';
 import stickyHeaders from './util/stickyHeaders';
 import stickyNav from './util/stickyNav';
 import common from './routes/common';
-import pageHome from './routes/home';
+import homepage from './routes/homepage';
 
 /** Populate Router instance with DOM routes */
 const routes = new Router({
   common,
-  pageHome,
+  homepage,
 });
 
 // Init sticky headers

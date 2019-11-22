@@ -1,11 +1,13 @@
 {% extends (craft.app.request.isAjax and not craft.app.request.isLivePreview) ? "_ajax-layout" : "_layout" %}
 
-{% set bodyClass = 'homepage' %}
+{% set bodyClass = 'homepage with-blobs' %}
 {% set bodyId = 'homepage' %}
+{% set bodyDataAttributes = 'data-blob-color=#FF3D00' %}
 {% set seoTitle = "Firebelly Design | Branding | Strategy | Graphic Design | Chicago" %}
 {% set seoDescription = "Firebelly Design is a socially conscious boutique design studio based in Chicago. We specialize in branding, strategy and Good Design for Good Reason™." %}
 
 {% block content %}
+  <div id="p5-container"></div>
 
   <div class="header">
     <div class="container">
@@ -17,17 +19,52 @@
         {% endif %}
         <span class="motto">Good Design For Good Reason.™</span>
       </h2>
+
+      {% if entry.callToAction|length %}
+        <div class="header-cta section-cta">
+          <div class="grid align-right">
+            <div class="col-md-1-2">
+              <a href="{{ entry.callToAction.first().url() }}" class="button -black">{{ entry.callToAction.first().text }}</a>
+            </div>
+          </div>
+        </div>
+      {% endif %}
     </div>
   </div>
 
-  {% if entry.callToAction|length %}
-    <div class="learn-section background-white">
-      <div class="grid align-right">
-        <div class="col-md-1-2">
-          <a href="{{ entry.callToAction.first().url() }}">{{ entry.callToAction.first().text }} <svg class="icon icon-arrow" aria-hidden="true" role="presentation"><use xlink:href="#icon-arrow"/></svg></a>
+  <div id="recent-work" class="recent-work section">
+    <div class="container">
+      <h5 class="section-label">Recent</h5>
+    </div>
+  </div>
+
+  {% if entry.featuredServices|length %}
+    <div id="what-we-do" class="what-we-do section">
+      <div class="container">
+        <h5 class="section-label">What we do</h5>
+
+        <ul class="services grid">
+          {% for service in entry.featuredServices.all() %}
+            <li class="service grid">
+              <h4 class="service-label col-md-1-2">{{ service.serviceName }}</h4>
+              <p class="service-description col-md-1-2">{{ service.serviceDescription }}</p>
+            </li>
+          {% endfor %}
+        </ul>
+
+        <div class="section-cta">
+          <div class="grid align-right">
+            <div class="col-md-1-2 align-left">
+              <a href="/services" class="button -black">All Services</a>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  {% endif %}
+    {% endif %}
+  </div>
+
+  <div id="featured-work" class="featured-work section">
+
+  </div>
 
 {% endblock content %}

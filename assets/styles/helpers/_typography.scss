@@ -194,6 +194,10 @@ $font-sans: "Surt", Helvetica, Arial, sans-serif;
 
 // Caption
 @mixin type-caption {
+  @extend %smooth;
   @include font-sans;
-  @include paragraph-style(12,24,0.075em,bold,uppercase)
+  @include paragraph-style(10,24,0.075em,bold,uppercase);
+  @include media-md {
+    @include paragraph-style(12,24,0.075em,bold,uppercase);
+  }
 }

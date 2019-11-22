@@ -1,18 +1,22 @@
 // Forms
 
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.input-wrap {
+  position: relative;
+}
+
 input {
+  @extend .input-reset;
+  @include p2;
   width: 100%;
-  border: none;
-  display: block;
-  background: none;
-  border-radius: 0;
-  padding: .5em 0 0;
   color: color('black');
-  @include type-caption;
-  border-bottom: 1px solid color('gray');
-  &:focus {
-    outline: none;
-  }
+  padding: 19px $padding-sm 27px 0;
+  border-bottom: 1px solid color('black');
+
   &::placeholder {
     color: color('black');
   }
@@ -37,25 +41,14 @@ label {
   }
 }
 
-// Newsletter form
-#newsletter-form {
-  input, label {
-    width: 19em;
-  }
-}
+// Light Colored Form Variant
+form.-light {
+  input {
+    color: color('white-dark');
+    border-color: color('white-dark');
 
-// Submit buttons
-.submit {
-  cursor: pointer;
-  border-radius: 0;
-  padding: .25em 1em;
-  display: inline-block;
-  @include type-caption;
-  -webkit-appearance: none;
-  background: color('gray');
-  transition: background .2s ease-out;
-  &:hover, &:focus, &:active {
-    outline: none;
-    background: color('gray-dark');
+    &::placeholder {
+      color: color('white-dark');
+    }
   }
 }

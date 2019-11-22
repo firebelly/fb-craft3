@@ -1,0 +1,29 @@
+// Newsletter Form
+
+form.newsletter {
+  max-width: 498px;
+
+  .form-row {
+    justify-content: flex-end;
+
+    .input-wrap {
+      flex-basis: 100%;
+    }
+
+    @include media-md {
+      .input-wrap {
+        flex-grow: 1;
+        flex-basis: auto;
+      }
+    }
+  }
+
+  input[type="submit"] {
+    margin-top: 32px;
+    margin-left: 36px;
+
+    @include media-md {
+      margin-top: 0;
+    }
+  }
+}

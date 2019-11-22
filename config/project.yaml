@@ -10,7 +10,7 @@ categoryGroups:
         hasUrls: true
         uriFormat: '{% if object.level == 1 %}work/industry/{slug}{% else %}{parent.uri}/{slug}{% endif %}'
         template: work/industry
-dateModified: 1573079970
+dateModified: 1574454828
 email:
   fromEmail: store@firebellydesign.com
   fromName: 'Firebelly Design'
@@ -347,7 +347,7 @@ fields:
     type: craft\fields\Matrix
     settings:
       minBlocks: ''
-      maxBlocks: ''
+      maxBlocks: '1'
       contentTable: '{{%matrixcontent_calltoaction}}'
       propagationMethod: all
     contentColumnType: string
@@ -511,6 +511,21 @@ fields:
       localizeRelations: false
     fieldGroup: ac105b17-6ee3-4505-b227-76456561e443
     contentColumnType: string
+  a2483d09-6798-40be-8f35-c45413ed2e03:
+    name: 'Featured Services'
+    handle: featuredServices
+    instructions: 'Featured services and short descriptions that appear on the homepage.'
+    searchable: true
+    translationMethod: site
+    translationKeyFormat: null
+    type: craft\fields\Matrix
+    settings:
+      minBlocks: ''
+      maxBlocks: '3'
+      contentTable: '{{%matrixcontent_featuredservices}}'
+      propagationMethod: all
+    contentColumnType: string
+    fieldGroup: 8371a28a-a15c-40e8-a56a-142abd851d9b
   a4b38771-d642-4c89-8372-f1d73f910aa7:
     name: Author
     handle: manualAuthor
@@ -1607,6 +1622,59 @@ matrixBlockTypes:
               f7476e23-f767-471e-81da-baa2a3f8ff79:
                 required: false
                 sortOrder: 1
+  73e62394-4339-4707-8fe6-78b210fd30e2:
+    field: a2483d09-6798-40be-8f35-c45413ed2e03
+    name: service
+    handle: service
+    sortOrder: 1
+    fields:
+      84f75f13-0524-40d3-b45b-ab28bf69826d:
+        name: 'Service Name'
+        handle: serviceName
+        instructions: ''
+        searchable: true
+        translationMethod: none
+        translationKeyFormat: null
+        type: craft\fields\PlainText
+        settings:
+          placeholder: ''
+          code: ''
+          multiline: ''
+          initialRows: '4'
+          charLimit: ''
+          columnType: text
+        contentColumnType: text
+        fieldGroup: null
+      e1636a53-9498-4131-b772-a6abcd2773e8:
+        name: 'Service Description'
+        handle: serviceDescription
+        instructions: 'A short sentence or two describing the service.'
+        searchable: true
+        translationMethod: none
+        translationKeyFormat: null
+        type: craft\fields\PlainText
+        settings:
+          placeholder: ''
+          code: ''
+          multiline: ''
+          initialRows: '4'
+          charLimit: ''
+          columnType: text
+        contentColumnType: text
+        fieldGroup: null
+    fieldLayouts:
+      52d1b1d2-e619-4cfb-9946-fd234606a574:
+        tabs:
+          -
+            name: Content
+            sortOrder: 1
+            fields:
+              84f75f13-0524-40d3-b45b-ab28bf69826d:
+                required: true
+                sortOrder: 1
+              e1636a53-9498-4131-b772-a6abcd2773e8:
+                required: true
+                sortOrder: 2
   89ee45d2-8ac7-4eca-a89b-6790da441f98:
     name: Endeavor
     handle: endeavor
@@ -3068,6 +3136,13 @@ sections:
                     required: false
                     sortOrder: 2
                   d5391ce7-37cf-4fdc-807e-6cbacbdbe2a9:
+                    required: false
+                    sortOrder: 1
+              -
+                name: 'Featured Services'
+                sortOrder: 2
+                fields:
+                  a2483d09-6798-40be-8f35-c45413ed2e03:
                     required: false
                     sortOrder: 1
     siteSettings:

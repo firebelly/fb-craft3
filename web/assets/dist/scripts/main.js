@@ -15,7 +15,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _util_stickyHeaders__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./util/stickyHeaders */ "./assets/scripts/util/stickyHeaders.js");
 /* harmony import */ var _util_stickyNav__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./util/stickyNav */ "./assets/scripts/util/stickyNav.js");
 /* harmony import */ var _routes_common__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./routes/common */ "./assets/scripts/routes/common.js");
-/* harmony import */ var _routes_home__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./routes/home */ "./assets/scripts/routes/home.js");
+/* harmony import */ var _routes_homepage__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./routes/homepage */ "./assets/scripts/routes/homepage.js");
 // import external dependencies
  // import local dependencies
 
@@ -28,7 +28,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var routes = new _util_Router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   common: _routes_common__WEBPACK_IMPORTED_MODULE_4__["default"],
-  pageHome: _routes_home__WEBPACK_IMPORTED_MODULE_5__["default"]
+  homepage: _routes_homepage__WEBPACK_IMPORTED_MODULE_5__["default"]
 }); // Init sticky headers
 
 _util_stickyHeaders__WEBPACK_IMPORTED_MODULE_2__["default"].init(); // Init sticky nav
@@ -86,10 +86,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var flickity__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(flickity__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var body_scroll_lock__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! body-scroll-lock */ "./node_modules/body-scroll-lock/lib/bodyScrollLock.min.js");
 /* harmony import */ var body_scroll_lock__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(body_scroll_lock__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _util_appState__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../util/appState */ "./assets/scripts/util/appState.js");
+/* harmony import */ var p5__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! p5 */ "./node_modules/p5/lib/p5.js");
+/* harmony import */ var p5__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(p5__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _util_appState__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../util/appState */ "./assets/scripts/util/appState.js");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
 
 
 __webpack_require__(/*! flickity-imagesloaded */ "./node_modules/flickity-imagesloaded/flickity-imagesloaded.js");
+
 
 
 
@@ -120,6 +129,8 @@ __webpack_require__(/*! flickity-imagesloaded */ "./node_modules/flickity-images
     _initHoverPairs();
 
     _initSiteNav();
+
+    _initBlobs();
 
     function _initCustomCursor() {
       if (!$('.js-cursor').length) {
@@ -184,13 +195,13 @@ __webpack_require__(/*! flickity-imagesloaded */ "./node_modules/flickity-images
       }
 
       if ($(element).length) {
-        _util_appState__WEBPACK_IMPORTED_MODULE_2__["default"].isAnimating = true;
+        _util_appState__WEBPACK_IMPORTED_MODULE_3__["default"].isAnimating = true;
         element.velocity("scroll", {
           duration: duration,
           delay: delay,
           offset: -offset,
           complete: function complete(elements) {
-            _util_appState__WEBPACK_IMPORTED_MODULE_2__["default"].isAnimating = false;
+            _util_appState__WEBPACK_IMPORTED_MODULE_3__["default"].isAnimating = false;
           }
         }, "easeOutSine");
       }
@@ -258,17 +269,101 @@ __webpack_require__(/*! flickity-imagesloaded */ "./node_modules/flickity-images
     function _openNav() {
       $body.addClass('nav-open');
       $siteNav.addClass('-active');
-      _util_appState__WEBPACK_IMPORTED_MODULE_2__["default"].navOpen = true;
+      _util_appState__WEBPACK_IMPORTED_MODULE_3__["default"].navOpen = true;
     }
 
     function _closeNav() {
-      if (!_util_appState__WEBPACK_IMPORTED_MODULE_2__["default"].navOpen) {
+      if (!_util_appState__WEBPACK_IMPORTED_MODULE_3__["default"].navOpen) {
         return;
       }
 
       $body.removeClass('nav-open');
       $siteNav.removeClass('-active');
-      _util_appState__WEBPACK_IMPORTED_MODULE_2__["default"].navOpen = false;
+      _util_appState__WEBPACK_IMPORTED_MODULE_3__["default"].navOpen = false;
+    }
+
+    function _initBlobs() {
+      if (!$body.is('.with-blobs')) {
+        return;
+      }
+
+      var sketch = function sketch(p5) {
+        var maxWidth = 110,
+            color = $body.attr('data-blob-color') || '#FF3D00',
+            speed = 0.15,
+            frameSpeed = 30,
+            thickness = 48,
+            maxAmount = 16,
+            trail = false;
+        var blobs = []; // array of Jitter objects
+        // make library globally available
+
+        window.p5 = p5;
+
+        p5.setup = function () {
+          p5.createCanvas(window.innerWidth * 1.5, window.innerHeight * 1.5);
+          p5.rectMode(p5.CENTER);
+          p5.noStroke();
+          p5.frameRate(frameSpeed); // Create objects
+
+          for (var i = 0; i < maxAmount; i++) {
+            blobs.push(new Jitter());
+          }
+        };
+
+        p5.draw = function () {
+          if (trail === false) {
+            p5.clear();
+          }
+
+          for (var i = 0; i < blobs.length; i++) {
+            p5.push();
+            blobs[i].move();
+            blobs[i].display();
+            p5.pop();
+          }
+        }; // Jitter class
+
+
+        var Jitter =
+        /*#__PURE__*/
+        function () {
+          function Jitter() {
+            _classCallCheck(this, Jitter);
+
+            this.h = Math.random() * (maxWidth - thickness) + thickness;
+            this.x = p5.random(p5.width - thickness);
+            this.y = p5.random(p5.height - this.h);
+            this.speed = speed;
+            this.rotation = p5.radians(-35 + p5.random(-3, 3));
+          }
+
+          _createClass(Jitter, [{
+            key: "move",
+            value: function move() {
+              this.x += p5.random(-this.speed, this.speed);
+              this.y += -this.speed;
+
+              if (this.y + this.h / 2 < 0) {
+                this.y = p5.height + this.h / 2;
+                this.x = p5.random(p5.width);
+              }
+            }
+          }, {
+            key: "display",
+            value: function display() {
+              p5.fill(color);
+              p5.translate(-p5.width / 3, p5.height / 3);
+              p5.rotate(this.rotation);
+              p5.rect(this.x, this.y, thickness, this.h, 24, 24, 24, 24);
+            }
+          }]);
+
+          return Jitter;
+        }();
+      };
+
+      new p5__WEBPACK_IMPORTED_MODULE_2__(sketch);
     }
   },
   finalize: function finalize() {// JavaScript to be fired on all pages, after page specific JS is fired
@@ -278,10 +373,10 @@ __webpack_require__(/*! flickity-imagesloaded */ "./node_modules/flickity-images
 
 /***/ }),
 
-/***/ "./assets/scripts/routes/home.js":
-/*!***************************************!*\
-  !*** ./assets/scripts/routes/home.js ***!
-  \***************************************/
+/***/ "./assets/scripts/routes/homepage.js":
+/*!*******************************************!*\
+  !*** ./assets/scripts/routes/homepage.js ***!
+  \*******************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 

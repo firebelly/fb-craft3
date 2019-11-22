@@ -1,6 +1,7 @@
 import Flickity from 'flickity';
 require('flickity-imagesloaded');
 import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
+import * as p5 from 'p5';
 
 import appState from '../util/appState';
 
@@ -30,6 +31,7 @@ export default {
     _initActiveToggle();
     _initHoverPairs();
     _initSiteNav();
+    _initBlobs();
 
     function _initCustomCursor() {
       if (!$('.js-cursor').length) {
@@ -178,6 +180,79 @@ export default {
       $body.removeClass('nav-open');
       $siteNav.removeClass('-active');
       appState.navOpen = false;
+    }
+
+    function _initBlobs() {
+      if (!$body.is('.with-blobs')) {
+        return;
+      }
+
+      const sketch = p5 => {
+        let maxWidth = 110,
+            color = $body.attr('data-blob-color') || '#FF3D00',
+            speed = 0.15,
+            frameSpeed = 30,
+            thickness = 48,
+            maxAmount = 16,
+            trail = false;
+
+        let blobs = []; // array of Jitter objects
+
+        // make library globally available
+        window.p5 = p5;
+
+        p5.setup = () => {
+          p5.createCanvas(window.innerWidth * 1.5, window.innerHeight * 1.5);
+          p5.rectMode(p5.CENTER);
+          p5.noStroke();
+          p5.frameRate(frameSpeed);
+          // Create objects
+          for (let i = 0; i < maxAmount; i++) {
+            blobs.push(new Jitter());
+          }
+        }
+
+        p5.draw = () => {
+          if (trail === false) {
+            p5.clear();
+          }
+          for (let i = 0; i < blobs.length; i++) {
+            p5.push();
+            blobs[i].move();
+            blobs[i].display();
+            p5.pop();
+          }
+        }
+
+        // Jitter class
+        class Jitter {
+          constructor() {
+            this.h = Math.random() * (maxWidth - thickness) + thickness;
+            this.x = p5.random(p5.width - thickness);
+            this.y = p5.random(p5.height - this.h);
+            this.speed = speed;
+            this.rotation = p5.radians(-35 + p5.random(-3,3));
+          }
+
+          move() {
+            this.x += p5.random(-this.speed, this.speed);
+            this.y += -this.speed;
+            if (this.y + (this.h / 2) < 0) {
+              this.y = p5.height + (this.h / 2);
+              this.x = p5.random(p5.width);
+            }
+          }
+
+          display() {
+            p5.fill(color);
+            p5.translate(-p5.width / 3, p5.height / 3);
+            p5.rotate(this.rotation);
+            p5.rect(this.x, this.y, thickness, this.h, 24, 24, 24, 24);
+          }
+        }
+      }
+
+      new p5(sketch);
     }
   },
   finalize() {

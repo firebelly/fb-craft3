@@ -1,8 +1,8 @@
 // Footer
 
 .site-footer {
-  color: color('white');
   padding: $padding-lg 0;
+  color: color('white-dark');
   background-color: color('black');
 
   @include media-md {
@@ -11,7 +11,12 @@
 
   .label {
     &-large {
-      @include h1-sans;
+      @include h3-sans;
+      margin: 0;
+
+      @include media-lg {
+        @include h1-sans;
+      }
     }
     &-small {
       @include type-caption;
@@ -19,21 +24,38 @@
   }
 
   .-top {
+    .label-large {
+      max-width: 224px;
+      margin-bottom: 64px;
+    }
+
     @include media-md {
       align-items: flex-end;
       padding-bottom: 156px;
+
+      .label-large {
+        max-width: 400px;
+        margin-bottom: 0;
+      }
+
+      .button {
+        margin-bottom: 56px;
+      }
     }
   }
 
   .-bottom {
-    border-top: 1px solid color('white');
-    border-bottom: 1px solid color('white');
+    margin-top: 64px;
+    padding-top: 15px;
+    border-top: 1px solid color('white-dark');
 
     .label-small {
+      margin-top: 0;
       margin-bottom: $padding-md;
     }
 
     @include media-md {
+      margin-top: 0;
       padding: 15px 0 64px;
 
       > div {
@@ -44,30 +66,56 @@
     }
   }
 
-  .contact-section {
+  .newsletter-section {
+    margin-bottom: 15px;
+    padding-bottom: 45px;
+    border-bottom: 1px solid color('white-dark');
+
     @include media-md {
-      display: flex;
-      justify-content: space-between;
+      margin-bottom: 0;
+      padding-bottom: 0;
+      padding-right: 56px;
+      border-bottom: none;
+    }
+  }
+
+  .contact-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    > div {
+      margin-bottom: 48px;
+    }
+
+    @include media-md {
       > div {
-        padding-right: 110px;
+        margin-bottom: 0;
+        padding-right: 53px;
       }
     }
 
     p {
       @include p2;
+      margin: 0;
+    }
+
+    a {
+      text-decoration: underline;
     }
   }
 
   .address {
     @include p2;
+    margin: 0;
   }
 
-  .social-links {
+  .social-links,
+  .footer-nav ul {
+    @extend .semantic-list;
+
     li {
       @include p2;
-      a {
-        text-decoration: underline;
-      }
     }
   }
 }
@@ -75,16 +123,16 @@
 .outer-frame {
   height: 95px;
   padding: 30px 0 0;
-  background-color: color('white');
+  background-color: color('white-dark');
 }
 
 // Footer next/prev buttons
 .footer-pagination {
-  @extend %clearfix;
+  @include clearfix;
   padding: 0 25px;
 
   ul {
-    @extend %clearfix;
+    @include clearfix;
     margin: $padding-lg 0 0 0;
 
     &:after {

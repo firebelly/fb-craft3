@@ -1,35 +1,20 @@
 // Common styles
 
-%clearfix {
-  &:after {
-    content: '';
-    display: table;
-    clear: both;
-  }
+.section-label {
+  @include type-caption;
+  margin: 0;
+  padding: $beat 0 #{$beat * 2};
+  border-top: 1px solid color('black');
 }
 
-%fade-links {
-  a {
-    color: color('black');
-    text-decoration: underline;
-    transition: color .2s ease-out;
-    @include linkHover(color('gray'));
+.section-cta {
+  .button {
+    width: 100%;
   }
-}
-
-%working {
-  content: '';
-  position: absolute;
-  top: 45%;
-  left: 50%;
-  width: 30px;
-  height: 30px;
-  margin: 0 0 0 -15px;
-  border-radius: 50%;
-  border: 2px solid rgba(255,255,255,.1);
-  border-top-color: rgba(255,255,255,1);
-  animation: spinner 2s linear infinite;
-}
-@keyframes spinner {
-  100% {transform: rotate(360deg);}
+  @include media-md {
+    .button {
+      width: auto;
+      min-width: 398px;
+    }
+  }
 }

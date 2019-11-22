@@ -3,6 +3,7 @@
 // Colors
 $colors: (
   'white': #fff,
+  'white-dark': #fafafa,
   'offwhite': #f2f2f0,
   'black': #232323,
   'gray': #acaba8,
@@ -18,6 +19,9 @@ $colors: (
 // Header Height
 $header-sm: 64px;
 $header-md: 96px;
+
+// Vertical Beat
+$beat: 16px;
 
 // Padding increment
 $padding-sm: 17px;

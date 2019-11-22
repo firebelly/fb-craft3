@@ -20,7 +20,13 @@
   ul {
     @extend .semantic-list;
     li {
-      @include h3-sans;
+      @include p1;
+
+      &.-current a,
+      a:hover,
+      a:focus {
+        color: color('red');
+      }
     }
   }
 
@@ -32,6 +38,17 @@
     padding-top: 40px;
     right: $padding-lg;
     background-color: transparent;
+    &::before {
+      top: 50%;
+      width: 6px;
+      left: -92px;
+      height: 6px;
+      content: '';
+      border-radius: 50%;
+      position: absolute;
+      transform: translateY(-3px);
+      background-color: color('black');
+    }
 
     ul {
       display: flex;

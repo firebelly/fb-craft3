@@ -1,10 +1,10 @@
+{% set navItems = ['work','services','about','ideas','contact'] %}
+
 <nav id="site-nav" class="site-nav" role="navigation">
   <button id="nav-close" class="nav-toggle close"><svg class="icon icon-close" aria-hidden="true" role="presentation"><use xlink:href="#icon-close"/></svg></button>
   <ul class="primary">
-    <li class="nav-work"><a href="/work">Work</a></li>
-    <li class="nav-services"><a href="/services">Services</a></li>
-    <li class="nav-about"><a href="/about">About</a></li>
-    <li class="nav-ideas"><a href="/ideas">Ideas</a></li>
-    <li class="nav-contact"><a href="#contact">Contact</a></li>
+    {% for navItem in navItems %}
+      <li class="{{ navItem }}{{ entry is defined and entry.slug == navItem or craft.app.request.getSegment(2) == navItem ? ' -current' : '' }}"><a href="/{{ navItem }}">{{ navItem | capitalize }}</a></li>
+    {% endfor %}
   </ul>
 </nav>

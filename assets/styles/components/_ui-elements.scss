@@ -3,18 +3,19 @@
 // Button Styles
 .button,
 a.button {
-  @include p1;
+  @include p2;
   @include button(color('black'), color('white'));
   height: 64px;
+  text-align: left;
   line-height: 64px;
   position: relative;
   border-radius: 48px;
   display: inline-block;
-  padding: 0 105px 0 36px;
+  padding: 0 90px 0 18px;
 
   &::after {
     top: 50%;
-    right: 36px;
+    right: 18px;
     content: '';
     width: 54px;
     height: 23px;
@@ -27,11 +28,24 @@ a.button {
     background-image: url('../images/arrow-black.svg');
   }
 
-  // Large Variation
-  &.-large {
-    height: 96px;
-    line-height: 96px;
-    padding-right: 168px;
+  @include media-lg {
+    &:not(.-small) {
+      @include p1;
+      height: 96px;
+      line-height: 96px;
+      padding: 0 128px 0 36px;
+
+      &::after {
+        right: 36px;
+      }
+    }
+  }
+
+  // Small Variation
+  &.-small {
+    @include p2;
+    width: auto;
+    padding: 0 30px;
   }
 
   // Hollow Variation

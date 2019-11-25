@@ -190,24 +190,27 @@ export default {
       const sketch = p5 => {
         let maxWidth = 110,
             color = $body.attr('data-blob-color') || '#FF3D00',
-            speed = 0.15,
+            speed = 0.05,
             frameSpeed = 30,
             thickness = 48,
-            maxAmount = 16,
+            minAmount = 4,
+            maxAmount = 14,
             trail = false;
-
-        let blobs = []; // array of Jitter objects
 
         // make library globally available
         window.p5 = p5;
 
+        let blobs = []; // array of Jitter objects
+        let amount = Math.ceil(p5.random(minAmount,maxAmount));
+        console.log(amount);
+
         p5.setup = () => {
-          p5.createCanvas(window.innerWidth * 1.5, window.innerHeight * 1.5);
-          p5.rectMode(p5.CENTER);
+          p5.createCanvas(window.innerWidth * 1.1, window.innerHeight * 1.1);
+          p5.angleMode(p5.DEGREES);
           p5.noStroke();
           p5.frameRate(frameSpeed);
           // Create objects
-          for (let i = 0; i < maxAmount; i++) {
+          for (let i = 0; i < amount; i++) {
             blobs.push(new Jitter());
           }
         }
@@ -230,24 +233,27 @@ export default {
             this.h = Math.random() * (maxWidth - thickness) + thickness;
             this.x = p5.random(p5.width - thickness);
             this.y = p5.random(p5.height - this.h);
-            this.speed = speed;
-            this.rotation = p5.radians(-35 + p5.random(-3,3));
+            this.speed = p5.random(speed, speed + (speed * 2));
+            this.rotation = p5.random(0,360);
           }
 
           move() {
-            this.x += p5.random(-this.speed, this.speed);
+            this.x += p5.random(-this.speed, 0);
             this.y += -this.speed;
-            if (this.y + (this.h / 2) < 0) {
-              this.y = p5.height + (this.h / 2);
-              this.x = p5.random(p5.width);
-            }
+            // if (this.y + (this.h / 2) < 0) {
+            //   this.y = p5.height + this.h;
+            //   this.x = p5.random(p5.width);
+            // }
           }
 
           display() {
             p5.fill(color);
-            p5.translate(-p5.width / 3, p5.height / 3);
+            p5.push();
+            p5.translate(this.x, this.y);
             p5.rotate(this.rotation);
-            p5.rect(this.x, this.y, thickness, this.h, 24, 24, 24, 24);
+            p5.rectMode(p5.CENTER);
+            p5.rect(0, 0, thickness, this.h, 24, 24, 24, 24);
+            p5.pop();
           }
         }
       }

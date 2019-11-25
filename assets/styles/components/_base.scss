@@ -13,6 +13,7 @@ _/        _/_/_/
 }
 
 body {
+  overflow-x: hidden;
   color: color('black');
   box-sizing: border-box;
   padding-top: $header-sm; // making room for the fixed header
@@ -39,6 +40,16 @@ body {
   background-color: color('offwhite');
   border-left: 5px solid color('white');
   border-right: 5px solid color('white');
+}
+
+// Canvas
+canvas {
+  top: 0;
+  left: 0;
+  z-index: 20;
+  position: absolute;
+  pointer-events: none;
+  // mix-blend-mode: multiply;
 }
 
 a {

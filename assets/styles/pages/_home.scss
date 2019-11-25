@@ -1,16 +1,6 @@
 // Homepage
 
 body.homepage {
-  // Canvas
-  canvas {
-    top: 0;
-    left: 0;
-    z-index: 20;
-    position: absolute;
-    pointer-events: none;
-    // mix-blend-mode: multiply;
-  }
-
   .header {
     padding: $padding-md 0;
     h2 {

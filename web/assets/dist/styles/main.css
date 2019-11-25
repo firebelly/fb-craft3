@@ -1349,6 +1349,7 @@ _/        _/_/_/
 }
 
 body {
+  overflow-x: hidden;
   color: #232323;
   box-sizing: border-box;
   padding-top: 64px;
@@ -1375,6 +1376,14 @@ body {
   background-color: #f2f2f0;
   border-left: 5px solid #fff;
   border-right: 5px solid #fff;
+}
+
+canvas {
+  top: 0;
+  left: 0;
+  z-index: 20;
+  position: absolute;
+  pointer-events: none;
 }
 
 a {
@@ -2784,13 +2793,6 @@ form.newsletter input[type=submit] {
   }
 }
 
-body.homepage canvas {
-  top: 0;
-  left: 0;
-  z-index: 20;
-  position: absolute;
-  pointer-events: none;
-}
 body.homepage .header {
   padding: 35px 0;
 }

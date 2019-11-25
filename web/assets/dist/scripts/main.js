@@ -290,23 +290,26 @@ __webpack_require__(/*! flickity-imagesloaded */ "./node_modules/flickity-images
       var sketch = function sketch(p5) {
         var maxWidth = 110,
             color = $body.attr('data-blob-color') || '#FF3D00',
-            speed = 0.15,
+            speed = 0.05,
             frameSpeed = 30,
             thickness = 48,
-            maxAmount = 16,
-            trail = false;
-        var blobs = []; // array of Jitter objects
-        // make library globally available
+            minAmount = 4,
+            maxAmount = 14,
+            trail = false; // make library globally available
 
         window.p5 = p5;
+        var blobs = []; // array of Jitter objects
+
+        var amount = Math.ceil(p5.random(minAmount, maxAmount));
+        console.log(amount);
 
         p5.setup = function () {
-          p5.createCanvas(window.innerWidth * 1.5, window.innerHeight * 1.5);
-          p5.rectMode(p5.CENTER);
+          p5.createCanvas(window.innerWidth * 1.1, window.innerHeight * 1.1);
+          p5.angleMode(p5.DEGREES);
           p5.noStroke();
           p5.frameRate(frameSpeed); // Create objects
 
-          for (var i = 0; i < maxAmount; i++) {
+          for (var i = 0; i < amount; i++) {
             blobs.push(new Jitter());
           }
         };
@@ -334,28 +337,29 @@ __webpack_require__(/*! flickity-imagesloaded */ "./node_modules/flickity-images
             this.h = Math.random() * (maxWidth - thickness) + thickness;
             this.x = p5.random(p5.width - thickness);
             this.y = p5.random(p5.height - this.h);
-            this.speed = speed;
-            this.rotation = p5.radians(-35 + p5.random(-3, 3));
+            this.speed = p5.random(speed, speed + speed * 2);
+            this.rotation = p5.random(0, 360);
           }
 
           _createClass(Jitter, [{
             key: "move",
             value: function move() {
-              this.x += p5.random(-this.speed, this.speed);
-              this.y += -this.speed;
-
-              if (this.y + this.h / 2 < 0) {
-                this.y = p5.height + this.h / 2;
-                this.x = p5.random(p5.width);
-              }
+              this.x += p5.random(-this.speed, 0);
+              this.y += -this.speed; // if (this.y + (this.h / 2) < 0) {
+              //   this.y = p5.height + this.h;
+              //   this.x = p5.random(p5.width);
+              // }
             }
           }, {
             key: "display",
             value: function display() {
               p5.fill(color);
-              p5.translate(-p5.width / 3, p5.height / 3);
+              p5.push();
+              p5.translate(this.x, this.y);
               p5.rotate(this.rotation);
-              p5.rect(this.x, this.y, thickness, this.h, 24, 24, 24, 24);
+              p5.rectMode(p5.CENTER);
+              p5.rect(0, 0, thickness, this.h, 24, 24, 24, 24);
+              p5.pop();
             }
           }]);
 

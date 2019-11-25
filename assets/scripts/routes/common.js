@@ -202,7 +202,6 @@ export default {
 
         let blobs = []; // array of Jitter objects
         let amount = Math.ceil(p5.random(minAmount,maxAmount));
-        console.log(amount);
 
         p5.setup = () => {
           p5.createCanvas(window.innerWidth * 1.1, window.innerHeight * 1.1);
@@ -227,18 +226,22 @@ export default {
           }
         }
 
+        p5.windowResized = () => {
+          p5.resizeCanvas(window.innerWidth * 1.1, window.innerHeight * 1.1, false);
+        }
+
         // Jitter class
         class Jitter {
           constructor() {
             this.h = Math.random() * (maxWidth - thickness) + thickness;
             this.x = p5.random(p5.width - thickness);
             this.y = p5.random(p5.height - this.h);
-            this.speed = p5.random(speed, speed + (speed * 2));
+            this.speed = p5.random(speed, speed + (speed * 3));
             this.rotation = p5.random(0,360);
           }
 
           move() {
-            this.x += p5.random(-this.speed, 0);
+            this.x += p5.random(-this.speed * 2, this.speed);
             this.y += -this.speed;
             // if (this.y + (this.h / 2) < 0) {
             //   this.y = p5.height + this.h;
@@ -249,10 +252,10 @@ export default {
           display() {
             p5.fill(color);
             p5.push();
-            p5.translate(this.x, this.y);
-            p5.rotate(this.rotation);
-            p5.rectMode(p5.CENTER);
-            p5.rect(0, 0, thickness, this.h, 24, 24, 24, 24);
+              p5.translate(this.x, this.y);
+              p5.rotate(this.rotation);
+              p5.rectMode(p5.CENTER);
+              p5.rect(0, 0, thickness, this.h, 24, 24, 24, 24);
             p5.pop();
           }
         }

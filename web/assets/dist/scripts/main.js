@@ -301,7 +301,6 @@ __webpack_require__(/*! flickity-imagesloaded */ "./node_modules/flickity-images
         var blobs = []; // array of Jitter objects
 
         var amount = Math.ceil(p5.random(minAmount, maxAmount));
-        console.log(amount);
 
         p5.setup = function () {
           p5.createCanvas(window.innerWidth * 1.1, window.innerHeight * 1.1);
@@ -325,6 +324,10 @@ __webpack_require__(/*! flickity-imagesloaded */ "./node_modules/flickity-images
             blobs[i].display();
             p5.pop();
           }
+        };
+
+        p5.windowResized = function () {
+          p5.resizeCanvas(window.innerWidth * 1.1, window.innerHeight * 1.1, false);
         }; // Jitter class
 
 
@@ -337,14 +340,14 @@ __webpack_require__(/*! flickity-imagesloaded */ "./node_modules/flickity-images
             this.h = Math.random() * (maxWidth - thickness) + thickness;
             this.x = p5.random(p5.width - thickness);
             this.y = p5.random(p5.height - this.h);
-            this.speed = p5.random(speed, speed + speed * 2);
+            this.speed = p5.random(speed, speed + speed * 3);
             this.rotation = p5.random(0, 360);
           }
 
           _createClass(Jitter, [{
             key: "move",
             value: function move() {
-              this.x += p5.random(-this.speed, 0);
+              this.x += p5.random(-this.speed * 2, this.speed);
               this.y += -this.speed; // if (this.y + (this.h / 2) < 0) {
               //   this.y = p5.height + this.h;
               //   this.x = p5.random(p5.width);

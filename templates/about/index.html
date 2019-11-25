@@ -4,8 +4,9 @@
 {% if entry.seoTitle %}{% set seoTitle = entry.seoTitle %}{% endif %}
 {% if entry.seoDescription %}{% set seoDescription = entry.seoDescription %}{% endif %}
 
-{% set bodyClass = 'single page about' %}
+{% set bodyClass = 'single page about with-blobs' %}
 {% set bodyId = 'about-page' %}
+{% set bodyDataAttributes = 'data-blob-color=#7F09F5' %}
 
 {% block content %}
   <section class="content interior grid">
